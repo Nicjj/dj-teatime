@@ -175,12 +175,14 @@ nav.desktop a:hover::after{transform:scaleX(1);transform-origin:left}
 
 h1.title{
   font-size:clamp(50px,14vw,132px);
-  line-height:.84;letter-spacing:.01em;text-transform:uppercase;font-weight:800;
+  line-height:.9;letter-spacing:-.02em;text-transform:uppercase;font-weight:900;
 }
+/* Gefuellt statt Kontur: eine 2px-Kontur frisst bei dieser Groesse
+   die Innenraeume von A und E zu und laesst die Schrift unruhig wirken.
+   Keine der fuenf Referenzseiten setzt den Namen als Konturschrift. */
 h1.title .accent{
-  color:transparent;
-  -webkit-text-stroke:2px var(--accent);
-  text-stroke:2px var(--accent);
+  color:var(--accent);
+  text-shadow:0 0 30px rgba(255,0,144,.5);
 }
 .tagline{
   margin-top:20px;font-size:12px;letter-spacing:.3em;text-transform:uppercase;
@@ -206,11 +208,24 @@ h1.title .accent{
 .btn.ghost:hover{color:#000;border-color:var(--ink)}
 
 .scroll-cue{
-  position:absolute;bottom:22px;left:50%;transform:translateX(-50%);
+  position:absolute;bottom:24px;left:50%;transform:translateX(-50%);
+  display:flex;flex-direction:column;align-items:center;gap:9px;
   font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:var(--muted);
-  animation:bob 2s ease-in-out infinite;
 }
-@keyframes bob{0%,100%{transform:translate(-50%,0)}50%{transform:translate(-50%,7px)}}
+/* Tropfende Linie aus der alten Version */
+.scroll-cue .line{
+  width:1px;height:34px;
+  background:linear-gradient(var(--accent),transparent);
+  animation:drip 1.8s ease-in-out infinite;
+}
+@keyframes drip{
+  0%{transform:scaleY(0);transform-origin:top}
+  50%{transform:scaleY(1);transform-origin:top}
+  51%{transform-origin:bottom}
+  100%{transform:scaleY(0);transform-origin:bottom}
+}
+.scroll-cue .arr{width:17px;height:17px;color:var(--accent);animation:bob 2s ease-in-out infinite}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(6px)}}
 
 /* ---------- Laufband ---------- */
 .ticker{
@@ -379,7 +394,11 @@ footer .legal a{border-bottom:1px solid #333}
   <h1 class="title">DJ<br><span class="accent">TEATIME</span></h1>
   <p class="tagline">Hard Techno &middot; Tekno &middot; Dresden</p>
   <a class="btn" href="#booking"><span>Booking</span></a>
-  <div class="scroll-cue">Scroll</div>
+  <div class="scroll-cue">
+    <span class="line"></span>
+    <span>Scroll</span>
+    <svg class="arr" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v14m0 0l-6.5-6.5M12 18l6.5-6.5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </div>
 </div>
 
 <!-- ===== Laufband ===== -->
@@ -394,7 +413,7 @@ footer .legal a{border-bottom:1px solid #333}
 <div class="stats">
   <div class="stat"><div class="v">Hard Techno</div><div class="k">Sound</div></div>
   <div class="stat"><div class="v">Dresden</div><div class="k">Based in</div></div>
-  <div class="stat"><div class="v">Vinyl &amp; CDJ</div><div class="k">Format</div></div>
+  <div class="stat"><div class="v">Controller &amp; CDJ</div><div class="k">Format</div></div>
 </div>
 
 <!-- ===== SHOWS ===== -->
@@ -465,8 +484,9 @@ footer .legal a{border-bottom:1px solid #333}
 <section id="booking" class="booking">
   <div class="wrap">
     <div class="reveal">
-      <h2 class="h-sec">Booking</h2>
-      <p>Für Anfragen, Gastspiele und Festivals — schreib direkt.</p>
+      <div class="eyebrow" style="margin-bottom:16px">Get in touch</div>
+      <h2 class="h-sec">Spill<br>the tea.</h2>
+      <p>Booking &middot; Press &middot; Collabs</p>
       <a class="mail" href="mailto:teaatime-music@gmail.com">teaatime-music@gmail.com</a>
     </div>
   </div>
