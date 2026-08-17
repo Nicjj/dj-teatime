@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" role="img" aria-label="DJ Teatime">
+  <title>Tasse von oben, zugleich Schallplatte</title>
+  <mask id="cp-cut">
+    <rect width="100" height="100" fill="#fff"/>
+    <g fill="none" stroke="#000" stroke-width="1.8">
+      <circle cx="48" cy="50" r="32"/>
+      <circle cx="48" cy="50" r="26"/>
+      <circle cx="48" cy="50" r="20"/>
+    </g>
+    <circle cx="48" cy="50" r="3.2" fill="#000"/>
+  </mask>
+
+  <circle cx="48" cy="50" r="38" fill="currentColor" mask="url(#cp-cut)"/>
+  <!-- Henkel rechts, sitzt am Tellerrand -->
+  <path d="M84 40 C96 43 96 57 84 60" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round"/>
+</svg>

@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" role="img" aria-label="DJ Teatime">
+  <title>Tasse, deren Dampf ein Pegelausschlag ist</title>
+  <g fill="currentColor">
+    <!-- Dampf als Pegelbalken -->
+    <rect x="33" y="28" width="7" height="20" rx="3.5"/>
+    <rect x="44" y="14" width="7" height="34" rx="3.5"/>
+    <rect x="55" y="22" width="7" height="26" rx="3.5"/>
+    <rect x="66" y="34" width="7" height="14" rx="3.5"/>
+
+    <!-- Tasse -->
+    <path d="M25 55 H71 L66 82 C65.3 86.5 61.6 90 57 90 H39 C34.4 90 30.7 86.5 30 82 Z"/>
+    <!-- Untertasse -->
+    <rect x="18" y="92" width="60" height="6" rx="3"/>
+  </g>
+  <!-- Henkel -->
+  <path d="M73 61 C85 61 85 76 73 76" fill="none" stroke="currentColor" stroke-width="5.5" stroke-linecap="round"/>
+</svg>

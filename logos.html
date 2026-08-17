@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DJ TEATIME — Logo-Varianten</title>
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#0A0A0A">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%230A0A0A'/><circle cx='16' cy='16' r='11' fill='none' stroke='%23FF0090' stroke-width='3'/><circle cx='16' cy='16' r='2.5' fill='%23FF0090'/></svg>">
+<style>
+:root{
+  --bg:#0A0A0A; --bg2:#121212; --ink:#fff; --muted:#8A8A8A;
+  --accent:#FF0090; --line:rgba(255,255,255,.12);
+  --font:"Segoe UI",system-ui,-apple-system,Roboto,"Helvetica Neue",Arial,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--ink);font-family:var(--font);-webkit-font-smoothing:antialiased}
+a{color:inherit}
+.wrap{width:100%;max-width:1100px;margin:0 auto;padding:0 20px}
+
+.top{padding:52px 0 34px;border-bottom:1px solid var(--line)}
+.eyebrow{font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:var(--muted);font-weight:600}
+h1{font-size:clamp(30px,7vw,52px);text-transform:uppercase;font-weight:900;letter-spacing:-.02em;line-height:.95;margin:14px 0 18px}
+.top p{color:#C6C6C6;font-size:14px;line-height:1.8;max-width:62ch}
+.back{display:inline-block;margin-top:22px;font-size:11px;letter-spacing:.2em;text-transform:uppercase;font-weight:800;
+      border:2px solid var(--accent);border-radius:999px;padding:11px 24px;text-decoration:none}
+
+.variant{padding:62px 0;border-bottom:1px solid var(--line)}
+.variant:nth-child(even){background:var(--bg2)}
+.vhead{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;margin-bottom:8px}
+.num{font-size:11px;letter-spacing:.24em;color:var(--accent);font-weight:800}
+h2{font-size:clamp(23px,5vw,36px);text-transform:uppercase;font-weight:900;letter-spacing:-.01em}
+.desc{color:var(--muted);font-size:13px;line-height:1.8;max-width:58ch;margin-bottom:34px}
+
+.stage{display:grid;gap:40px;align-items:center;grid-template-columns:1fr}
+
+/* Plattenspieler, identisch zur Startseite */
+.vinyl-stage{position:relative;width:min(66vw,300px);aspect-ratio:1/1;margin:0 auto}
+.vinyl{position:absolute;inset:0;border-radius:50%;
+  background:repeating-radial-gradient(circle at center,#191919 0 2px,#050505 2px 4px);
+  box-shadow:0 0 0 3px rgba(255,255,255,.06),0 0 70px -14px rgba(255,0,144,.55),0 30px 60px -20px #000;
+  animation:spin 7s linear infinite}
+@keyframes spin{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+.vinyl-label{position:absolute;inset:0;margin:auto;width:44%;height:44%;border-radius:50%;
+  background:var(--accent);display:grid;place-items:center;box-shadow:0 0 0 3px #000;color:#0A0A0A}
+.vinyl-label .mark{width:78%;height:78%}
+.vinyl-hole{position:absolute;inset:0;margin:auto;width:13px;height:13px;border-radius:50%;background:#000}
+
+.ctx{display:flex;flex-direction:column;gap:22px}
+.row{border:1px solid var(--line);padding:18px 20px}
+.row .lbl{font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:var(--muted);margin-bottom:14px}
+.brandline{display:flex;align-items:center;gap:10px;color:var(--ink)}
+.brandline .mark{width:30px;height:30px}
+.brandline span{font-weight:800;letter-spacing:.14em;font-size:14px;text-transform:uppercase}
+.sizes{display:flex;align-items:flex-end;gap:20px;color:var(--accent)}
+.sizes figure{text-align:center}
+.sizes .mark{display:block;margin:0 auto 7px}
+.sizes figcaption{font-size:10px;color:var(--muted);letter-spacing:.1em}
+.s16{width:16px;height:16px}.s24{width:24px;height:24px}.s32{width:32px;height:32px}.s48{width:48px;height:48px}
+.file{font-size:11px;color:var(--muted);letter-spacing:.06em;margin-top:18px}
+.file code{color:var(--accent)}
+
+footer{padding:52px 0 64px;text-align:center;color:var(--muted);font-size:11px;letter-spacing:.16em;text-transform:uppercase;line-height:2.2}
+
+@media(min-width:860px){
+  .stage{grid-template-columns:300px 1fr;gap:56px}
+  .vinyl-stage{margin:0}
+}
+@media(prefers-reduced-motion:reduce){*{animation:none!important}}
+</style>
+</head>
+<body>
+
+<svg style="position:absolute;width:0;height:0;overflow:hidden" aria-hidden="true">
+  <symbol id="m-teapot" viewBox="0 0 100 100">
+    <mask id="k-teapot"><rect width="100" height="100" fill="#fff"/>
+      <g fill="none" stroke="#000" stroke-width="1.7"><circle cx="50" cy="56" r="21"/><circle cx="50" cy="56" r="16"/><circle cx="50" cy="56" r="11"/></g>
+      <circle cx="50" cy="56" r="3" fill="#000"/></mask>
+    <circle cx="50" cy="56" r="26" fill="currentColor" mask="url(#k-teapot)"/>
+    <path d="M29 43 C21 39 15 31 12 23 L22 26 C25 33 30 38 35 41 Z" fill="currentColor"/>
+    <path d="M37 32 Q50 21 63 32 Z" fill="currentColor"/>
+    <circle cx="50" cy="24" r="3.5" fill="currentColor"/>
+    <path d="M75 44 C89 45 90 68 75 69" fill="none" stroke="currentColor" stroke-width="5.5" stroke-linecap="round"/>
+  </symbol>
+
+  <symbol id="m-platter" viewBox="0 0 100 100">
+    <mask id="k-platter"><rect width="100" height="100" fill="#fff"/>
+      <g fill="none" stroke="#000" stroke-width="1.8"><circle cx="48" cy="50" r="32"/><circle cx="48" cy="50" r="26"/><circle cx="48" cy="50" r="20"/></g>
+      <circle cx="48" cy="50" r="3.2" fill="#000"/></mask>
+    <circle cx="48" cy="50" r="38" fill="currentColor" mask="url(#k-platter)"/>
+    <path d="M84 40 C96 43 96 57 84 60" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round"/>
+  </symbol>
+
+  <symbol id="m-tt" viewBox="0 0 100 100">
+    <mask id="k-tt"><rect width="100" height="100" fill="#fff"/><circle cx="50" cy="66" r="4.5" fill="#000"/></mask>
+    <g fill="currentColor" mask="url(#k-tt)">
+      <rect x="11" y="23" width="78" height="12" rx="2"/>
+      <rect x="26" y="23" width="12" height="54" rx="2"/>
+      <rect x="62" y="23" width="12" height="54" rx="2"/>
+    </g>
+  </symbol>
+
+  <symbol id="m-cupeq" viewBox="0 0 100 100">
+    <g fill="currentColor">
+      <rect x="33" y="28" width="7" height="20" rx="3.5"/><rect x="44" y="14" width="7" height="34" rx="3.5"/>
+      <rect x="55" y="22" width="7" height="26" rx="3.5"/><rect x="66" y="34" width="7" height="14" rx="3.5"/>
+      <path d="M25 55 H71 L66 82 C65.3 86.5 61.6 90 57 90 H39 C34.4 90 30.7 86.5 30 82 Z"/>
+      <rect x="18" y="92" width="60" height="6" rx="3"/>
+    </g>
+    <path d="M73 61 C85 61 85 76 73 76" fill="none" stroke="currentColor" stroke-width="5.5" stroke-linecap="round"/>
+  </symbol>
+
+  <symbol id="m-steam" viewBox="0 0 100 100">
+    <mask id="k-steam"><rect width="100" height="100" fill="#fff"/>
+      <g fill="none" stroke="#000" stroke-width="2"><circle cx="50" cy="62" r="24"/><circle cx="50" cy="62" r="17"/></g>
+      <circle cx="50" cy="62" r="3.4" fill="#000"/></mask>
+    <circle cx="50" cy="62" r="31" fill="currentColor" mask="url(#k-steam)"/>
+    <g fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round">
+      <path d="M41 26 C34 19 46 13 39 5"/><path d="M60 26 C53 19 65 13 58 5"/>
+    </g>
+  </symbol>
+</svg>
+
+<div class="top">
+  <div class="wrap">
+    <div class="eyebrow">Interne Auswahlseite</div>
+    <h1>Logo-Varianten</h1>
+    <p>Fünf eigenständig gezeichnete Marken, jede auf dem echten Plattenlabel, in der Kopfzeile und in Favicon-Größe.
+       Rillen und Mittelloch sind echte Aussparungen, kein aufgemaltes Muster — deshalb funktioniert jede Marke auf
+       hellem wie dunklem Grund. Diese Seite ist für Suchmaschinen gesperrt und nicht mit der Startseite verlinkt.</p>
+    <a class="back" href="./">Zurück zur Startseite</a>
+  </div>
+</div>
+
+<section class="variant">
+  <div class="wrap">
+    <div class="vhead"><span class="num">01</span><h2>Teekanne</h2></div>
+    <p class="desc">Der Kannenkörper ist selbst die Schallplatte. Verbindet beide Themen in einer Form — die deutlichste Erzählung, dafür die meisten Einzelteile.</p>
+    <div class="stage">
+      <div class="vinyl-stage">
+        <div class="vinyl"></div>
+        <div class="vinyl-label"><svg class="mark"><use href="#m-teapot"/></svg></div>
+        <div class="vinyl-hole"></div>
+      </div>
+      <div class="ctx">
+        <div class="row"><div class="lbl">In der Kopfzeile</div>
+          <div class="brandline"><svg class="mark"><use href="#m-teapot"/></svg><span>Teatime</span></div></div>
+        <div class="row"><div class="lbl">Kleine Größen</div>
+          <div class="sizes">
+            <figure><svg class="mark s48"><use href="#m-teapot"/></svg><figcaption>48</figcaption></figure>
+            <figure><svg class="mark s32"><use href="#m-teapot"/></svg><figcaption>32</figcaption></figure>
+            <figure><svg class="mark s24"><use href="#m-teapot"/></svg><figcaption>24</figcaption></figure>
+            <figure><svg class="mark s16"><use href="#m-teapot"/></svg><figcaption>16</figcaption></figure>
+          </div>
+          <div class="file">Datei <code>logos/teapot-vinyl.svg</code></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="variant">
+  <div class="wrap">
+    <div class="vhead"><span class="num">02</span><h2>Tasse von oben</h2></div>
+    <p class="desc">Eine Tasse aus der Vogelperspektive, die zugleich als Platte lesbar ist. Achtung: sitzt als runde Rillenform mitten auf einer runden Rillenform.</p>
+    <div class="stage">
+      <div class="vinyl-stage">
+        <div class="vinyl"></div>
+        <div class="vinyl-label"><svg class="mark"><use href="#m-platter"/></svg></div>
+        <div class="vinyl-hole"></div>
+      </div>
+      <div class="ctx">
+        <div class="row"><div class="lbl">In der Kopfzeile</div>
+          <div class="brandline"><svg class="mark"><use href="#m-platter"/></svg><span>Teatime</span></div></div>
+        <div class="row"><div class="lbl">Kleine Größen</div>
+          <div class="sizes">
+            <figure><svg class="mark s48"><use href="#m-platter"/></svg><figcaption>48</figcaption></figure>
+            <figure><svg class="mark s32"><use href="#m-platter"/></svg><figcaption>32</figcaption></figure>
+            <figure><svg class="mark s24"><use href="#m-platter"/></svg><figcaption>24</figcaption></figure>
+            <figure><svg class="mark s16"><use href="#m-platter"/></svg><figcaption>16</figcaption></figure>
+          </div>
+          <div class="file">Datei <code>logos/cup-platter.svg</code></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="variant">
+  <div class="wrap">
+    <div class="vhead"><span class="num">03</span><h2>TT-Monogramm</h2></div>
+    <p class="desc">Rein typografisch, zwei T mit durchgehendem Querbalken. Das ausgestanzte Loch macht es zum Plattenlabel. Bleibt in jeder Größe lesbar.</p>
+    <div class="stage">
+      <div class="vinyl-stage">
+        <div class="vinyl"></div>
+        <div class="vinyl-label"><svg class="mark"><use href="#m-tt"/></svg></div>
+        <div class="vinyl-hole"></div>
+      </div>
+      <div class="ctx">
+        <div class="row"><div class="lbl">In der Kopfzeile</div>
+          <div class="brandline"><svg class="mark"><use href="#m-tt"/></svg><span>Teatime</span></div></div>
+        <div class="row"><div class="lbl">Kleine Größen</div>
+          <div class="sizes">
+            <figure><svg class="mark s48"><use href="#m-tt"/></svg><figcaption>48</figcaption></figure>
+            <figure><svg class="mark s32"><use href="#m-tt"/></svg><figcaption>32</figcaption></figure>
+            <figure><svg class="mark s24"><use href="#m-tt"/></svg><figcaption>24</figcaption></figure>
+            <figure><svg class="mark s16"><use href="#m-tt"/></svg><figcaption>16</figcaption></figure>
+          </div>
+          <div class="file">Datei <code>logos/tt-monogram.svg</code></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="variant">
+  <div class="wrap">
+    <div class="vhead"><span class="num">04</span><h2>Tasse mit Pegel</h2></div>
+    <p class="desc">Der Dampf über der Tasse ist ein Pegelausschlag. Die verspielteste Variante — die dünnen Balken verschwinden allerdings in kleinen Größen.</p>
+    <div class="stage">
+      <div class="vinyl-stage">
+        <div class="vinyl"></div>
+        <div class="vinyl-label"><svg class="mark"><use href="#m-cupeq"/></svg></div>
+        <div class="vinyl-hole"></div>
+      </div>
+      <div class="ctx">
+        <div class="row"><div class="lbl">In der Kopfzeile</div>
+          <div class="brandline"><svg class="mark"><use href="#m-cupeq"/></svg><span>Teatime</span></div></div>
+        <div class="row"><div class="lbl">Kleine Größen</div>
+          <div class="sizes">
+            <figure><svg class="mark s48"><use href="#m-cupeq"/></svg><figcaption>48</figcaption></figure>
+            <figure><svg class="mark s32"><use href="#m-cupeq"/></svg><figcaption>32</figcaption></figure>
+            <figure><svg class="mark s24"><use href="#m-cupeq"/></svg><figcaption>24</figcaption></figure>
+            <figure><svg class="mark s16"><use href="#m-cupeq"/></svg><figcaption>16</figcaption></figure>
+          </div>
+          <div class="file">Datei <code>logos/cup-eq.svg</code></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="variant">
+  <div class="wrap">
+    <div class="vhead"><span class="num">05</span><h2>Platte mit Dampf</h2></div>
+    <p class="desc">Am stärksten reduziert: eine Platte, aus der zwei Dampffahnen aufsteigen. Skaliert am besten und altert am langsamsten.</p>
+    <div class="stage">
+      <div class="vinyl-stage">
+        <div class="vinyl"></div>
+        <div class="vinyl-label"><svg class="mark"><use href="#m-steam"/></svg></div>
+        <div class="vinyl-hole"></div>
+      </div>
+      <div class="ctx">
+        <div class="row"><div class="lbl">In der Kopfzeile</div>
+          <div class="brandline"><svg class="mark"><use href="#m-steam"/></svg><span>Teatime</span></div></div>
+        <div class="row"><div class="lbl">Kleine Größen</div>
+          <div class="sizes">
+            <figure><svg class="mark s48"><use href="#m-steam"/></svg><figcaption>48</figcaption></figure>
+            <figure><svg class="mark s32"><use href="#m-steam"/></svg><figcaption>32</figcaption></figure>
+            <figure><svg class="mark s24"><use href="#m-steam"/></svg><figcaption>24</figcaption></figure>
+            <figure><svg class="mark s16"><use href="#m-steam"/></svg><figcaption>16</figcaption></figure>
+          </div>
+          <div class="file">Datei <code>logos/record-steam.svg</code></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    DJ Teatime &middot; Logo-Auswahl<br>
+    <a href="./">Zurück zur Startseite</a>
+  </div>
+</footer>
+
+</body>
+</html>
