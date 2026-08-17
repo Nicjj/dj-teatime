@@ -1,0 +1,127 @@
+========================================================================
+DJ TEATIME - WEBSITE: WAS NOCH ZU TUN IST
+Stand: 12.08.2026
+Live: https://nicjj.github.io/dj-teatime/
+Repo: https://github.com/Nicjj/dj-teatime
+========================================================================
+
+
+ZWEI ERKENNTNISSE VORWEG (aendern den Plan)
+------------------------------------------------------------------------
+
+- Beide Automatisierungen (Termine + Sets) brauchen einen kleinen
+  Server-Teil. Direkt aus dem Browser scheitert es an CORS. Auf einem
+  eigenen Server ist das trivial (kleines Script + Cron), bei GitHub
+  Pages braeuchte es einen Umweg.
+  => Termin- und Set-Automatik erst beim Eigenhosting richtig bauen.
+
+- Die SoundCloud-API ist seit Jahren fuer Neuanmeldungen geschlossen.
+  Ein offizieller Key ist praktisch nicht zu bekommen.
+  Machbar bleibt: oeffentlicher RSS-Feed des Profils (serverseitig
+  abgerufen) oder das SoundCloud-Embed-Widget. Titel stimmen dann
+  automatisch ueberein.
+
+
+RECHTLICHES (dringend - Seite ist bereits live)
+------------------------------------------------------------------------
+
+[ ] Impressum nach Paragraf 5 DDG
+    - Name, ladungsfaehige Anschrift, E-Mail + zweiter Kontaktweg
+[ ] Datenschutzerklaerung nach Art. 13 DSGVO
+[ ] Entscheidung Adresse: privat / Gewerbe / Impressumsservice
+    (Impressumsservice ca. 5-15 EUR pro Monat)
+[ ] AV-Vertrag mit dem spaeteren Hoster
+[ ] Consent-Banner NUR falls noetig
+    - Pflicht, sobald SoundCloud-Embeds oder Google-Aufrufe direkt im
+      Browser laufen
+    - Serverseitig loesen = Banner vermeidbar
+[ ] Keine Google Fonts per CDN einbinden
+    (aktuell sauber, sollte so bleiben)
+[ ] Rechte am Logo klaeren
+    - Optik erinnert stark an Cuphead (geschuetzt, Studio MDHR)
+
+Hinweis: keine Rechtsberatung. Im Zweifel Anwalt oder IHK Dresden
+fragen - die beraten Gruender kostenlos.
+
+
+EIGENES HOSTING
+------------------------------------------------------------------------
+
+[ ] Domain kaufen (z.B. djteatime.de)
+[ ] Server waehlen: VPS in der EU (Hetzner o.ae.)
+    - EU-Standort erleichtert DSGVO
+[ ] Webserver aufsetzen - Caddy nimmt HTTPS komplett ab
+[ ] TLS-Zertifikat, DNS, Weiterleitung www -> Hauptdomain
+[ ] Deployment-Weg festlegen (Git-Pull, rsync oder CI)
+[ ] Backups einrichten
+[ ] Uptime-Monitoring
+[ ] E-Mail-Adresse auf eigener Domain statt Gmail
+    (wirkt bei Bookings deutlich professioneller)
+[ ] Alte GitHub-Pages-URL sauber weiterleiten
+
+
+TERMINE AUS GOOGLE CALENDAR
+------------------------------------------------------------------------
+
+[ ] Separaten Kalender NUR fuer Gigs anlegen
+    - WICHTIG: nicht den privaten Kalender oeffentlich schalten
+[ ] Kalender oeffentlich freigeben
+[ ] Feldkonvention festlegen:
+    Titel = Venue, Ort = Stadt, Beschreibung = Ticket-Link
+[ ] Serverseitiges Script holt Termine und cached sie
+[ ] Vergangene Termine automatisch ausblenden
+[ ] Sortierung + Fall "keine Termine" abdecken
+[ ] Fallback, falls Google mal nicht antwortet
+
+
+SETS AUS SOUNDCLOUD
+------------------------------------------------------------------------
+
+[ ] Entscheidung: RSS-Feed mit eigenem Design vs. Embed-Widget
+[ ] Serverseitiger Abruf + Cache
+[ ] Titel, Dauer, Cover automatisch uebernehmen
+[ ] Klick fuehrt zu SoundCloud
+[ ] Spaeter Spotify und YouTube ergaenzen
+
+
+NOCH NICHT BEDACHT
+------------------------------------------------------------------------
+
+[ ] Open-Graph-Tags
+    - sonst zeigt der Instagram-Bio-Link keine Vorschau, nur nackten
+      Text. Mit der wichtigste Punkt ueberhaupt
+[ ] Favicon fehlt
+[ ] Mobile-Optimierung testen
+    - Traffic kommt fast komplett vom Handy ueber Instagram
+[ ] SEO-Basics: Meta-Description, robots.txt, sitemap.xml
+[ ] Schema.org MusicEvent
+    - damit Google die Gigs direkt in der Suche anzeigt
+[ ] Sprache festlegen
+    - Inhalte sind Englisch, Zielgruppe Dresden
+[ ] Booking-Formular statt mailto:
+    - Adresse wird sonst von Spam-Bots abgegriffen
+[ ] Datenschutzfreundliche Statistik (Plausible/Matomo)
+    - um zu sehen, ob Bookings ankommen
+[ ] Presskit / EPK
+    - hochaufloesende Fotos, Bio, Technical Rider
+    - danach fragen Veranstalter regelmaessig
+[ ] Foto- und Videogalerie
+[ ] Newsletter oder Verteiler fuer Ankuendigungen
+[ ] 404-Seite
+[ ] Barrierefreiheit: Alt-Texte, Kontraste
+[ ] Echte Inhalte statt der Platzhalter in About und Brew Log
+    - der About-Text enthaelt aktuell erfundene Biografie-Details
+      ("residency", "road trip") aus dem alten Entwurf
+    - Brew-Log-Titel und Laufzeiten sind ebenfalls Platzhalter
+
+
+EMPFOHLENE REIHENFOLGE
+------------------------------------------------------------------------
+
+1. Impressum + Datenschutzerklaerung   (rechtliches Risiko laeuft)
+2. Open Graph + Favicon                (klein, sofort spuerbar)
+3. Echte Inhalte statt Platzhalter
+4. Domain + eigener Server
+5. Automatisierungen (Kalender, SoundCloud) auf dem eigenen Server
+
+========================================================================
