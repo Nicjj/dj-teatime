@@ -232,9 +232,12 @@ h1.title .accent{
   background:var(--accent);color:#000;overflow:hidden;padding:13px 0;
   border-block:1px solid #000;
 }
-.ticker-inner{display:flex;gap:44px;width:max-content;animation:slide 26s linear infinite}
-.ticker span{font-size:12px;font-weight:800;letter-spacing:.24em;text-transform:uppercase;white-space:nowrap}
-@keyframes slide{to{transform:translateX(-50%)}}
+/* Abstand als Innenabstand je Element, nicht als gap am Elternteil:
+   nur so ist der Abstand an der Nahtstelle genauso gross wie ueberall sonst. */
+.ticker-inner{display:flex;width:max-content;will-change:transform;
+  animation:slide var(--dur,24s) linear infinite}
+.ticker span{font-size:12px;font-weight:800;letter-spacing:.24em;text-transform:uppercase;white-space:nowrap;padding:0 22px}
+@keyframes slide{from{transform:translateX(0)}to{transform:translateX(calc(var(--shift,50%) * -1))}}
 
 /* ---------- Statistikreihe (TommyRich-Muster) ---------- */
 .stats{display:grid;grid-template-columns:1fr;gap:2px;background:var(--line);border-block:1px solid var(--line)}
@@ -409,10 +412,7 @@ footer .legal a:hover{color:var(--accent);border-bottom-color:var(--accent)}
 
 <!-- ===== Laufband ===== -->
 <div class="ticker">
-  <div class="ticker-inner">
-    <span>Hard Techno</span><span>&bull;</span><span>Tekno</span><span>&bull;</span><span>Dresden</span><span>&bull;</span><span>Booking Open</span><span>&bull;</span>
-    <span>Hard Techno</span><span>&bull;</span><span>Tekno</span><span>&bull;</span><span>Dresden</span><span>&bull;</span><span>Booking Open</span><span>&bull;</span>
-  </div>
+  <div class="ticker-inner" id="ticker"></div>
 </div>
 
 <!-- ===== Statistikreihe ===== -->
@@ -593,6 +593,41 @@ footer .legal a:hover{color:var(--accent);border-bottom-color:var(--accent)}
   }).join('');
 
   
+
+  /* ---- Laufband ----
+     Der Streifen wird so oft wiederholt, dass er breiter als das Fenster
+     plus eine Kopie ist. Verschoben wird um exakt eine Kopienbreite, damit
+     der Uebergang nahtlos ist und das Band endlos weiterlaeuft. */
+  var TICKER_WORDS = ['Hard Techno','Tekno','Dresden','Booking Open'];
+  var tick = document.getElementById('ticker');
+
+  function buildTicker(){
+    var one = TICKER_WORDS.map(function(w){
+      return '<span>' + w + '</span><span>&bull;</span>';
+    }).join('');
+
+    tick.style.animation = 'none';
+    tick.innerHTML = one;
+    var setW = tick.scrollWidth;
+    if (!setW) return;
+
+    var copies = Math.max(3, Math.ceil(window.innerWidth / setW) + 2);
+    var html = '';
+    for (var i = 0; i < copies; i++) html += one;
+    tick.innerHTML = html;
+
+    tick.style.setProperty('--shift', setW + 'px');
+    tick.style.setProperty('--dur', (setW / 30) + 's');
+    tick.style.animation = '';
+  }
+
+  buildTicker();
+
+  var tickTimer;
+  window.addEventListener('resize', function(){
+    clearTimeout(tickTimer);
+    tickTimer = setTimeout(buildTicker, 200);
+  });
 
   /* ---- Scroll-Reveal ---- */
   var els = document.querySelectorAll('.reveal');
