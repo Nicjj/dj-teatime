@@ -23,7 +23,7 @@ html{scroll-behavior:smooth}
 body{background:var(--bg);color:var(--ink);font-family:var(--font);-webkit-font-smoothing:antialiased;overflow-x:hidden}
 img,svg{display:block;max-width:100%}
 a{color:inherit;text-decoration:none}
-.wrap{width:100%;max-width:1100px;margin:0 auto;padding:0 20px}
+.wrap{width:100%;max-width:1180px;margin:0 auto;padding:0 20px}
 
 .eyebrow{font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:var(--muted);font-weight:600}
 .h-sec{font-size:clamp(28px,6.5vw,52px);line-height:.95;letter-spacing:.02em;text-transform:uppercase;font-weight:800}
@@ -70,28 +70,31 @@ h1 .accent{color:var(--accent);text-shadow:0 0 30px rgba(255,0,144,.5)}
 .tagline{font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:var(--muted);font-weight:600}
 
 section{padding:70px 0}
-.bio{display:grid;gap:20px;max-width:66ch}
-.bio p{color:#C6C6C6;line-height:1.9;font-size:16px}
-.bio p.lead{font-size:19px;color:var(--ink);line-height:1.75}
-.bio strong{color:var(--ink);font-weight:700}
-.pull{border-left:4px solid var(--accent);padding:6px 0 6px 22px;margin:6px 0;
-  font-size:clamp(17px,3.6vw,22px);line-height:1.55;color:var(--ink);font-weight:700}
 
-.facts{display:grid;grid-template-columns:repeat(2,1fr);gap:2px;background:var(--line);border-block:1px solid var(--line)}
-.fact{background:var(--bg);padding:26px 18px;text-align:center}
-.fact .v{font-size:clamp(17px,4.4vw,26px);font-weight:800;letter-spacing:.02em;text-transform:uppercase;line-height:1.15}
-.fact .k{margin-top:8px;font-size:10px;letter-spacing:.26em;text-transform:uppercase;color:var(--muted)}
+/* Mosaik: Textblöcke und Bilder greifen ineinander, statt untereinander zu stehen */
+.mosaic{display:grid;grid-template-columns:1fr;gap:14px}
+.mosaic .txt{align-self:center;padding:4px 0}
+.mosaic .txt p{color:#C6C6C6;line-height:1.9;font-size:16px}
+.mosaic .txt p.lead{font-size:19px;color:var(--ink);line-height:1.75}
+.mosaic .txt strong{color:var(--ink);font-weight:700}
+.mosaic .pull{align-self:center;border-left:4px solid var(--accent);padding:10px 0 10px 24px;
+  font-size:clamp(18px,4vw,28px);line-height:1.5;color:var(--ink);font-weight:800;letter-spacing:-.01em}
 
-.gal{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
 .shot{position:relative;overflow:hidden;background:var(--bg2);aspect-ratio:4/5;cursor:pointer}
+.shot.wide{aspect-ratio:16/9}
 .shot>svg,.shot>img{width:100%;height:100%;object-fit:cover;transition:transform .6s cubic-bezier(.3,0,.2,1)}
 .shot:hover>svg,.shot:hover>img{transform:scale(1.06)}
 .shot:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
 .shot .cap{position:absolute;left:0;right:0;bottom:0;padding:26px 14px 12px;
   background:linear-gradient(transparent,rgba(0,0,0,.85));
   font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#D8D8D8}
-.gal-note{margin-top:20px;font-size:12px;color:var(--muted);letter-spacing:.05em;line-height:1.85}
+.gal-note{margin-top:24px;font-size:12px;color:var(--muted);letter-spacing:.05em;line-height:1.85}
 .gal-note code{color:var(--accent)}
+
+.facts{display:grid;grid-template-columns:repeat(2,1fr);gap:2px;background:var(--line);border-block:1px solid var(--line)}
+.fact{background:var(--bg);padding:26px 18px;text-align:center}
+.fact .v{font-size:clamp(17px,4.4vw,26px);font-weight:800;letter-spacing:.02em;text-transform:uppercase;line-height:1.15}
+.fact .k{margin-top:8px;font-size:10px;letter-spacing:.26em;text-transform:uppercase;color:var(--muted)}
 
 .lightbox{position:fixed;inset:0;z-index:80;background:rgba(5,5,5,.94);display:none;place-items:center;padding:24px}
 .lightbox.open{display:grid}
@@ -124,7 +127,13 @@ footer .legal a:hover{color:var(--accent);border-bottom-color:var(--accent)}
   .burger{display:none}
   section{padding:104px 0}
   .facts{grid-template-columns:repeat(4,1fr)}
-  .gal{grid-template-columns:repeat(3,1fr);gap:16px}
+
+  /* Drei Spalten. Text nimmt zwei, Bilder je eine, das Zitat und das
+     Abschlussbild die volle Breite. Jede Zeile geht genau auf. */
+  .mosaic{grid-template-columns:repeat(3,1fr);gap:20px}
+  .mosaic .txt{grid-column:span 2;padding:0 10px}
+  .mosaic .pull{grid-column:span 3;padding:14px 0 14px 28px}
+  .mosaic .shot.wide{grid-column:span 3;aspect-ratio:21/9}
 }
 @media(prefers-reduced-motion:reduce){
   *{animation-duration:.01ms!important;transition-duration:.01ms!important}
@@ -178,29 +187,59 @@ footer .legal a:hover{color:var(--accent);border-bottom-color:var(--accent)}
 
 <section>
   <div class="wrap">
-    <div class="bio reveal">
-      <p class="lead">Hey, mein Name ist Tim Irmscher. Ich lege unter dem Namen <strong>TeaTime</strong> auf
-         und baue mir gerade in der Region ein solides Standing im Clubbereich auf.</p>
+    <div class="mosaic">
 
-      <p>Aufgelegt habe ich in den vergangenen <strong>vier Jahren</strong> vieles. Angefangen hat es mit
-         Acid und Tribe Tekno — rauer Sound, viel Bewegung, wenig Politur. Aus dieser Ecke nehme ich bis
-         heute einiges mit, aber richtig zuhause bin ich inzwischen im <strong>Hard Techno</strong>.
-         Dort stimmen Tempo und Härte, und dort funktioniert das, worum es mir eigentlich geht.</p>
+      <div class="txt reveal">
+        <p class="lead">Hey, mein Name ist Tim Irmscher. Ich lege unter dem Namen <strong>TeaTime</strong>
+           auf und baue mir gerade in der Region ein solides Standing im Clubbereich auf.</p>
+      </div>
 
-      <div class="pull">Tracks abspielen kann jeder. Mir geht es um die Energie, die den Raum trägt.</div>
+      <div class="shot reveal" tabindex="0" role="button" data-i="0"></div>
+      <div class="shot reveal" tabindex="0" role="button" data-i="1"></div>
 
-      <p>Ein Set ist für mich keine Playlist, die abläuft, sondern ein Bogen, der die Crowd mitnimmt.
-         Ich lese, was im Raum passiert, und reagiere darauf — das Gefühl für Publikum und Dynamik ist
-         das, worauf ich am meisten Wert lege. Dazu kommen Zuverlässigkeit und Professionalität:
-         pünktlich, vorbereitet, ohne Drama.</p>
+      <div class="txt reveal">
+        <p>Aufgelegt habe ich in den vergangenen <strong>vier Jahren</strong> vieles. Angefangen hat es
+           mit Acid und Tribe Tekno — rauer Sound, viel Bewegung, wenig Politur. Aus dieser Ecke nehme
+           ich bis heute einiges mit, aber richtig zuhause bin ich inzwischen im
+           <strong>Hard Techno</strong>. Dort stimmen Tempo und Härte, und dort funktioniert das, worum
+           es mir eigentlich geht.</p>
+      </div>
 
-      <p>Der typische Warm-up-DJ, der über zwei Stunden behutsam Spannung aufbaut, bin ich vermutlich
-         nicht. Dafür bin ich derjenige, den man zur <strong>Peak-Time</strong> auf der Anlage haben will,
-         wenn der Laden voll ist und es nach vorne gehen soll.</p>
+      <div class="pull reveal">Tracks abspielen kann jeder. Mir geht es um die Energie, die den Raum trägt.</div>
 
-      <p>An meinen Sets arbeite ich fortlaufend, und meinen eigenen Sound entwickle und produziere ich
-         stetig weiter. Der Weg ist noch lange nicht zu Ende — genau das macht ihn interessant.</p>
+      <div class="shot reveal" tabindex="0" role="button" data-i="2"></div>
+
+      <div class="txt reveal">
+        <p>Ein Set ist für mich keine Playlist, die abläuft, sondern ein Bogen, der die Crowd mitnimmt.
+           Ich lese, was im Raum passiert, und reagiere darauf — das Gefühl für Publikum und Dynamik ist
+           das, worauf ich am meisten Wert lege. Dazu kommen Zuverlässigkeit und Professionalität:
+           pünktlich, vorbereitet, ohne Drama.</p>
+      </div>
+
+      <div class="txt reveal">
+        <p>Der typische Warm-up-DJ, der über zwei Stunden behutsam Spannung aufbaut, bin ich vermutlich
+           nicht. Dafür bin ich derjenige, den man zur <strong>Peak-Time</strong> auf der Anlage haben
+           will, wenn der Laden voll ist und es nach vorne gehen soll.</p>
+      </div>
+
+      <div class="shot reveal" tabindex="0" role="button" data-i="3"></div>
+      <div class="shot reveal" tabindex="0" role="button" data-i="4"></div>
+
+      <div class="txt reveal">
+        <p>An meinen Sets arbeite ich fortlaufend, und meinen eigenen Sound entwickle und produziere ich
+           stetig weiter. Der Weg ist noch lange nicht zu Ende — genau das macht ihn interessant.</p>
+      </div>
+
+      <div class="shot wide reveal" tabindex="0" role="button" data-i="5"></div>
+
     </div>
+
+    <p class="gal-note">
+      Die Bildflächen sind noch generierte Platzhalter. Zum Einsetzen der echten Fotos: Dateien nach
+      <code>bilder/</code> legen und unten im Feld <code>SHOTS</code> je Bild eine Zeile ergänzen,
+      etwa <code>{src:"bilder/set-01.jpg", cap:"Objekt Klein A, Dresden"}</code>.
+      Die Reihenfolge im Feld entspricht der Reihenfolge im Mosaik.
+    </p>
   </div>
 </section>
 
@@ -210,19 +249,6 @@ footer .legal a:hover{color:var(--accent);border-bottom-color:var(--accent)}
   <div class="fact"><div class="v">Acid &amp; Tribe</div><div class="k">Wurzeln</div></div>
   <div class="fact"><div class="v">Peak-Time</div><div class="k">Lieblingsslot</div></div>
 </div>
-
-<section>
-  <div class="wrap">
-    <div class="sec-head reveal"><h2 class="h-sec">Galerie</h2></div>
-    <div class="gal reveal" id="gal"></div>
-    <p class="gal-note">
-      Aktuell stehen hier generierte Platzhalter. Zum Einsetzen der echten Fotos: Dateien nach
-      <code>bilder/</code> legen und unten im Feld <code>SHOTS</code> je Bild eine Zeile ergänzen,
-      etwa <code>{src:"bilder/set-01.jpg", cap:"Objekt Klein A, Dresden"}</code>.
-      Quer- und Hochformat mischen sich problemlos, das Raster schneidet passend zu.
-    </p>
-  </div>
-</section>
 
 <section class="cta">
   <div class="wrap">
@@ -266,7 +292,7 @@ footer .legal a:hover{color:var(--accent);border-bottom-color:var(--accent)}
   window.addEventListener('scroll',function(){head.classList.toggle('scrolled',window.scrollY>20);},{passive:true});
 
   /* Echte Fotos hier eintragen: {src:"bilder/name.jpg", cap:"Bildunterschrift"}
-     Solange kein src gesetzt ist, wird ein generierter Platzhalter gezeichnet. */
+     Reihenfolge entspricht data-i im Mosaik. Ohne src wird ein Platzhalter gezeichnet. */
   var SHOTS=[
     {cap:"Platzhalter 01"},{cap:"Platzhalter 02"},{cap:"Platzhalter 03"},
     {cap:"Platzhalter 04"},{cap:"Platzhalter 05"},{cap:"Platzhalter 06"}
@@ -275,19 +301,26 @@ footer .legal a:hover{color:var(--accent);border-bottom-color:var(--accent)}
   var PAL=[['#FF0090','#2B0043'],['#00E0FF','#001E33'],['#B4FF00','#152600'],
            ['#FF4D00','#331000'],['#7B2BFF','#14002E'],['#00FFA3','#00291C']];
 
-  function art(i){
-    var p=PAL[i%PAL.length], id='ga'+i;
-    return '<svg viewBox="0 0 400 500" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Platzhalterbild">'
+  function art(i,wide){
+    var p=PAL[i%PAL.length], id='ga'+i, w=wide?840:400, h=wide?360:500;
+    var floorY=h-46, headY=wide?h*0.40:268;
+    return '<svg viewBox="0 0 '+w+' '+h+'" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Platzhalterbild">'
       + '<defs><linearGradient id="'+id+'" x1="0" y1="0" x2="0" y2="1">'
       + '<stop offset="0" stop-color="'+p[0]+'"/><stop offset="1" stop-color="'+p[1]+'"/></linearGradient></defs>'
-      + '<rect width="400" height="500" fill="'+p[1]+'"/>'
-      + '<rect width="400" height="500" fill="url(#'+id+')" opacity=".85"/>'
-      + '<path d="M200 0 L96 500 L146 500 L200 0Z" fill="#fff" opacity=".10"/>'
-      + '<path d="M200 0 L304 500 L254 500 L200 0Z" fill="#fff" opacity=".07"/>'
-      + '<g fill="#000" opacity=".55"><circle cx="44" cy="430" r="20"/><circle cx="104" cy="446" r="17"/>'
-      + '<circle cx="162" cy="434" r="21"/><circle cx="248" cy="438" r="19"/><circle cx="308" cy="448" r="17"/>'
-      + '<circle cx="362" cy="432" r="21"/><rect x="0" y="454" width="400" height="46"/></g>'
-      + '<g fill="#000" opacity=".78"><circle cx="200" cy="268" r="28"/>'
+      + '<rect width="'+w+'" height="'+h+'" fill="'+p[1]+'"/>'
+      + '<rect width="'+w+'" height="'+h+'" fill="url(#'+id+')" opacity=".85"/>'
+      + '<path d="M'+(w/2)+' 0 L'+(w*0.24)+' '+h+' L'+(w*0.365)+' '+h+' L'+(w/2)+' 0Z" fill="#fff" opacity=".10"/>'
+      + '<path d="M'+(w/2)+' 0 L'+(w*0.76)+' '+h+' L'+(w*0.635)+' '+h+' L'+(w/2)+' 0Z" fill="#fff" opacity=".07"/>'
+      + '<g fill="#000" opacity=".55">'
+      + '<circle cx="'+(w*0.11)+'" cy="'+(floorY-24)+'" r="20"/>'
+      + '<circle cx="'+(w*0.26)+'" cy="'+(floorY-8)+'" r="17"/>'
+      + '<circle cx="'+(w*0.40)+'" cy="'+(floorY-20)+'" r="21"/>'
+      + '<circle cx="'+(w*0.62)+'" cy="'+(floorY-16)+'" r="19"/>'
+      + '<circle cx="'+(w*0.77)+'" cy="'+(floorY-6)+'" r="17"/>'
+      + '<circle cx="'+(w*0.90)+'" cy="'+(floorY-22)+'" r="21"/>'
+      + '<rect x="0" y="'+floorY+'" width="'+w+'" height="46"/></g>'
+      + '<g fill="#000" opacity=".78" transform="translate('+(w/2-200)+' '+(headY-268)+')">'
+      + '<circle cx="200" cy="268" r="28"/>'
       + '<path d="M156 380c0-31 20-54 44-54s44 23 44 54z"/>'
       + '<path d="M234 322l31-48 12 8-31 52z"/>'
       + '<rect x="118" y="366" width="164" height="27" rx="4"/>'
@@ -295,17 +328,18 @@ footer .legal a:hover{color:var(--accent);border-bottom-color:var(--accent)}
       + '<circle cx="249" cy="380" r="9" fill="'+p[0]+'" opacity=".9"/></g></svg>';
   }
 
-  var gal=document.getElementById('gal');
-  gal.innerHTML=SHOTS.map(function(s,i){
-    var media=s.src?'<img src="'+s.src+'" alt="'+s.cap+'" loading="lazy">':art(i);
-    return '<div class="shot" tabindex="0" role="button" aria-label="'+s.cap+'" data-i="'+i+'">'
-         + media+'<div class="cap">'+s.cap+'</div></div>';
-  }).join('');
+  var shots=[].slice.call(document.querySelectorAll('.shot'));
+  shots.forEach(function(el){
+    var i=+el.dataset.i, s=SHOTS[i]||{cap:''}, wide=el.classList.contains('wide');
+    el.innerHTML=(s.src?'<img src="'+s.src+'" alt="'+s.cap+'" loading="lazy">':art(i,wide))
+               + '<div class="cap">'+s.cap+'</div>';
+    el.setAttribute('aria-label',s.cap);
+  });
 
   var lb=document.getElementById('lightbox'), lbfig=document.getElementById('lbfig'), lastFocus=null;
   function openShot(i){
     var s=SHOTS[i];
-    lbfig.innerHTML=(s.src?'<img src="'+s.src+'" alt="'+s.cap+'">':art(i))+'<figcaption>'+s.cap+'</figcaption>';
+    lbfig.innerHTML=(s.src?'<img src="'+s.src+'" alt="'+s.cap+'">':art(i,false))+'<figcaption>'+s.cap+'</figcaption>';
     lb.classList.add('open'); document.body.style.overflow='hidden';
     lastFocus=document.activeElement; document.getElementById('lbx').focus();
   }
@@ -313,10 +347,11 @@ footer .legal a:hover{color:var(--accent);border-bottom-color:var(--accent)}
     lb.classList.remove('open'); document.body.style.overflow='';
     if(lastFocus){lastFocus.focus();lastFocus=null;}
   }
-  gal.addEventListener('click',function(e){var t=e.target.closest('.shot');if(t)openShot(+t.dataset.i);});
-  gal.addEventListener('keydown',function(e){
-    if(e.key!=='Enter'&&e.key!==' ')return;
-    var t=e.target.closest('.shot'); if(t){e.preventDefault();openShot(+t.dataset.i);}
+  shots.forEach(function(el){
+    el.addEventListener('click',function(){openShot(+el.dataset.i);});
+    el.addEventListener('keydown',function(e){
+      if(e.key==='Enter'||e.key===' '){e.preventDefault();openShot(+el.dataset.i);}
+    });
   });
   document.getElementById('lbx').addEventListener('click',closeShot);
   lb.addEventListener('click',function(e){if(e.target===lb)closeShot();});
