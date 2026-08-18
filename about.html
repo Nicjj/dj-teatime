@@ -235,10 +235,7 @@ footer .legal a:hover{color:var(--accent);border-bottom-color:var(--accent)}
     </div>
 
     <p class="gal-note">
-      Die Bildflächen sind noch generierte Platzhalter. Zum Einsetzen der echten Fotos: Dateien nach
-      <code>bilder/</code> legen und unten im Feld <code>SHOTS</code> je Bild eine Zeile ergänzen,
-      etwa <code>{src:"bilder/set-01.jpg", cap:"Objekt Klein A, Dresden"}</code>.
-      Die Reihenfolge im Feld entspricht der Reihenfolge im Mosaik.
+      Die Galerie erwartet sechs Dateien im Ordner <code>bilder/</code>. Fehlt eine davon, wird an ihrer Stelle weiterhin ein gezeichneter Platzhalter angezeigt.
     </p>
   </div>
 </section>
@@ -294,8 +291,12 @@ footer .legal a:hover{color:var(--accent);border-bottom-color:var(--accent)}
   /* Echte Fotos hier eintragen: {src:"bilder/name.jpg", cap:"Bildunterschrift"}
      Reihenfolge entspricht data-i im Mosaik. Ohne src wird ein Platzhalter gezeichnet. */
   var SHOTS=[
-    {cap:"Platzhalter 01"},{cap:"Platzhalter 02"},{cap:"Platzhalter 03"},
-    {cap:"Platzhalter 04"},{cap:"Platzhalter 05"},{cap:"Platzhalter 06"}
+    {src:"bilder/01-dj-violett.jpg",     cap:"Peak-Time"},
+    {src:"bilder/02-dj-rot.jpg",         cap:"Am Controller"},
+    {src:"bilder/03-controller-rot.jpg", cap:"Detail"},
+    {src:"bilder/04-lichtstrahl.jpg",    cap:"Im Nebel"},
+    {src:"bilder/05-crew.jpg",           cap:"Crew"},
+    {src:"bilder/06-crowd.jpg",          cap:"Crowd"}
   ];
 
   var PAL=[['#FF0090','#2B0043'],['#00E0FF','#001E33'],['#B4FF00','#152600'],
@@ -334,6 +335,14 @@ footer .legal a:hover{color:var(--accent);border-bottom-color:var(--accent)}
     el.innerHTML=(s.src?'<img src="'+s.src+'" alt="'+s.cap+'" loading="lazy">':art(i,wide))
                + '<div class="cap">'+s.cap+'</div>';
     el.setAttribute('aria-label',s.cap);
+    var img=el.querySelector('img');
+    if(img){
+      /* Solange eine Bilddatei noch fehlt, wird der gezeichnete
+         Platzhalter eingesetzt statt eines kaputten Bildsymbols. */
+      img.addEventListener('error',function(){
+        img.outerHTML=art(i,wide);
+      });
+    }
   });
 
   var lb=document.getElementById('lightbox'), lbfig=document.getElementById('lbfig'), lastFocus=null;
