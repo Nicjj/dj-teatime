@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Über mich — DJ TEATIME</title>
+<meta name="description" content="Tim Irmscher, alias TeaTime — Hard Techno aus Dresden. Werdegang, Sound und Bildergalerie.">
+<meta property="og:type" content="profile">
+<meta property="og:title" content="DJ TEATIME — Über mich">
+<meta property="og:description" content="Tim Irmscher, alias TeaTime — Hard Techno aus Dresden.">
+<meta property="og:url" content="https://nicjj.github.io/dj-teatime/about.html">
+<meta name="theme-color" content="#0A0A0A">
+<link rel="icon" type="image/svg+xml" href="logos/cup-eq-favicon.svg">
+<style>
+:root{
+  --bg:#0A0A0A; --bg2:#121212; --ink:#fff; --muted:#8A8A8A;
+  --accent:#FF0090; --line:rgba(255,255,255,.12);
+  --font:"Segoe UI",system-ui,-apple-system,Roboto,"Helvetica Neue",Arial,sans-serif;
+  --head-h:64px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:var(--font);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img,svg{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+.wrap{width:100%;max-width:1100px;margin:0 auto;padding:0 20px}
+
+.eyebrow{font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.h-sec{font-size:clamp(28px,6.5vw,52px);line-height:.95;letter-spacing:.02em;text-transform:uppercase;font-weight:800}
+.sec-head{display:flex;align-items:center;gap:16px;margin-bottom:34px}
+.sec-head::before{content:"";flex:0 0 46px;height:4px;background:var(--accent)}
+
+header{position:fixed;top:0;left:0;right:0;z-index:60;height:var(--head-h);display:flex;align-items:center;
+  background:rgba(10,10,10,.82);backdrop-filter:blur(14px);border-bottom:1px solid transparent;transition:border-color .3s}
+header.scrolled{border-bottom-color:var(--line)}
+header .wrap{display:flex;align-items:center;justify-content:space-between;gap:20px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:.14em;font-size:14px;text-transform:uppercase}
+.brand .mark{width:30px;height:30px}
+nav.desktop{display:none;gap:32px}
+nav.desktop a{font-size:12px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;position:relative;padding:6px 0;color:var(--muted);transition:color .2s}
+nav.desktop a.here{color:var(--ink)}
+nav.desktop a::after{content:"";position:absolute;left:0;bottom:0;width:100%;height:2px;background:var(--accent);transform:scaleX(0);transform-origin:right;transition:transform .3s}
+nav.desktop a:hover{color:var(--ink)}
+nav.desktop a:hover::after,nav.desktop a.here::after{transform:scaleX(1);transform-origin:left}
+.burger{width:42px;height:42px;display:grid;place-content:center;gap:5px;background:none;border:0;cursor:pointer;padding:0}
+.burger span{display:block;width:24px;height:2px;background:var(--ink);transition:transform .3s,opacity .2s}
+.burger[aria-expanded="true"] span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.burger[aria-expanded="true"] span:nth-child(2){opacity:0}
+.burger[aria-expanded="true"] span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.overlay{position:fixed;inset:0;z-index:55;background:var(--bg);display:flex;flex-direction:column;justify-content:center;padding:0 28px;
+  clip-path:circle(0% at calc(100% - 42px) 32px);transition:clip-path .5s cubic-bezier(.7,0,.3,1);pointer-events:none}
+.overlay.open{clip-path:circle(150% at calc(100% - 42px) 32px);pointer-events:auto}
+.overlay a.olink{font-size:clamp(34px,11vw,58px);font-weight:800;text-transform:uppercase;letter-spacing:.02em;line-height:1.18;
+  opacity:0;transform:translateY(24px);transition:opacity .4s,transform .4s,color .2s}
+.overlay.open a.olink{opacity:1;transform:none}
+.overlay.open a.olink:nth-child(1){transition-delay:.16s}
+.overlay.open a.olink:nth-child(2){transition-delay:.22s}
+.overlay.open a.olink:nth-child(3){transition-delay:.28s}
+.overlay.open a.olink:nth-child(4){transition-delay:.34s}
+.overlay a.olink:hover{color:var(--accent)}
+
+.intro{padding:calc(var(--head-h) + 74px) 0 20px;position:relative;overflow:hidden}
+.intro::before{content:"";position:absolute;inset:-40% -10% auto -10%;height:150%;
+  background:radial-gradient(52% 40% at 24% 6%,rgba(255,0,144,.24),transparent 62%),
+             radial-gradient(48% 38% at 80% 0%,rgba(120,0,255,.16),transparent 60%);
+  filter:blur(8px)}
+.intro .wrap{position:relative;z-index:2}
+h1{font-size:clamp(40px,11vw,104px);line-height:.86;letter-spacing:-.02em;text-transform:uppercase;font-weight:900;margin:16px 0 18px}
+h1 .accent{color:var(--accent);text-shadow:0 0 30px rgba(255,0,144,.5)}
+.tagline{font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:var(--muted);font-weight:600}
+
+section{padding:70px 0}
+.bio{display:grid;gap:20px;max-width:66ch}
+.bio p{color:#C6C6C6;line-height:1.9;font-size:16px}
+.bio p.lead{font-size:19px;color:var(--ink);line-height:1.75}
+.bio strong{color:var(--ink);font-weight:700}
+.pull{border-left:4px solid var(--accent);padding:6px 0 6px 22px;margin:6px 0;
+  font-size:clamp(17px,3.6vw,22px);line-height:1.55;color:var(--ink);font-weight:700}
+
+.facts{display:grid;grid-template-columns:repeat(2,1fr);gap:2px;background:var(--line);border-block:1px solid var(--line)}
+.fact{background:var(--bg);padding:26px 18px;text-align:center}
+.fact .v{font-size:clamp(17px,4.4vw,26px);font-weight:800;letter-spacing:.02em;text-transform:uppercase;line-height:1.15}
+.fact .k{margin-top:8px;font-size:10px;letter-spacing:.26em;text-transform:uppercase;color:var(--muted)}
+
+.gal{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.shot{position:relative;overflow:hidden;background:var(--bg2);aspect-ratio:4/5;cursor:pointer}
+.shot>svg,.shot>img{width:100%;height:100%;object-fit:cover;transition:transform .6s cubic-bezier(.3,0,.2,1)}
+.shot:hover>svg,.shot:hover>img{transform:scale(1.06)}
+.shot:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.shot .cap{position:absolute;left:0;right:0;bottom:0;padding:26px 14px 12px;
+  background:linear-gradient(transparent,rgba(0,0,0,.85));
+  font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#D8D8D8}
+.gal-note{margin-top:20px;font-size:12px;color:var(--muted);letter-spacing:.05em;line-height:1.85}
+.gal-note code{color:var(--accent)}
+
+.lightbox{position:fixed;inset:0;z-index:80;background:rgba(5,5,5,.94);display:none;place-items:center;padding:24px}
+.lightbox.open{display:grid}
+.lightbox figure{max-width:min(92vw,760px);width:100%}
+.lightbox figure>img,.lightbox figure>svg{width:100%;height:auto;max-height:78vh;object-fit:contain}
+.lightbox figcaption{margin-top:14px;text-align:center;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.lightbox .x{position:absolute;top:18px;right:20px;width:44px;height:44px;border:0;background:none;cursor:pointer;color:#fff;font-size:30px;line-height:1}
+
+.cta{background:var(--bg2);border-block:1px solid var(--line);text-align:center}
+.cta p{color:var(--muted);font-size:14px;line-height:1.8;max-width:46ch;margin:14px auto 26px}
+.btn{display:inline-block;padding:15px 34px;border:2px solid var(--accent);border-radius:999px;
+  font-size:12px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;position:relative;overflow:hidden;transition:color .3s}
+.btn span{position:relative;z-index:2}
+.btn::before{content:"";position:absolute;inset:0;background:var(--accent);transform:translateY(101%);transition:transform .34s cubic-bezier(.6,0,.3,1)}
+.btn:hover::before{transform:translateY(0)}
+.btn:hover{color:#000}
+
+footer{padding:52px 0 44px;text-align:center}
+footer .mark.logo{display:block;width:66px;margin:0 auto 22px;opacity:.9}
+footer .legal{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:#666;line-height:2.4}
+footer .legal a{color:var(--muted);border-bottom:1px solid #333}
+footer .legal a:hover{color:var(--accent);border-bottom-color:var(--accent)}
+
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .7s,transform .7s}
+.reveal.in{opacity:1;transform:none}
+
+@media(min-width:820px){
+  :root{--head-h:76px}
+  nav.desktop{display:flex}
+  .burger{display:none}
+  section{padding:104px 0}
+  .facts{grid-template-columns:repeat(4,1fr)}
+  .gal{grid-template-columns:repeat(3,1fr);gap:16px}
+}
+@media(prefers-reduced-motion:reduce){
+  *{animation-duration:.01ms!important;transition-duration:.01ms!important}
+  html{scroll-behavior:auto}
+  .reveal{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+
+<svg style="position:absolute;width:0;height:0;overflow:hidden" aria-hidden="true">
+  <symbol id="m-tt" viewBox="0 0 100 100">
+    <mask id="k-tt"><rect width="100" height="100" fill="#fff"/><circle cx="50" cy="66" r="4.5" fill="#000"/></mask>
+    <g fill="currentColor" mask="url(#k-tt)">
+      <rect x="11" y="23" width="78" height="12" rx="2"/>
+      <rect x="26" y="23" width="12" height="54" rx="2"/>
+      <rect x="62" y="23" width="12" height="54" rx="2"/>
+    </g>
+  </symbol>
+</svg>
+
+<header id="head">
+  <div class="wrap">
+    <a href="./" class="brand"><svg class="mark"><use href="#m-tt"/></svg><span>Teatime</span></a>
+    <nav class="desktop">
+      <a href="./#shows">Shows</a>
+      <a href="./#releases">Releases</a>
+      <a href="about.html" class="here">Über mich</a>
+      <a href="./#booking">Booking</a>
+    </nav>
+    <button class="burger" id="burger" aria-label="Menü" aria-expanded="false" aria-controls="overlay">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<div class="overlay" id="overlay">
+  <a class="olink" href="./#shows">Shows</a>
+  <a class="olink" href="./#releases">Releases</a>
+  <a class="olink" href="about.html">Über mich</a>
+  <a class="olink" href="./#booking">Booking</a>
+</div>
+
+<div class="intro">
+  <div class="wrap">
+    <div class="eyebrow">Über mich</div>
+    <h1>Tim<br><span class="accent">Irmscher</span></h1>
+    <p class="tagline">alias TeaTime &middot; Hard Techno &middot; Dresden</p>
+  </div>
+</div>
+
+<section>
+  <div class="wrap">
+    <div class="bio reveal">
+      <p class="lead">Hey, mein Name ist Tim Irmscher. Ich lege unter dem Namen <strong>TeaTime</strong> auf
+         und baue mir gerade in der Region ein solides Standing im Clubbereich auf.</p>
+
+      <p>Aufgelegt habe ich in den vergangenen <strong>vier Jahren</strong> vieles. Angefangen hat es mit
+         Acid und Tribe Tekno — rauer Sound, viel Bewegung, wenig Politur. Aus dieser Ecke nehme ich bis
+         heute einiges mit, aber richtig zuhause bin ich inzwischen im <strong>Hard Techno</strong>.
+         Dort stimmen Tempo und Härte, und dort funktioniert das, worum es mir eigentlich geht.</p>
+
+      <div class="pull">Tracks abspielen kann jeder. Mir geht es um die Energie, die den Raum trägt.</div>
+
+      <p>Ein Set ist für mich keine Playlist, die abläuft, sondern ein Bogen, der die Crowd mitnimmt.
+         Ich lese, was im Raum passiert, und reagiere darauf — das Gefühl für Publikum und Dynamik ist
+         das, worauf ich am meisten Wert lege. Dazu kommen Zuverlässigkeit und Professionalität:
+         pünktlich, vorbereitet, ohne Drama.</p>
+
+      <p>Der typische Warm-up-DJ, der über zwei Stunden behutsam Spannung aufbaut, bin ich vermutlich
+         nicht. Dafür bin ich derjenige, den man zur <strong>Peak-Time</strong> auf der Anlage haben will,
+         wenn der Laden voll ist und es nach vorne gehen soll.</p>
+
+      <p>An meinen Sets arbeite ich fortlaufend, und meinen eigenen Sound entwickle und produziere ich
+         stetig weiter. Der Weg ist noch lange nicht zu Ende — genau das macht ihn interessant.</p>
+    </div>
+  </div>
+</section>
+
+<div class="facts">
+  <div class="fact"><div class="v">4 Jahre</div><div class="k">hinter den Decks</div></div>
+  <div class="fact"><div class="v">Hard Techno</div><div class="k">Sound heute</div></div>
+  <div class="fact"><div class="v">Acid &amp; Tribe</div><div class="k">Wurzeln</div></div>
+  <div class="fact"><div class="v">Peak-Time</div><div class="k">Lieblingsslot</div></div>
+</div>
+
+<section>
+  <div class="wrap">
+    <div class="sec-head reveal"><h2 class="h-sec">Galerie</h2></div>
+    <div class="gal reveal" id="gal"></div>
+    <p class="gal-note">
+      Aktuell stehen hier generierte Platzhalter. Zum Einsetzen der echten Fotos: Dateien nach
+      <code>bilder/</code> legen und unten im Feld <code>SHOTS</code> je Bild eine Zeile ergänzen,
+      etwa <code>{src:"bilder/set-01.jpg", cap:"Objekt Klein A, Dresden"}</code>.
+      Quer- und Hochformat mischen sich problemlos, das Raster schneidet passend zu.
+    </p>
+  </div>
+</section>
+
+<section class="cta">
+  <div class="wrap">
+    <div class="reveal">
+      <div class="eyebrow">Get in touch</div>
+      <h2 class="h-sec" style="margin-top:14px">Spill<br>the tea.</h2>
+      <p>Booking &middot; Press &middot; Collabs</p>
+      <a class="btn" href="./#booking"><span>Kontakt</span></a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <svg class="mark logo" role="img" aria-label="DJ Teatime"><use href="#m-tt"/></svg>
+    <div class="legal">
+      <a href="./">Startseite</a> &nbsp;&middot;&nbsp;
+      <a href="impressum.html">Impressum</a> &nbsp;&middot;&nbsp;
+      <a href="datenschutz.html">Datenschutz</a><br>
+      &copy; 2026 DJ Teatime &middot; Dresden
+    </div>
+  </div>
+</footer>
+
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Bildansicht">
+  <button class="x" id="lbx" aria-label="Schließen">&times;</button>
+  <figure id="lbfig"></figure>
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  var burger=document.getElementById('burger'), overlay=document.getElementById('overlay');
+  function setMenu(o){overlay.classList.toggle('open',o);burger.setAttribute('aria-expanded',String(o));document.body.style.overflow=o?'hidden':'';}
+  burger.addEventListener('click',function(){setMenu(burger.getAttribute('aria-expanded')!=='true');});
+  overlay.addEventListener('click',function(e){if(e.target.tagName==='A')setMenu(false);});
+  window.matchMedia('(min-width:820px)').addEventListener('change',function(e){if(e.matches)setMenu(false);});
+
+  var head=document.getElementById('head');
+  window.addEventListener('scroll',function(){head.classList.toggle('scrolled',window.scrollY>20);},{passive:true});
+
+  /* Echte Fotos hier eintragen: {src:"bilder/name.jpg", cap:"Bildunterschrift"}
+     Solange kein src gesetzt ist, wird ein generierter Platzhalter gezeichnet. */
+  var SHOTS=[
+    {cap:"Platzhalter 01"},{cap:"Platzhalter 02"},{cap:"Platzhalter 03"},
+    {cap:"Platzhalter 04"},{cap:"Platzhalter 05"},{cap:"Platzhalter 06"}
+  ];
+
+  var PAL=[['#FF0090','#2B0043'],['#00E0FF','#001E33'],['#B4FF00','#152600'],
+           ['#FF4D00','#331000'],['#7B2BFF','#14002E'],['#00FFA3','#00291C']];
+
+  function art(i){
+    var p=PAL[i%PAL.length], id='ga'+i;
+    return '<svg viewBox="0 0 400 500" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Platzhalterbild">'
+      + '<defs><linearGradient id="'+id+'" x1="0" y1="0" x2="0" y2="1">'
+      + '<stop offset="0" stop-color="'+p[0]+'"/><stop offset="1" stop-color="'+p[1]+'"/></linearGradient></defs>'
+      + '<rect width="400" height="500" fill="'+p[1]+'"/>'
+      + '<rect width="400" height="500" fill="url(#'+id+')" opacity=".85"/>'
+      + '<path d="M200 0 L96 500 L146 500 L200 0Z" fill="#fff" opacity=".10"/>'
+      + '<path d="M200 0 L304 500 L254 500 L200 0Z" fill="#fff" opacity=".07"/>'
+      + '<g fill="#000" opacity=".55"><circle cx="44" cy="430" r="20"/><circle cx="104" cy="446" r="17"/>'
+      + '<circle cx="162" cy="434" r="21"/><circle cx="248" cy="438" r="19"/><circle cx="308" cy="448" r="17"/>'
+      + '<circle cx="362" cy="432" r="21"/><rect x="0" y="454" width="400" height="46"/></g>'
+      + '<g fill="#000" opacity=".78"><circle cx="200" cy="268" r="28"/>'
+      + '<path d="M156 380c0-31 20-54 44-54s44 23 44 54z"/>'
+      + '<path d="M234 322l31-48 12 8-31 52z"/>'
+      + '<rect x="118" y="366" width="164" height="27" rx="4"/>'
+      + '<circle cx="151" cy="380" r="9" fill="'+p[0]+'" opacity=".9"/>'
+      + '<circle cx="249" cy="380" r="9" fill="'+p[0]+'" opacity=".9"/></g></svg>';
+  }
+
+  var gal=document.getElementById('gal');
+  gal.innerHTML=SHOTS.map(function(s,i){
+    var media=s.src?'<img src="'+s.src+'" alt="'+s.cap+'" loading="lazy">':art(i);
+    return '<div class="shot" tabindex="0" role="button" aria-label="'+s.cap+'" data-i="'+i+'">'
+         + media+'<div class="cap">'+s.cap+'</div></div>';
+  }).join('');
+
+  var lb=document.getElementById('lightbox'), lbfig=document.getElementById('lbfig'), lastFocus=null;
+  function openShot(i){
+    var s=SHOTS[i];
+    lbfig.innerHTML=(s.src?'<img src="'+s.src+'" alt="'+s.cap+'">':art(i))+'<figcaption>'+s.cap+'</figcaption>';
+    lb.classList.add('open'); document.body.style.overflow='hidden';
+    lastFocus=document.activeElement; document.getElementById('lbx').focus();
+  }
+  function closeShot(){
+    lb.classList.remove('open'); document.body.style.overflow='';
+    if(lastFocus){lastFocus.focus();lastFocus=null;}
+  }
+  gal.addEventListener('click',function(e){var t=e.target.closest('.shot');if(t)openShot(+t.dataset.i);});
+  gal.addEventListener('keydown',function(e){
+    if(e.key!=='Enter'&&e.key!==' ')return;
+    var t=e.target.closest('.shot'); if(t){e.preventDefault();openShot(+t.dataset.i);}
+  });
+  document.getElementById('lbx').addEventListener('click',closeShot);
+  lb.addEventListener('click',function(e){if(e.target===lb)closeShot();});
+  document.addEventListener('keydown',function(e){
+    if(e.key!=='Escape')return;
+    if(lb.classList.contains('open'))closeShot(); else setMenu(false);
+  });
+
+  var els=document.querySelectorAll('.reveal');
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(en){en.forEach(function(x){if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target);}});},{threshold:.12,rootMargin:'0px 0px -8% 0px'});
+    els.forEach(function(e){io.observe(e);});
+  } else { els.forEach(function(e){e.classList.add('in');}); }
+})();
+</script>
+</body>
+</html>

@@ -288,10 +288,6 @@ section{padding:84px 0}
   margin-top:18px;font-size:11px;color:var(--muted);letter-spacing:.08em;line-height:1.7;
 }
 
-/* ---------- About ---------- */
-.about{display:grid;gap:34px}
-.about p{color:#C6C6C6;line-height:1.85;font-size:15px;max-width:60ch}
-.about .figure{position:relative;aspect-ratio:4/5;overflow:hidden;background:var(--bg2)}
 
 /* ---------- Booking ---------- */
 .booking{text-align:center;background:var(--bg2);border-block:1px solid var(--line)}
@@ -330,7 +326,6 @@ footer .legal a:hover{color:var(--accent);border-bottom-color:var(--accent)}
   .show .venue{margin-top:0}
   .show .city{grid-column:2;margin-top:6px}
   .show .act{grid-column:3;grid-row:1/span 2;justify-self:end;margin-top:0}
-  .about{grid-template-columns:1fr 1fr;align-items:center;gap:60px}
   section{padding:118px 0}
 }
 
@@ -359,7 +354,7 @@ footer .legal a:hover{color:var(--accent);border-bottom-color:var(--accent)}
     <nav class="desktop">
       <a href="#shows">Shows</a>
       <a href="#releases">Releases</a>
-      <a href="#about">About</a>
+      <a href="about.html">Über mich</a>
       <a href="#booking">Booking</a>
     </nav>
     <div class="socials">
@@ -376,7 +371,7 @@ footer .legal a:hover{color:var(--accent);border-bottom-color:var(--accent)}
 <div class="overlay" id="overlay">
   <a class="olink" href="#shows">Shows</a>
   <a class="olink" href="#releases">Releases</a>
-  <a class="olink" href="#about">About</a>
+  <a class="olink" href="about.html">Über mich</a>
   <a class="olink" href="#booking">Booking</a>
   <div class="osoc">
     <a href="https://instagram.com/teatime_music_" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.2c3.2 0 3.6 0 4.9.07 1.2.05 1.8.25 2.2.42.6.22 1 .48 1.4.9.4.4.7.8.9 1.4.2.4.4 1 .4 2.2.1 1.3.1 1.7.1 4.9s0 3.6-.1 4.9c0 1.2-.2 1.8-.4 2.2-.2.6-.5 1-.9 1.4-.4.4-.8.7-1.4.9-.4.2-1 .4-2.2.4-1.3.1-1.7.1-4.9.1s-3.6 0-4.9-.1c-1.2 0-1.8-.2-2.2-.4-.6-.2-1-.5-1.4-.9-.4-.4-.7-.8-.9-1.4-.2-.4-.4-1-.4-2.2C2.2 15.6 2.2 15.2 2.2 12s0-3.6.1-4.9c0-1.2.2-1.8.4-2.2.2-.6.5-1 .9-1.4.4-.4.8-.7 1.4-.9.4-.2 1-.4 2.2-.4C8.4 2.2 8.8 2.2 12 2.2z"/><path d="M12 6.9a5.1 5.1 0 100 10.2 5.1 5.1 0 000-10.2zm0 8.4a3.3 3.3 0 110-6.6 3.3 3.3 0 010 6.6z"/><circle cx="17.3" cy="6.7" r="1.2"/></svg></a>
@@ -474,20 +469,6 @@ footer .legal a:hover{color:var(--accent);border-bottom-color:var(--accent)}
     <div class="grid reveal" id="relgrid"></div>
     <p class="ph-note">Platzhalter-Artworks — generiert, keine echten Cover.
        Sobald die SoundCloud-Anbindung steht, füllt sich dieses Raster automatisch.</p>
-  </div>
-</section>
-
-<!-- ===== ABOUT ===== -->
-<section id="about">
-  <div class="wrap">
-    <div class="sec-head reveal"><h2 class="h-sec">About</h2></div>
-    <div class="about">
-      <div class="figure reveal" id="djfig"></div>
-      <div class="reveal">
-        <p><strong>Platzhaltertext.</strong> Hier kommt die echte Biografie hin — wie du zum Hard Techno gekommen bist, wo du bisher gespielt hast, was deine Sets ausmacht.</p>
-        <p>Zwei bis drei Absätze reichen. Keine erfundenen Details, sondern das, was wirklich stimmt: Dresden, die Clubs, in denen du gespielt hast, dein Sound zwischen Hard Techno und Tekno.</p>
-      </div>
-    </div>
   </div>
 </section>
 
@@ -611,8 +592,7 @@ footer .legal a:hover{color:var(--accent);border-bottom-color:var(--accent)}
       + '</a>';
   }).join('');
 
-  /* Grosses Platzhalterbild in der About-Sektion */
-  document.getElementById('djfig').innerHTML = artwork(4);
+  
 
   /* ---- Scroll-Reveal ---- */
   var els = document.querySelectorAll('.reveal');
