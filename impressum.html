@@ -33,7 +33,6 @@ h1{font-size:clamp(32px,8vw,56px);text-transform:uppercase;font-weight:900;lette
 
 .warn{margin:34px 0 8px;border:2px solid var(--accent);padding:20px 22px}
 .warn .h{display:block;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:10px}
-.warn p b{color:var(--accent)}
 .warn p{font-size:13px;line-height:1.8;color:#C6C6C6}
 
 main{padding:20px 0 40px}
@@ -43,6 +42,9 @@ p+p{margin-top:14px}
 ul{margin:14px 0 0 20px}
 li{margin-bottom:8px}
 address{font-style:normal;line-height:2;font-size:15px;color:#C6C6C6}
+address a{color:var(--ink);border-bottom:1px solid #444;text-decoration:none}
+address a:hover{color:var(--accent);border-bottom-color:var(--accent)}
+.alias{color:var(--muted);font-size:13px}
 .ph{color:var(--accent);font-weight:700;background:rgba(255,0,144,.1);padding:1px 7px;white-space:nowrap}
 .note{font-size:13px;color:var(--muted);line-height:1.8;margin-top:14px}
 
@@ -79,99 +81,58 @@ footer .l a:hover{color:var(--accent)}
   </div>
 
   <div class="warn">
-    <b class="h">Noch nicht ausgefüllt</b>
-    <p>Alle magenta hervorgehobenen Felder sind Platzhalter und müssen durch die echten Angaben ersetzt
-       werden. Solange sie so dastehen, erfüllt diese Seite die Impressumspflicht <b>nicht</b>.</p>
+    <b class="h">Es fehlt noch die E-Mail-Adresse</b>
+    <p>Alle übrigen Angaben sind vollständig. Nach § 5 DDG ist eine E-Mail-Adresse zwingend
+       vorgeschrieben — solange sie fehlt, ist das Impressum unvollständig.</p>
   </div>
 
   <main>
     <h2>Angaben gemäß § 5 DDG</h2>
     <address>
-      <span class="ph">[Vor- und Nachname]</span><br>
-      <span class="ph">[Straße und Hausnummer]</span><br>
-      <span class="ph">[Postleitzahl und Ort]</span><br>
+      Tim Irmscher<br>
+      <span class="alias">Künstlername: TeaTime</span><br>
+      An der Lockwitz 41a<br>
+      01768 Glashütte<br>
       Deutschland
     </address>
-    <p class="note">Hier muss der vollständige bürgerliche Vor- und Nachname stehen. Der Künstlername
-       „DJ Teatime“ allein genügt nicht — er darf ergänzend danebenstehen. Die Anschrift muss
-       ladungsfähig sein, ein Postfach genügt nicht. Wer seine Privatadresse nicht veröffentlichen will,
-       kann einen Impressumsservice mit ladungsfähiger Anschrift nutzen, üblicherweise für rund 5 bis
-       15 Euro im Monat.</p>
 
     <h2>Kontakt</h2>
     <address>
-      Telefon: <span class="ph">[Telefonnummer]</span><br>
-      E-Mail: <span class="ph">[E-Mail-Adresse]</span>
+      Telefon: <a href="tel:+4915165478283">0151 65478283</a><br>
+      E-Mail: <span class="ph">[E-Mail-Adresse fehlt noch]</span>
     </address>
-    <p class="note">Neben der E-Mail-Adresse ist ein zweiter, unmittelbarer Kontaktweg vorgeschrieben.
-       In der Regel ist das eine Telefonnummer. Ein Kontaktformular mit Antwort innerhalb von 60 Minuten
-       wird von Gerichten teilweise ebenfalls anerkannt, die Telefonnummer ist der sichere Weg.</p>
 
-    <h2>Rechtsform und Vertretungsberechtigte</h2>
-    <p><span class="ph">[Rechtsform oder diesen Abschnitt löschen]</span></p>
-    <p>Vertretungsberechtigt: <span class="ph">[Name der vertretungsberechtigten Person]</span></p>
-    <p class="note">Nur auszufüllen, wenn hinter dem Projekt eine juristische Person steht, also etwa
-       eine UG, GmbH oder ein eingetragener Verein. Dann sind Rechtsform und die vertretungsberechtigten
-       Personen — bei einer GmbH die Geschäftsführung — Pflichtangaben. Wer als Einzelperson auftritt,
-       löscht diesen Abschnitt ersatzlos; die Angaben oben genügen dann.</p>
-
-    <h2>Registereintrag</h2>
-    <p>
-      Registergericht: <span class="ph">[Amtsgericht]</span><br>
-      Registernummer: <span class="ph">[HRB / VR / GnR-Nummer]</span>
-    </p>
-    <p class="note">Nur auszufüllen bei Eintragung im Handels-, Vereins-, Partnerschafts- oder
-       Genossenschaftsregister. Eine Gewerbeanmeldung allein ist kein Registereintrag und begründet
-       diese Pflicht nicht. Ohne Eintragung entfällt der Abschnitt.</p>
-
-    <h2>Umsatzsteuer-Identifikationsnummer</h2>
-    <p><span class="ph">[USt-IdNr. oder diesen Abschnitt löschen]</span></p>
-    <p class="note">Nur anzugeben, wenn eine Umsatzsteuer-Identifikationsnummer nach § 27a UStG vorhanden
-       ist. Als Kleinunternehmer nach § 19 UStG entfällt dieser Abschnitt ersatzlos.</p>
+    <h2>Umsatzsteuer</h2>
+    <p>Es erfolgt kein Ausweis der Umsatzsteuer aufgrund der Anwendung der Kleinunternehmerregelung
+       gemäß § 19 UStG.</p>
 
     <h2>Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV</h2>
     <address>
-      <span class="ph">[Vor- und Nachname]</span><br>
-      <span class="ph">[Straße und Hausnummer]</span><br>
-      <span class="ph">[Postleitzahl und Ort]</span>
+      Tim Irmscher<br>
+      An der Lockwitz 41a<br>
+      01768 Glashütte
     </address>
-    <p class="note">Diese Angabe ist Pflicht, sobald journalistisch-redaktionelle Inhalte veröffentlicht
-       werden — etwa ein Blog, Event-Berichte oder ein Podcast mit redaktionellem Charakter. Eine reine
-       Selbstdarstellung mit Terminen und Links fällt in der Regel nicht darunter. Da ein Blog-Bereich
-       hier denkbar ist, bleibt der Abschnitt vorsorglich stehen; er schadet nicht.</p>
 
     <h2>Verbraucherstreitbeilegung</h2>
     <p>Ich bin nicht bereit und nicht verpflichtet, an Streitbeilegungsverfahren vor einer
        Verbraucherschlichtungsstelle teilzunehmen.</p>
-    <p class="note">Die frühere Pflicht, auf die Online-Streitbeilegungsplattform der EU-Kommission zu
-       verlinken, ist entfallen: Die Plattform wurde am 20. Juli 2025 eingestellt. Ein solcher Link
-       gehört heute nicht mehr ins Impressum und wäre ein toter Verweis.</p>
 
-    <h2>Haftung für Inhalte</h2>
-    <p>Als Diensteanbieter bin ich gemäß § 7 Abs. 1 DDG für eigene Inhalte auf diesen Seiten nach den
-       allgemeinen Gesetzen verantwortlich. Nach §§ 8 bis 10 DDG bin ich als Diensteanbieter jedoch nicht
-       verpflichtet, übermittelte oder gespeicherte fremde Informationen zu überwachen oder nach Umständen
-       zu forschen, die auf eine rechtswidrige Tätigkeit hinweisen.</p>
-    <p>Verpflichtungen zur Entfernung oder Sperrung der Nutzung von Informationen nach den allgemeinen
-       Gesetzen bleiben hiervon unberührt. Eine diesbezügliche Haftung ist jedoch erst ab dem Zeitpunkt
-       der Kenntnis einer konkreten Rechtsverletzung möglich. Bei Bekanntwerden entsprechender
-       Rechtsverletzungen werde ich diese Inhalte umgehend entfernen.</p>
+    <h2>Haftungsbeschränkung für eigene Inhalte</h2>
+    <p>Die Inhalte dieser Website wurden mit größtmöglicher Sorgfalt erstellt. Für die Richtigkeit,
+       Vollständigkeit und Aktualität der Inhalte wird keine Gewähr übernommen. Als Diensteanbieter bin
+       ich gemäß § 7 Abs. 1 DDG für eigene Inhalte auf dieser Website nach den allgemeinen Gesetzen
+       verantwortlich. Mögliche Rechtsverletzungen werden nach Kenntnisnahme umgehend entfernt.</p>
 
-    <h2>Haftung für Links</h2>
-    <p>Dieses Angebot enthält Links zu externen Websites Dritter, auf deren Inhalte ich keinen Einfluss
-       habe. Deshalb kann ich für diese fremden Inhalte auch keine Gewähr übernehmen. Für die Inhalte der
-       verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber der Seiten verantwortlich. Die
-       verlinkten Seiten wurden zum Zeitpunkt der Verlinkung auf mögliche Rechtsverstöße überprüft,
-       rechtswidrige Inhalte waren nicht erkennbar.</p>
-    <p>Eine permanente inhaltliche Kontrolle der verlinkten Seiten ist ohne konkrete Anhaltspunkte einer
-       Rechtsverletzung nicht zumutbar. Bei Bekanntwerden von Rechtsverletzungen werde ich derartige
-       Links umgehend entfernen.</p>
+    <h2>Haftungsbeschränkung für externe Links</h2>
+    <p>Diese Website enthält Links zu externen Websites Dritter, auf deren Inhalte ich keinen Einfluss
+       habe. Für die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber
+       verantwortlich. Bei Bekanntwerden von Rechtsverletzungen werden derartige Links umgehend
+       entfernt.</p>
 
     <h2>Urheberrecht</h2>
-    <p>Die durch den Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen dem
-       deutschen Urheberrecht. Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung
-       außerhalb der Grenzen des Urheberrechtes bedürfen der schriftlichen Zustimmung des jeweiligen
-       Autors beziehungsweise Erstellers.</p>
+    <p>Die auf dieser Website veröffentlichten Inhalte und Werke unterliegen dem deutschen
+       Urheberrecht. Jede Vervielfältigung, Bearbeitung, Verbreitung oder Nutzung außerhalb der Grenzen
+       des Urheberrechts bedarf der schriftlichen Zustimmung des jeweiligen Autors.</p>
   </main>
 </div>
 
@@ -180,7 +141,7 @@ footer .l a:hover{color:var(--accent)}
     <div class="l">
       <a href="./">Startseite</a> &nbsp;&middot;&nbsp;
       <a href="datenschutz.html">Datenschutzerklärung</a><br>
-      &copy; 2026 DJ Teatime &middot; Dresden
+      &copy; 2026 DJ Teatime
     </div>
   </div>
 </footer>
