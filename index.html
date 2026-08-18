@@ -152,22 +152,49 @@ nav.desktop a:hover::after{transform:scaleX(1);transform-origin:left}
 .hero>*{position:relative;z-index:2}
 
 .vinyl-stage{position:relative;width:min(62vw,320px);aspect-ratio:1/1;margin-bottom:36px}
+
+/* Atmender Schein hinter der Platte. Laeuft ueber opacity und transform,
+   das rechnet die Grafikkarte, kostet also auf dem Handy kaum Leistung. */
+.vinyl-stage::before{
+  content:"";position:absolute;inset:-16%;border-radius:50%;z-index:0;
+  background:radial-gradient(circle,rgba(255,0,144,.6),rgba(255,0,144,0) 66%);
+  filter:blur(16px);
+  animation:glow 2.8s ease-in-out infinite alternate;
+}
+@keyframes glow{
+  from{opacity:.4;transform:scale(.94)}
+  to{opacity:.95;transform:scale(1.08)}
+}
+
 .vinyl{
-  position:absolute;inset:0;border-radius:50%;
+  position:absolute;inset:0;border-radius:50%;z-index:1;
   background:repeating-radial-gradient(circle at center,#191919 0 2px,#050505 2px 4px);
   box-shadow:0 0 0 3px rgba(255,255,255,.06),0 0 70px -14px rgba(255,0,144,.55),0 30px 60px -20px #000;
   animation:spin 7s linear infinite;
 }
+/* Der eigentliche Bewegungshinweis: konzentrische Rillen sind rotations-
+   symmetrisch und sehen gedreht identisch aus. Dieser Lichtreflex ist
+   asymmetrisch, dreht sich mit und macht die Drehung damit sichtbar. */
+.vinyl::after{
+  content:"";position:absolute;inset:0;border-radius:50%;
+  background:conic-gradient(from 0deg,
+    rgba(255,255,255,.22) 0deg,
+    rgba(255,255,255,0) 58deg,
+    rgba(255,255,255,0) 168deg,
+    rgba(255,255,255,.14) 196deg,
+    rgba(255,255,255,0) 262deg,
+    rgba(255,255,255,0) 360deg);
+}
 @keyframes spin{from{transform:rotate(0)}to{transform:rotate(360deg)}}
 .vinyl-label{
-  position:absolute;inset:0;margin:auto;width:44%;height:44%;border-radius:50%;
+  position:absolute;inset:0;margin:auto;width:44%;height:44%;border-radius:50%;z-index:2;
   background:var(--accent);display:grid;place-items:center;
   box-shadow:0 0 0 3px #000;color:#0A0A0A;
 }
 .vinyl-label .mark{width:76%;height:76%}
-.vinyl-hole{position:absolute;inset:0;margin:auto;width:13px;height:13px;border-radius:50%;background:#000}
+.vinyl-hole{position:absolute;inset:0;margin:auto;width:13px;height:13px;border-radius:50%;background:#000;z-index:3}
 .tonearm{
-  position:absolute;top:-5%;right:-5%;width:46%;
+  position:absolute;top:-5%;right:-5%;width:46%;z-index:4;
   transform-origin:90% 10%;transform:rotate(-24deg);
   animation:drop 1.4s .5s cubic-bezier(.5,0,.2,1) forwards;
 }
