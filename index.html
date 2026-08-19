@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -12,6 +12,7 @@
 <meta property="og:description" content="Hard Techno / Tekno — Dresden">
 <meta property="og:url" content="https://nicjj.github.io/dj-teatime/">
 <meta property="og:image" content="https://nicjj.github.io/dj-teatime/og.jpg">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#0A0A0A">
 
 <link rel="icon" type="image/svg+xml" href="logos/cup-eq-favicon.svg"><rect width='32' height='32' fill='%230A0A0A'/><circle cx='16' cy='16' r='11' fill='none' stroke='%23FF0090' stroke-width='3'/><circle cx='16' cy='16' r='2.5' fill='%23FF0090'/></svg>">
@@ -335,8 +336,8 @@ footer .fsoc{display:flex;justify-content:center;gap:26px;margin-bottom:28px}
 footer .fsoc a{color:var(--muted);transition:color .2s,transform .2s}
 footer .fsoc a:hover{color:var(--accent);transform:translateY(-3px)}
 footer .fsoc svg{width:22px;height:22px;fill:currentColor}
-footer .legal{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:#555;line-height:2.2}
-footer .legal a{color:var(--muted);text-decoration:none;border-bottom:1px solid #333}
+footer .legal{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);line-height:2.2}
+footer .legal a{color:var(--ink);text-decoration:none;border-bottom:1px solid #444}
 footer .legal a:hover{color:var(--accent);border-bottom-color:var(--accent)}
 
 /* ---------- Scroll-Reveal ---------- */
@@ -365,6 +366,25 @@ footer .legal a:hover{color:var(--accent);border-bottom-color:var(--accent)}
   .reveal{opacity:1;transform:none}
 }
 </style>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "MusicGroup",
+  "name": "DJ Teatime",
+  "alternateName": "TeaTime",
+  "genre": ["Hard Techno", "Tekno"],
+  "url": "https://nicjj.github.io/dj-teatime/",
+  "image": "https://nicjj.github.io/dj-teatime/og.jpg",
+  "email": "teaatime-music@gmail.com",
+  "address": { "@type": "PostalAddress", "addressLocality": "Dresden", "addressCountry": "DE" },
+  "member": { "@type": "Person", "name": "Tim Irmscher" },
+  "sameAs": [
+    "https://instagram.com/teatime_music_",
+    "https://on.soundcloud.com/PkZfJisJTeEny8Lj9"
+  ]
+}
+</script>
 </head>
 <body>
 
@@ -382,7 +402,7 @@ footer .legal a:hover{color:var(--accent);border-bottom-color:var(--accent)}
   <div class="wrap">
     <a href="#top" class="brand"><svg class="mark"><use href="#m-tt"/></svg><span>Teatime</span></a>
     <nav class="desktop">
-      <a href="#shows">Shows</a>
+      <a href="#shows">Termine</a>
       <a href="#releases">Releases</a>
       <a href="about.html">Über mich</a>
       <a href="#booking">Booking</a>
@@ -399,7 +419,7 @@ footer .legal a:hover{color:var(--accent);border-bottom-color:var(--accent)}
 </header>
 
 <div class="overlay" id="overlay">
-  <a class="olink" href="#shows">Shows</a>
+  <a class="olink" href="#shows">Termine</a>
   <a class="olink" href="#releases">Releases</a>
   <a class="olink" href="about.html">Über mich</a>
   <a class="olink" href="#booking">Booking</a>
@@ -445,29 +465,29 @@ footer .legal a:hover{color:var(--accent);border-bottom-color:var(--accent)}
 <!-- ===== Statistikreihe ===== -->
 <div class="stats">
   <div class="stat"><div class="v">Hard Techno</div><div class="k">Sound</div></div>
-  <div class="stat"><div class="v">Dresden</div><div class="k">Based in</div></div>
+  <div class="stat"><div class="v">Dresden</div><div class="k">Zuhause</div></div>
   <div class="stat"><div class="v">Controller &amp; CDJ</div><div class="k">Format</div></div>
 </div>
 
 <!-- ===== SHOWS ===== -->
 <section id="shows">
   <div class="wrap">
-    <div class="sec-head reveal"><h2 class="h-sec">Shows</h2></div>
+    <div class="sec-head reveal"><h2 class="h-sec">Termine</h2></div>
 
     <div class="reveal">
       <div class="show">
         <div>
           <div class="date">Platzhalter</div>
-          <div class="venue">Venue Name</div>
-          <div class="city">Dresden, Germany</div>
+          <div class="venue">Venue</div>
+          <div class="city">Dresden</div>
         </div>
         <div class="act"><a class="btn ghost" href="#booking"><span>Tickets</span></a></div>
       </div>
       <div class="show">
         <div>
           <div class="date">Platzhalter</div>
-          <div class="venue">Club Night</div>
-          <div class="city">Leipzig, Germany</div>
+          <div class="venue">Clubnacht</div>
+          <div class="city">Leipzig</div>
         </div>
         <div class="act"><a class="btn ghost" href="#booking"><span>Tickets</span></a></div>
       </div>
@@ -475,7 +495,7 @@ footer .legal a:hover{color:var(--accent);border-bottom-color:var(--accent)}
         <div>
           <div class="date">Platzhalter</div>
           <div class="venue">Open Air</div>
-          <div class="city">Berlin, Germany</div>
+          <div class="city">Berlin</div>
         </div>
         <div class="act"><a class="btn ghost" href="#booking"><span>Tickets</span></a></div>
       </div>
@@ -503,9 +523,9 @@ footer .legal a:hover{color:var(--accent);border-bottom-color:var(--accent)}
 <section id="booking" class="booking">
   <div class="wrap">
     <div class="reveal">
-      <div class="eyebrow" style="margin-bottom:16px">Get in touch</div>
+      <div class="eyebrow" style="margin-bottom:16px">Kontakt</div>
       <h2 class="h-sec">Spill<br>the tea.</h2>
-      <p>Booking &middot; Press &middot; Collabs</p>
+      <p>Booking &middot; Presse &middot; Kollaborationen</p>
       <a class="mail" href="mailto:teaatime-music@gmail.com">teaatime-music@gmail.com</a>
     </div>
   </div>
@@ -604,10 +624,10 @@ footer .legal a:hover{color:var(--accent);border-bottom-color:var(--accent)}
   }
 
   var TITLES = [
-    ['Placeholder Track 01','Original Mix'],
-    ['Placeholder Track 02','Hard Techno'],
-    ['Placeholder Track 03','Tekno Edit'],
-    ['Placeholder Track 04','Live Set']
+    ['Platzhalter-Track 01','Original Mix'],
+    ['Platzhalter-Track 02','Hard Techno'],
+    ['Platzhalter-Track 03','Tekno-Edit'],
+    ['Platzhalter-Track 04','Live-Set']
   ];
 
   var grid = document.getElementById('relgrid');
@@ -625,7 +645,7 @@ footer .legal a:hover{color:var(--accent);border-bottom-color:var(--accent)}
      Der Streifen wird so oft wiederholt, dass er breiter als das Fenster
      plus eine Kopie ist. Verschoben wird um exakt eine Kopienbreite, damit
      der Uebergang nahtlos ist und das Band endlos weiterlaeuft. */
-  var TICKER_WORDS = ['Hard Techno','Tekno','Dresden','Booking Open'];
+  var TICKER_WORDS = ['Hard Techno','Tekno','Dresden','Booking offen'];
   var tick = document.getElementById('ticker');
 
   function buildTicker(){

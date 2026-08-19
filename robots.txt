@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+# Rechtstexte und Arbeitsdateien gehoeren nicht in den Index
+Disallow: /impressum.html
+Disallow: /datenschutz.html
+
+Sitemap: https://nicjj.github.io/dj-teatime/sitemap.xml

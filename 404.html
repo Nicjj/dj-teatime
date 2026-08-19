@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Seite nicht gefunden — DJ TEATIME</title>
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#0A0A0A">
+<link rel="icon" type="image/svg+xml" href="/dj-teatime/logos/cup-eq-favicon.svg">
+<style>
+:root{
+  --bg:#0A0A0A; --ink:#fff; --muted:#8A8A8A; --accent:#FF0090;
+  --font:"Segoe UI",system-ui,-apple-system,Roboto,"Helvetica Neue",Arial,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  background:var(--bg);color:var(--ink);font-family:var(--font);
+  -webkit-font-smoothing:antialiased;
+  min-height:100svh;display:grid;place-items:center;text-align:center;
+  padding:40px 20px;position:relative;overflow:hidden;
+}
+body::before{
+  content:"";position:absolute;inset:-30% -10% auto -10%;height:140%;
+  background:radial-gradient(50% 40% at 30% 10%,rgba(255,0,144,.22),transparent 62%),
+             radial-gradient(46% 36% at 78% 4%,rgba(120,0,255,.15),transparent 60%);
+  filter:blur(10px);
+}
+.wrap{position:relative;z-index:2;max-width:520px}
+
+/* Zersprungene Platte: der Sprung macht klar, dass hier etwas fehlt */
+.disc{position:relative;width:min(46vw,170px);aspect-ratio:1/1;margin:0 auto 40px}
+.disc .plate{
+  position:absolute;inset:0;border-radius:50%;
+  background:repeating-radial-gradient(circle at center,#191919 0 2px,#050505 2px 4px);
+  box-shadow:0 0 0 3px rgba(255,255,255,.06),0 0 60px -16px rgba(255,0,144,.5);
+  animation:wobble 3.4s ease-in-out infinite;
+}
+.disc .label{
+  position:absolute;inset:0;margin:auto;width:44%;height:44%;border-radius:50%;
+  background:var(--accent);display:grid;place-items:center;color:#0A0A0A;
+  box-shadow:0 0 0 3px #000;
+}
+.disc .label .mark{width:74%;height:74%}
+.disc .crack{
+  position:absolute;inset:0;
+  background:linear-gradient(105deg,transparent 47.5%,var(--bg) 47.5% 52.5%,transparent 52.5%);
+  border-radius:50%;
+}
+@keyframes wobble{
+  0%,100%{transform:rotate(-3deg)}
+  50%{transform:rotate(3deg)}
+}
+
+.code{font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:var(--accent);font-weight:800}
+h1{
+  font-size:clamp(34px,9vw,64px);line-height:.95;letter-spacing:-.02em;
+  text-transform:uppercase;font-weight:900;margin:16px 0 20px;
+}
+p{color:#C6C6C6;font-size:15px;line-height:1.85;margin-bottom:34px}
+.btn{
+  display:inline-block;padding:15px 34px;border:2px solid var(--accent);border-radius:999px;
+  font-size:12px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;
+  text-decoration:none;color:inherit;position:relative;overflow:hidden;transition:color .3s;
+}
+.btn span{position:relative;z-index:2}
+.btn::before{
+  content:"";position:absolute;inset:0;background:var(--accent);
+  transform:translateY(101%);transition:transform .34s cubic-bezier(.6,0,.3,1);
+}
+.btn:hover::before{transform:translateY(0)}
+.btn:hover{color:#000}
+.more{margin-top:30px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.more a{color:var(--ink);text-decoration:none;border-bottom:1px solid #444}
+.more a:hover{color:var(--accent);border-bottom-color:var(--accent)}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+
+<svg style="position:absolute;width:0;height:0;overflow:hidden" aria-hidden="true">
+  <symbol id="m-tt" viewBox="0 0 100 100">
+    <mask id="k-tt"><rect width="100" height="100" fill="#fff"/><circle cx="50" cy="66" r="4.5" fill="#000"/></mask>
+    <g fill="currentColor" mask="url(#k-tt)">
+      <rect x="11" y="23" width="78" height="12" rx="2"/>
+      <rect x="26" y="23" width="12" height="54" rx="2"/>
+      <rect x="62" y="23" width="12" height="54" rx="2"/>
+    </g>
+  </symbol>
+</svg>
+
+<div class="wrap">
+  <div class="disc" aria-hidden="true">
+    <div class="plate"></div>
+    <div class="label"><svg class="mark"><use href="#m-tt"/></svg></div>
+    <div class="crack"></div>
+  </div>
+
+  <div class="code">Fehler 404</div>
+  <h1>Diese Platte<br>hat einen Sprung</h1>
+  <p>Die Seite, die du suchst, gibt es nicht. Vielleicht wurde sie verschoben,
+     oder in der Adresse hat sich ein Tippfehler versteckt.</p>
+
+  <a class="btn" href="/dj-teatime/"><span>Zur Startseite</span></a>
+
+  <div class="more">
+    <a href="/dj-teatime/about.html">Über mich</a> &nbsp;&middot;&nbsp;
+    <a href="/dj-teatime/#booking">Booking</a> &nbsp;&middot;&nbsp;
+    <a href="/dj-teatime/impressum.html">Impressum</a>
+  </div>
+</div>
+
+</body>
+</html>
