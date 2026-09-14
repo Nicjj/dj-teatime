@@ -41,10 +41,10 @@ jobs:
       geaendert: ${{ steps.vergleich.outputs.geaendert }}
     steps:
       - name: Code holen
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Node einrichten
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v7
         with:
           node-version: 24
 
@@ -78,10 +78,10 @@ jobs:
       url: ${{ steps.deploy.outputs.page_url }}
     steps:
       - name: Code holen
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Node einrichten
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v7
         with:
           node-version: 24
 
@@ -97,13 +97,13 @@ jobs:
         run: node tools/releases.mjs || echo "::warning::SoundCloud nicht abrufbar, die gespeicherten Releases werden veröffentlicht."
 
       - name: Pages vorbereiten
-        uses: actions/configure-pages@v5
+        uses: actions/configure-pages@v6
 
       - name: Seite verpacken
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v5
         with:
           path: .
 
       - name: Veröffentlichen
         id: deploy
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5

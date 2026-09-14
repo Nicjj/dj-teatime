@@ -1,127 +1,98 @@
 ========================================================================
 DJ TEATIME - WEBSITE: WAS NOCH ZU TUN IST
-Stand: 12.08.2026
+Stand: 14.09.2026
 Live: https://nicjj.github.io/dj-teatime/
 Repo: https://github.com/Nicjj/dj-teatime
 ========================================================================
 
 
-ZWEI ERKENNTNISSE VORWEG (aendern den Plan)
+OFFEN - MUSS TIM ODER NICK ERLEDIGEN
 ------------------------------------------------------------------------
 
-- Beide Automatisierungen (Termine + Sets) brauchen einen kleinen
-  Server-Teil. Direkt aus dem Browser scheitert es an CORS. Auf einem
-  eigenen Server ist das trivial (kleines Script + Cron), bei GitHub
-  Pages braeuchte es einen Umweg.
-  => Termin- und Set-Automatik erst beim Eigenhosting richtig bauen.
+[ ] Testeinträge im Gigs-Kalender löschen
+    ("Test 1", "Test 2", "Test gig nr 4", "icH BIN EIN GIG ...")
+    - die stehen live auf der Startseite
+[ ] Auf dem eigenen Handy prüfen, ob Plattenspieler und TT im
+    Samsung-Internet-Dunkelmodus jetzt richtig aussehen
+[ ] Cover mit der Cuphead-ähnlichen Figur klären
+    ("Hard Techno / Hard Rave - Set FtV 2025 TeaTime" auf SoundCloud)
+    - Tassenkopf mit Knickstrohhalm = Erkennungsmerkmal von Cuphead
+      (Studio MDHR), Nutzung als DJ ist gewerblich
+    - klären lassen: IHK Dresden (Erstberatung) oder Fachanwalt
+    - bis dahin ggf. das Cover auf der Website ausblenden
+[ ] Presskit / EPK: hochauflösende Fotos, Kurzbio, Technical Rider
+[ ] Videos für eine Videogalerie
+[ ] YouTube- und Spotify-Profil, sobald vorhanden -> Links ergänzen
 
-- Die SoundCloud-API ist seit Jahren fuer Neuanmeldungen geschlossen.
-  Ein offizieller Key ist praktisch nicht zu bekommen.
-  Machbar bleibt: oeffentlicher RSS-Feed des Profils (serverseitig
-  abgerufen) oder das SoundCloud-Embed-Widget. Titel stimmen dann
-  automatisch ueberein.
 
-
-RECHTLICHES (dringend - Seite ist bereits live)
+OFFEN - TECHNIK
 ------------------------------------------------------------------------
 
-[ ] Impressum nach Paragraf 5 DDG
-    - Name, ladungsfaehige Anschrift, E-Mail + zweiter Kontaktweg
-[ ] Datenschutzerklaerung nach Art. 13 DSGVO
-[ ] Entscheidung Adresse: privat / Gewerbe / Impressumsservice
-    (Impressumsservice ca. 5-15 EUR pro Monat)
-[ ] AV-Vertrag mit dem spaeteren Hoster
-[ ] Consent-Banner NUR falls noetig
-    - Pflicht, sobald SoundCloud-Embeds oder Google-Aufrufe direkt im
-      Browser laufen
-    - Serverseitig loesen = Banner vermeidbar
-[ ] Keine Google Fonts per CDN einbinden
-    (aktuell sauber, sollte so bleiben)
-[ ] Rechte am Logo klaeren
-    - Optik erinnert stark an Cuphead (geschuetzt, Studio MDHR)
-
-Hinweis: keine Rechtsberatung. Im Zweifel Anwalt oder IHK Dresden
-fragen - die beraten Gruender kostenlos.
+[ ] Fünf-Minuten-Prüfung startet bei GitHub nicht
+    - seit Einrichtung am 14.09.2026 kein einziger zeitgesteuerter Lauf
+    - bis das läuft, erscheinen neue Termine/Tracks nur nach einem Push
+      oder einem manuellen Start (Actions -> "Seite veröffentlichen"
+      -> "Run workflow")
 
 
-EIGENES HOSTING
+EIGENES HOSTING (später)
 ------------------------------------------------------------------------
 
-[ ] Domain kaufen (z.B. djteatime.de)
-[ ] Server waehlen: VPS in der EU (Hetzner o.ae.)
-    - EU-Standort erleichtert DSGVO
-[ ] Webserver aufsetzen - Caddy nimmt HTTPS komplett ab
-[ ] TLS-Zertifikat, DNS, Weiterleitung www -> Hauptdomain
+[ ] Domain kaufen (z. B. djteatime.de)
+[ ] VPS in der EU (Hetzner o. ä.)
+[ ] Webserver mit HTTPS (Caddy), DNS, Weiterleitung www -> Hauptdomain
 [ ] Deployment-Weg festlegen (Git-Pull, rsync oder CI)
-[ ] Backups einrichten
-[ ] Uptime-Monitoring
+[ ] Backups und Uptime-Monitoring
+[ ] AV-Vertrag mit dem Hoster
+[ ] Datenschutzerklärung anpassen (Hoster, EU statt USA)
 [ ] E-Mail-Adresse auf eigener Domain statt Gmail
-    (wirkt bei Bookings deutlich professioneller)
-[ ] Alte GitHub-Pages-URL sauber weiterleiten
+[ ] Alte GitHub-Pages-Adresse auf die neue Domain weiterleiten
+[ ] Optional: Termine und Releases in Echtzeit statt alle 5 Minuten
+    (tools/termine.mjs und tools/releases.mjs laufen dort unverändert)
 
 
-TERMINE AUS GOOGLE CALENDAR
+OPTIONAL
 ------------------------------------------------------------------------
 
-[ ] Separaten Kalender NUR fuer Gigs anlegen
-    - WICHTIG: nicht den privaten Kalender oeffentlich schalten
-[ ] Kalender oeffentlich freigeben
-[ ] Feldkonvention festlegen:
-    Titel = Venue, Ort = Stadt, Beschreibung = Ticket-Link
-[ ] Serverseitiges Script holt Termine und cached sie
-[ ] Vergangene Termine automatisch ausblenden
-[ ] Sortierung + Fall "keine Termine" abdecken
-[ ] Fallback, falls Google mal nicht antwortet
+[ ] Booking-Formular statt mailto: (Schutz vor Spam-Bots)
+    - braucht Server oder Dienst, Datenschutzerklärung ergänzen
+[ ] Datenschutzfreundliche Statistik (Plausible / Matomo)
+[ ] Newsletter oder Verteiler für Ankündigungen
 
 
-SETS AUS SOUNDCLOUD
+DAUERHAFTE REGELN
 ------------------------------------------------------------------------
 
-[ ] Entscheidung: RSS-Feed mit eigenem Design vs. Embed-Widget
-[ ] Serverseitiger Abruf + Cache
-[ ] Titel, Dauer, Cover automatisch uebernehmen
-[ ] Klick fuehrt zu SoundCloud
-[ ] Spaeter Spotify und YouTube ergaenzen
+- Keine Google Fonts, kein CDN, keine eingebetteten Fremdinhalte.
+  Alles, was von Google oder SoundCloud kommt, holt der Server und
+  liefert es selbst aus. Deshalb braucht die Seite keinen Cookie-Banner.
+- Jeder neue externe Dienst -> Datenschutzerklärung anpassen.
+- Handy zuerst: Änderungen bei 320, 360 und 390 px Breite prüfen.
+- Kalender "Gigs": Titel = Venue, Ort = Stadt, Beschreibung = Ticket-Link.
+  Der private Kalender "tim" erscheint nie auf der Seite.
 
 
-NOCH NICHT BEDACHT
+ERLEDIGT
 ------------------------------------------------------------------------
 
-[ ] Open-Graph-Tags
-    - sonst zeigt der Instagram-Bio-Link keine Vorschau, nur nackten
-      Text. Mit der wichtigste Punkt ueberhaupt
-[ ] Favicon fehlt
-[ ] Mobile-Optimierung testen
-    - Traffic kommt fast komplett vom Handy ueber Instagram
-[ ] SEO-Basics: Meta-Description, robots.txt, sitemap.xml
-[ ] Schema.org MusicEvent
-    - damit Google die Gigs direkt in der Suche anzeigt
-[ ] Sprache festlegen
-    - Inhalte sind Englisch, Zielgruppe Dresden
-[ ] Booking-Formular statt mailto:
-    - Adresse wird sonst von Spam-Bots abgegriffen
-[ ] Datenschutzfreundliche Statistik (Plausible/Matomo)
-    - um zu sehen, ob Bookings ankommen
-[ ] Presskit / EPK
-    - hochaufloesende Fotos, Bio, Technical Rider
-    - danach fragen Veranstalter regelmaessig
-[ ] Foto- und Videogalerie
-[ ] Newsletter oder Verteiler fuer Ankuendigungen
-[ ] 404-Seite
-[ ] Barrierefreiheit: Alt-Texte, Kontraste
-[ ] Echte Inhalte statt der Platzhalter in About und Brew Log
-    - der About-Text enthaelt aktuell erfundene Biografie-Details
-      ("residency", "road trip") aus dem alten Entwurf
-    - Brew-Log-Titel und Laufzeiten sind ebenfalls Platzhalter
-
-
-EMPFOHLENE REIHENFOLGE
-------------------------------------------------------------------------
-
-1. Impressum + Datenschutzerklaerung   (rechtliches Risiko laeuft)
-2. Open Graph + Favicon                (klein, sofort spuerbar)
-3. Echte Inhalte statt Platzhalter
-4. Domain + eigener Server
-5. Automatisierungen (Kalender, SoundCloud) auf dem eigenen Server
+[x] Impressum nach § 5 DDG, Datenschutzerklärung nach Art. 13 DSGVO
+[x] Entscheidung Adresse (Privatanschrift im Impressum)
+[x] Kein Consent-Banner nötig (alles serverseitig)
+[x] Termine aus dem Google-Kalender "Gigs" (automatisch, mit Fallback,
+    vergangene Termine ausgeblendet, "Mehr Termine ansehen")
+[x] Releases von SoundCloud mit Covern (automatisch, Cover liegen auf
+    der eigenen Seite, Klick führt zum Track)
+[x] Open-Graph-Vorschau für den Instagram-Link, Favicon, Logos als SVG
+[x] Mobile-first-Prüfung (Tippflächen, Überlauf, flüssige Animationen)
+[x] Schutz vor dem Zwangs-Dunkelmodus von Samsung Internet / Chrome
+[x] SEO: Meta-Beschreibungen, robots.txt, sitemap.xml,
+    Schema.org MusicGroup / MusicEvent / MusicRecording
+[x] Sprache durchgehend Deutsch
+[x] 404-Seite
+[x] Über-mich-Seite mit echtem Text, Fotogalerie und Herkunftskarte
+    (Oberfrauendorf -> Dresden, eigene Karte aus OpenStreetMap-Daten)
+[x] Barrierefreiheit geprüft: Alt-Texte, Kontraste, Überschriften,
+    Tastaturbedienung von Menü und Galerie
+[x] GitHub-Actions auf aktuelle Versionen (Node 24)
 
 ========================================================================

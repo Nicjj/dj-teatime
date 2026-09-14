@@ -58,8 +58,8 @@ nav.desktop a.here::after{transform:scaleX(1);transform-origin:left}
 .burger[aria-expanded="true"] span:nth-child(2){opacity:0}
 .burger[aria-expanded="true"] span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
 .overlay{position:fixed;inset:0;z-index:55;background:var(--bg);display:flex;flex-direction:column;justify-content:center;padding:0 28px;
-  clip-path:circle(0% at calc(100% - 42px) 32px);transition:clip-path .5s cubic-bezier(.7,0,.3,1);pointer-events:none}
-.overlay.open{clip-path:circle(150% at calc(100% - 42px) 32px);pointer-events:auto}
+  clip-path:circle(0% at calc(100% - 42px) 32px);transition:clip-path .5s cubic-bezier(.7,0,.3,1),visibility 0s .5s;pointer-events:none;visibility:hidden}
+.overlay.open{clip-path:circle(150% at calc(100% - 42px) 32px);pointer-events:auto;visibility:visible;transition:clip-path .5s cubic-bezier(.7,0,.3,1)}
 .overlay a.olink{font-size:clamp(34px,11vw,58px);font-weight:800;text-transform:uppercase;letter-spacing:.02em;line-height:1.18;
   opacity:0;transform:translateY(24px);transition:opacity .4s,transform .4s,color .2s}
 .overlay.open a.olink{opacity:1;transform:none}
@@ -97,8 +97,6 @@ section{padding:70px 0}
 .shot .cap{position:absolute;left:0;right:0;bottom:0;padding:26px 14px 12px;
   background:linear-gradient(transparent,rgba(0,0,0,.85));
   font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#D8D8D8}
-.gal-note{margin-top:24px;font-size:12px;color:var(--muted);letter-spacing:.05em;line-height:1.85}
-.gal-note code{color:var(--accent)}
 
 .facts{display:grid;grid-template-columns:repeat(2,1fr);gap:2px;background:var(--line);border-block:1px solid var(--line)}
 .fact{background:var(--bg);padding:26px 18px;text-align:center}
@@ -133,6 +131,39 @@ footer .legal a{color:var(--ink);display:inline-block;padding:13px 4px;line-heig
 .reveal{opacity:0;transform:translateY(26px);transition:opacity .7s,transform .7s}
 .reveal.in{opacity:1;transform:none}
 
+/* Herkunft mit eigener Karte: gezeichnet aus OpenStreetMap-Daten, laedt nichts nach */
+.herkunft{border-top:1px solid var(--line)}
+.herkunft-grid{display:grid;gap:30px;align-items:center}
+.herkunft-text{margin-top:20px;color:#C6C6C6;line-height:1.9;font-size:16px;max-width:44ch}
+.herkunft-text strong{color:var(--ink)}
+.karte{margin:0;border:1px solid var(--line);background:#0E0E0E;max-width:560px}
+.karte-svg{display:block;width:100%;height:auto;font-family:inherit}
+.karte-svg text{paint-order:stroke;stroke:#0E0E0E;stroke-width:5px;stroke-linejoin:round}
+.k-raster{stroke:rgba(255,255,255,.045);stroke-width:1;fill:none}
+.k-stadt{fill:rgba(255,255,255,.045);stroke:rgba(255,255,255,.28);stroke-width:1.2;stroke-dasharray:4 3}
+.k-bach{fill:none;stroke:#35505F;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.k-elbe{fill:none;stroke:#4F7A91;stroke-width:5;stroke-linecap:round;stroke-linejoin:round}
+.k-fluss{font-size:15px;font-style:italic;fill:#7FA4B8;letter-spacing:.08em}
+.k-weg{stroke:#FF0090;stroke-width:2.5;stroke-dasharray:1 7;stroke-linecap:round;fill:none}
+.k-km rect{fill:#0E0E0E;stroke:#FF0090;stroke-width:1.5}
+.k-km text{font-size:14px;font-weight:800;fill:#fff;letter-spacing:.06em;stroke:none}
+.k-punkt{fill:#8A8A8A}
+.k-ort{font-size:15.5px;fill:#A0A0A0;letter-spacing:.03em}
+.k-dresden-punkt{fill:#fff}
+.k-dresden{font-size:23px;font-weight:900;fill:#fff;text-transform:uppercase;letter-spacing:.1em}
+.k-heimat{fill:#FF0090;stroke:#0E0E0E;stroke-width:2}
+.k-puls{fill:none;stroke:#FF0090;stroke-width:2;transform-box:fill-box;transform-origin:center;animation:k-puls 2.4s ease-out infinite}
+@keyframes k-puls{from{transform:scale(1);opacity:.9}to{transform:scale(3.2);opacity:0}}
+.k-heimat-name{font-size:18px;font-weight:900;fill:#fff;letter-spacing:.04em}
+.k-heimat-sub{font-size:15px;font-weight:700;fill:#FF0090;letter-spacing:.04em}
+.k-nord path{fill:#8A8A8A}
+.k-nord text{font-size:13px;font-weight:800;fill:#8A8A8A}
+.k-mass path{fill:none;stroke:#8A8A8A;stroke-width:1.5}
+.k-mass text{font-size:13px;fill:#8A8A8A;dominant-baseline:middle;transform:translateY(-3px)}
+.karte figcaption{padding:0 12px;border-top:1px solid var(--line);font-size:11px;letter-spacing:.06em;color:var(--muted)}
+.karte figcaption a{display:inline-block;padding:14px 0;line-height:16px;color:var(--muted);text-decoration:underline;text-decoration-color:#444;text-underline-offset:3px}
+@media(hover:hover){.karte figcaption a:hover{color:var(--ink)}}
+
 @media(min-width:820px){
   :root{--head-h:76px}
   header{background:rgba(10,10,10,.82);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px)}
@@ -140,6 +171,7 @@ footer .legal a{color:var(--ink);display:inline-block;padding:13px 4px;line-heig
   .burger{display:none}
   section{padding:104px 0}
   .facts{grid-template-columns:repeat(4,1fr)}
+  .herkunft-grid{grid-template-columns:1fr 1.15fr;gap:64px}
 
   /* Drei Spalten. Text nimmt zwei, Bilder je eine, das Zitat und das
      Abschlussbild die volle Breite. Jede Zeile geht genau auf. */
@@ -246,9 +278,6 @@ footer .legal a{color:var(--ink);display:inline-block;padding:13px 4px;line-heig
 
     </div>
 
-    <p class="gal-note">
-      Die Galerie erwartet sechs Dateien im Ordner <code>bilder/</code>. Fehlt eine davon, wird an ihrer Stelle weiterhin ein gezeichneter Platzhalter angezeigt.
-    </p>
   </div>
 </section>
 
@@ -258,6 +287,53 @@ footer .legal a{color:var(--ink);display:inline-block;padding:13px 4px;line-heig
   <div class="fact"><div class="v">Acid &amp; Tribe</div><div class="k">Wurzeln</div></div>
   <div class="fact"><div class="v">Peak-Time</div><div class="k">Lieblingsslot</div></div>
 </div>
+
+<section class="herkunft">
+  <div class="wrap herkunft-grid">
+    <div class="reveal">
+      <div class="eyebrow">Herkunft</div>
+      <h2 class="h-sec" style="margin-top:14px">Wo ich<br>herkomme</h2>
+      <p class="herkunft-text">Ich komme aus <strong>Oberfrauendorf</strong>, einem kleinen Ort zwischen Dippoldiswalde und Glashütte, rund 21&nbsp;Kilometer Luftlinie südlich von Dresden.</p>
+    </div>
+    <figure class="karte reveal">
+<svg class="karte-svg" viewBox="0 0 400 452" role="img" aria-labelledby="karte-titel">
+  <title id="karte-titel">Karte: Oberfrauendorf liegt rund 21 Kilometer Luftlinie südlich von Dresden, zwischen Dippoldiswalde und Glashütte.</title>
+  <defs>
+    <radialGradient id="k-schein"><stop offset="0" stop-color="#FF0090" stop-opacity=".45"/><stop offset="1" stop-color="#FF0090" stop-opacity="0"/></radialGradient>
+  </defs>
+  <rect width="400" height="452" fill="#0E0E0E"/>
+  <path d="M71.4 0V452M142.8 0V452M214.2 0V452M285.5 0V452M356.9 0V452M0 71.4H400M0 142.8H400M0 214.2H400M0 285.5H400M0 356.9H400M0 428.3H400" class="k-raster"/>
+  <path d="M190.5 -118.9L187.9 -117.3L184.6 -117.6L178.8 -122.8L171.3 -123.3L169.6 -122.4L169.7 -119.9L172.5 -115.9L172.3 -113.9L175.5 -107.5L174.3 -102.4L177.1 -97.9L177.5 -93.7L176.6 -93.3L180.7 -90.7L186.1 -89.9L186.4 -89.0L187.3 -78.5L186.0 -76.6L184.6 -76.7L184.4 -75.0L192.3 -72.4L182.0 -60.6L181.0 -61.6L179.9 -60.5L181.0 -59.5L180.4 -57.0L181.3 -55.2L179.5 -55.2L179.0 -57.1L177.4 -56.7L173.3 -59.9L167.1 -52.9L161.5 -55.1L161.0 -57.9L145.7 -63.4L142.5 -56.7L137.8 -53.9L138.6 -48.9L136.7 -46.3L137.8 -45.9L136.6 -40.9L135.4 -40.6L133.8 -36.8L135.4 -36.2L132.0 -26.2L133.0 -19.0L127.8 -15.9L130.1 -13.5L126.5 -17.6L125.6 -22.9L123.5 -20.7L121.7 -21.6L119.5 -18.6L116.9 -17.5L117.3 -13.2L119.1 -13.3L120.6 -7.7L119.8 -5.4L118.3 -5.2L118.3 -3.3L116.8 -2.9L116.1 -0.1L113.2 0.8L116.8 3.5L117.8 2.3L119.6 3.6L123.9 8.8L122.9 9.7L126.1 13.8L125.1 14.8L123.0 14.0L116.2 9.9L116.0 12.6L114.7 12.2L114.1 13.8L115.1 14.5L114.2 18.2L111.4 15.6L110.1 16.9L98.7 7.0L96.7 6.9L93.3 7.8L91.8 9.3L92.8 10.0L87.2 9.9L83.6 11.4L88.9 16.8L87.0 15.0L86.2 15.7L78.8 11.7L70.1 5.6L61.9 3.4L48.7 -4.2L44.0 -4.1L39.6 -2.6L30.5 5.5L26.9 5.1L23.7 2.5L21.7 4.5L21.0 7.8L17.0 9.3L20.0 13.6L23.4 13.7L22.6 17.2L24.4 18.7L23.2 22.2L24.1 23.2L20.1 27.0L18.3 32.6L17.0 33.6L14.6 32.6L14.7 34.5L12.8 36.7L14.1 41.2L15.5 41.9L15.3 44.9L12.6 50.7L13.3 51.7L11.2 53.4L7.6 52.6L6.2 54.9L4.6 55.2L6.0 58.0L5.3 60.5L10.0 68.8L4.3 78.5L11.3 81.3L10.0 88.7L16.8 90.1L16.7 88.9L19.9 91.7L30.2 90.7L29.1 94.1L24.6 98.8L28.5 103.5L28.8 107.5L35.0 106.7L40.4 103.8L46.5 105.7L50.9 109.1L51.5 105.8L53.1 104.8L56.5 107.8L57.3 106.5L59.0 106.8L67.9 112.6L74.2 111.7L76.2 109.7L75.6 107.4L78.9 105.9L79.4 103.5L90.0 103.1L90.5 101.9L94.2 103.1L90.5 107.9L87.3 110.2L88.7 112.0L89.6 126.0L90.7 126.0L91.3 129.2L90.3 132.4L93.3 132.4L95.8 135.1L101.0 130.7L102.5 133.6L106.0 134.6L108.4 142.0L112.5 148.9L111.1 153.2L111.9 155.0L112.5 154.2L119.9 154.7L122.6 151.3L125.0 150.4L132.1 151.3L137.9 147.9L138.7 145.9L141.5 147.5L142.3 146.8L145.7 147.5L150.9 143.2L155.2 142.6L157.5 143.3L157.2 145.0L163.3 146.0L165.1 148.1L163.9 148.9L165.0 150.3L166.2 149.7L166.8 152.3L168.8 152.2L168.9 153.8L173.2 154.2L176.1 159.4L176.9 158.1L179.2 159.3L179.9 157.8L181.1 158.3L182.0 157.3L183.2 157.3L183.2 158.5L188.5 158.7L188.7 157.5L190.5 157.4L189.8 163.8L191.8 164.4L190.5 166.8L194.6 173.6L196.0 178.2L200.6 177.6L205.2 181.0L204.7 177.7L205.9 176.8L211.6 181.3L212.9 179.9L213.8 180.2L215.0 177.6L214.0 184.2L216.2 185.8L215.4 187.4L216.9 191.7L216.2 192.3L216.7 194.6L219.3 194.7L220.3 193.4L221.3 194.2L220.6 195.2L222.3 196.5L224.2 196.0L224.0 193.4L226.4 191.7L229.5 192.3L230.0 190.3L232.7 191.2L232.6 195.3L237.9 196.0L238.0 197.9L239.7 197.1L240.5 198.3L246.0 198.2L246.0 194.5L250.3 191.4L256.2 193.1L255.9 191.4L257.5 190.3L258.8 190.9L264.0 183.4L264.8 178.6L267.7 177.6L269.7 175.4L277.3 180.6L283.6 170.0L297.2 184.9L304.0 184.3L303.5 182.2L304.7 181.8L305.8 186.8L309.6 187.0L307.9 179.6L311.3 178.9L312.8 177.5L311.6 176.3L312.5 175.5L313.8 176.9L319.9 174.0L319.1 170.1L321.8 169.3L321.6 167.6L320.0 167.8L320.0 166.6L328.1 164.8L331.4 162.0L331.1 159.7L335.1 159.4L335.8 158.2L336.1 155.6L333.3 155.1L334.4 151.1L331.6 143.4L333.2 140.3L332.8 138.3L336.2 138.0L335.3 136.6L337.1 132.1L341.7 133.5L344.0 137.9L345.2 137.9L346.6 136.1L347.6 137.8L351.6 136.5L356.4 130.5L356.8 131.6L360.4 131.2L362.9 134.6L364.4 132.7L363.8 127.2L365.7 123.0L369.2 119.1L373.4 117.0L381.1 116.9L382.7 115.8L382.2 113.6L384.7 109.7L387.8 109.1L386.7 93.4L387.2 88.7L390.3 83.5L385.4 80.0L385.0 76.1L385.2 75.1L386.6 75.7L391.1 71.7L386.4 61.9L390.7 61.0L387.0 56.7L383.3 56.6L384.1 56.4L381.9 52.8L385.2 56.4L386.9 56.5L379.4 48.3L378.2 49.2L377.4 44.1L378.8 45.2L378.5 41.5L375.8 41.4L368.7 44.2L366.5 42.8L361.5 51.7L363.7 52.8L362.8 54.1L363.8 55.0L365.0 53.2L368.5 55.8L367.4 57.4L358.8 58.1L358.9 60.2L351.1 60.3L347.3 62.0L347.0 61.2L349.2 59.4L348.6 58.8L345.2 60.9L344.7 59.0L343.0 58.2L344.8 56.2L337.6 52.4L336.6 49.9L330.5 49.9L324.3 47.3L318.1 47.7L310.8 45.6L308.4 43.5L308.7 41.9L311.3 41.6L315.4 35.4L321.0 32.6L320.6 30.6L321.8 28.6L320.2 27.2L316.4 27.8L316.1 27.1L321.2 22.8L320.3 21.3L321.4 21.0L321.0 19.8L326.2 18.6L325.5 21.8L321.8 22.0L322.4 23.6L327.2 27.3L331.4 24.1L329.4 22.5L329.7 19.5L331.3 16.6L334.6 16.1L336.1 9.3L333.8 5.9L335.1 4.8L331.9 2.0L328.1 2.3L324.6 -3.9L320.4 -6.0L323.9 -13.2L320.1 -15.1L318.7 -17.9L317.5 -18.0L317.9 -21.0L312.4 -21.0L305.2 -37.3L297.6 -43.5L294.4 -56.9L299.8 -60.2L312.9 -64.1L314.3 -68.1L312.2 -70.1L312.8 -73.1L308.7 -73.8L309.6 -77.9L308.5 -79.7L305.6 -79.6L305.3 -82.7L303.3 -83.2L304.7 -86.2L300.5 -87.2L298.6 -90.7L294.9 -89.5L292.9 -87.7L290.3 -88.0L285.0 -92.3L282.3 -89.0L275.2 -84.4L269.0 -81.9L267.9 -82.8L264.3 -77.2L263.8 -73.6L260.5 -75.0L256.2 -72.0L253.6 -77.3L243.7 -85.6L239.2 -87.8L235.0 -87.6L233.0 -94.4L230.9 -94.4L229.9 -102.1L227.0 -108.6L223.5 -110.7L223.5 -109.0L213.0 -104.5L204.7 -104.7L205.6 -106.9L196.7 -117.8L190.5 -118.9Z" class="k-stadt"/>
+  <path d="M243.3 161.5L247.0 162.2M262.4 161.3L265.4 162.8L268.0 161.5L269.6 162.3L273.8 161.2L270.9 151.2L271.2 138.7L268.9 135.0L272.2 132.2M201.3 274.2L202.6 270.5L198.4 264.6L194.9 255.4L193.5 254.5L193.1 250.7L190.1 247.1L189.5 245.2L190.3 242.3M194.8 304.6L192.5 301.5L196.8 296.6L196.3 292.2L195.0 290.7L196.1 289.3L195.5 285.6L198.6 283.1L201.3 283.7L204.4 281.1L203.1 277.0L201.0 276.3L201.3 274.2M190.3 242.3L193.8 237.8L193.3 236.7L197.4 228.4L197.6 225.7L202.0 221.9L202.5 217.1L201.0 212.3L203.9 207.4L202.9 205.0L204.9 204.4L204.2 202.4L207.4 198.9L210.4 202.0L211.6 200.3L211.5 195.2L219.3 194.5L221.8 191.2L220.6 189.2L225.1 185.2M131.7 371.4L134.8 365.8L140.8 363.5M129.1 377.5L129.2 377.3M123.7 389.0L124.5 388.0M128.6 378.4L129.1 377.5M129.2 377.3L130.0 375.2M123.7 389.1L123.7 389.0M123.2 390.4L123.2 390.2M123.4 389.9L123.7 389.1M173.3 332.3L175.0 330.5L184.2 327.9L191.3 315.7L194.1 314.6M193.9 306.5L194.8 304.6M124.5 388.0L124.5 387.9M124.5 387.9L124.6 387.7M124.6 387.7L124.6 387.6M125.7 386.0L125.7 385.9M124.6 387.4L124.6 387.4M124.6 387.4L124.6 387.3M125.8 385.6L125.9 385.5M124.6 387.3L125.7 386.0M125.9 385.5L125.9 385.1M125.7 385.9L125.8 385.6M126.5 383.6L127.3 382.4M127.3 382.4L127.3 382.4M127.6 380.7L127.8 380.4M127.3 382.4L127.3 382.3M125.9 385.1L125.9 385.1M126.3 383.6L126.5 383.6M127.8 380.4L128.6 378.4M127.3 382.3L127.6 380.7M125.9 385.1L126.3 383.6M130.0 375.1L130.6 373.8M130.0 375.2L130.0 375.1M130.6 373.8L131.0 373.5M131.7 371.7L131.7 371.5M131.7 371.5L131.7 371.4M131.0 373.5L131.7 371.7M140.8 363.5L140.9 363.5M142.2 361.9L142.2 361.9M141.5 362.9L141.6 362.8M142.5 361.4L142.6 361.3M143.4 360.5L143.5 360.5M141.9 362.4L141.9 362.3M141.9 362.3L142.2 361.9M141.6 362.8L141.9 362.4M142.2 361.9L142.5 361.4M140.9 363.5L141.5 362.9M142.6 361.3L143.4 360.5M143.5 360.5L144.6 359.4M146.0 357.3L147.2 355.1M145.0 358.3L146.0 357.5M147.2 355.1L147.4 355.0M146.0 357.5L146.0 357.3M148.8 354.4L148.9 354.3M144.6 359.4L144.6 359.4M145.0 358.4L145.0 358.3M148.9 354.3L153.5 352.8L153.5 348.7L159.0 344.2M147.4 355.0L148.8 354.4M144.6 359.4L145.0 358.4M159.0 344.2L159.8 343.4M159.8 343.4L165.7 337.5L165.7 336.2L170.6 333.8M194.1 314.5L195.6 308.5L193.9 306.5M194.1 314.6L194.1 314.5M-9.8 -33.9L-9.6 -33.7M170.6 333.8L173.3 332.3M247.0 162.2L247.7 162.3M254.9 160.5L256.8 159.5L262.4 161.3M225.1 185.2L225.2 185.2M225.2 185.2L227.3 183.6M124.6 387.6L124.6 387.4M227.3 183.6L230.9 179.2L229.7 176.7L231.9 176.1L231.4 172.8L234.4 170.9L234.7 169.3L235.7 169.6L236.7 167.2L239.7 164.6L239.6 162.0L241.2 162.6L243.3 161.5M123.2 390.2L123.4 389.9M272.3 132.1L273.5 131.4M272.2 132.2L272.3 132.1M247.7 162.3L254.6 160.9M254.6 160.9L254.9 160.5" class="k-bach"/>
+  <path d="M239.7 498.4L239.4 491.7L241.6 489.1L240.7 485.3L235.8 482.5L234.6 478.3L231.4 474.6L229.9 470.9L230.6 465.5L226.7 466.0L223.2 463.8L223.1 462.5L220.7 461.6L219.5 459.5L214.4 456.9L214.0 453.7L210.8 450.6L206.9 451.2L202.2 442.9L198.4 439.4L197.8 434.9M190.6 415.4L189.3 415.1L187.0 411.4L184.5 410.5L185.6 408.4L188.4 407.8L196.8 409.6L197.9 407.8L197.8 404.4L199.2 402.6L201.7 401.2L207.6 400.9L208.3 392.0L210.7 388.7L214.1 389.1L215.0 390.5L214.6 393.3L215.6 393.8L218.7 390.7L222.8 383.7L224.3 383.5L224.9 385.4L230.7 384.5L229.6 382.2L231.2 380.3L231.8 372.4L237.4 368.3L237.7 366.4L241.4 365.3L241.6 363.4L238.6 357.0L239.1 353.8L236.4 351.4L236.1 342.0L238.9 340.2L237.7 331.1L235.4 326.7L232.3 324.0L237.5 316.5L237.0 313.0L235.6 311.1L235.7 306.8L237.5 305.5L239.3 306.6L242.9 306.6L244.5 302.8L241.0 297.4L241.5 294.6L243.3 293.0L247.6 292.9L250.1 290.5L256.3 288.9L257.2 287.1L256.8 283.8L261.1 282.4L262.8 279.0L267.1 274.8L266.5 271.8L268.2 269.7L269.7 269.4L274.7 271.9L276.5 268.9L282.5 267.5L283.6 265.7L282.1 263.5L286.7 265.4L289.5 265.3L287.0 260.8L288.1 256.1L283.6 253.6L285.3 252.3L291.7 250.9L292.3 248.5L284.5 241.8L283.0 235.7L278.1 236.9L276.5 235.0L279.5 230.3L279.7 226.5L281.7 221.4L282.6 215.8L280.9 212.4L284.3 206.9L283.0 204.2L288.4 199.0L292.4 201.3L297.4 197.5L308.6 194.6M197.8 434.9L195.1 431.0L198.8 428.9L198.5 425.5L192.9 420.8L194.2 419.6L196.6 419.9L196.3 417.6L192.8 415.4L190.6 415.4" class="k-bach"/>
+  <path d="M27.2 186.7L35.5 187.4L40.1 191.2L43.5 191.1L45.6 189.5L52.3 189.1L54.6 187.8M-4.9 254.7L-2.2 247.5L-0.1 245.0L-0.0 242.6L4.8 241.4L5.3 243.4L8.7 242.0L7.9 236.4L6.4 235.0L6.7 231.6L5.0 228.3L6.9 224.8L5.9 219.8L8.3 218.1L7.5 203.2L8.4 200.4L6.9 192.9L7.8 187.4L9.7 186.0L15.0 187.4L22.4 185.5L27.2 186.7M-8.9 341.6L-12.6 340.8L-15.2 342.0L-18.7 339.6M-18.7 339.6L-17.8 338.9L-21.0 334.7L-21.6 331.2L-25.9 328.8L-27.2 324.2L-32.1 319.4L-33.7 315.6L-38.0 314.5L-39.8 312.2L-39.7 308.4L-37.3 307.5M101.4 477.5L99.7 468.4L101.8 464.8L102.9 457.5L108.6 450.2M17.2 422.0L13.9 416.6L14.9 414.7L17.8 414.3L18.6 409.2L17.5 406.1L14.3 402.7L11.3 405.6L7.9 404.4L13.4 399.7L14.4 395.8L14.6 393.7L12.8 390.0L10.1 389.2L9.3 387.1L9.5 384.7L12.0 384.1L12.9 382.1M114.9 435.3L112.9 430.5L108.5 428.9L103.7 421.5L100.6 418.6L100.5 416.3L98.7 415.2L95.5 407.6L92.1 404.2L91.2 398.5M91.5 397.7L92.8 395.0L90.7 391.2L92.0 387.9L90.7 381.1L92.5 376.8L91.4 370.8L95.1 366.5L94.1 364.0L96.4 358.0L102.0 351.2L100.9 345.3L99.7 343.9L100.2 341.0L94.5 335.7M94.5 335.7L94.0 335.0M94.0 335.0L92.3 329.0L86.3 322.5L87.1 320.2L85.6 318.7L85.9 316.8L91.4 306.4L83.0 298.7L79.0 290.1L77.5 281.5L80.1 275.3M64.7 512.0L63.1 512.1L61.6 509.7L57.4 509.3L56.1 506.0L51.4 500.6L44.9 497.8L42.6 494.3L42.9 491.2L34.8 477.4M23.4 457.3L23.1 456.9M23.1 456.9L16.5 445.8L19.0 426.4L17.6 422.4M128.9 522.2L127.2 520.4L127.0 512.1L131.0 498.4L128.9 496.4L124.8 496.1L119.7 493.0L118.4 487.3L113.0 484.7L106.5 484.0L103.0 481.0L101.4 477.5M81.1 273.7L82.0 267.8L80.8 264.9L71.5 254.0L71.6 248.4L68.6 246.9L71.2 240.7L71.3 237.3L68.4 236.8L63.1 233.5L61.8 228.8L58.4 229.0L58.0 226.5M17.6 422.4L17.2 422.0M-36.8 305.1L-38.0 301.6L-40.3 300.8L-40.9 297.3L-34.2 297.3L-36.0 291.2L-31.9 290.4L-31.0 288.1L-26.7 286.8L-27.3 285.1L-29.7 284.4L-30.8 279.3L-27.6 277.2L-25.2 277.4L-22.4 282.9L-20.3 284.1L-9.8 281.8L-8.5 279.9L-4.5 279.6L-4.0 277.3L-2.0 275.4L-2.0 272.5L-3.6 271.1L-3.0 265.6L-5.2 261.0L-8.5 259.3L-9.4 257.4L-8.7 256.2L-6.7 256.9L-4.9 254.7M-37.4 306.6L-36.9 305.3M108.6 450.2L113.7 446.0L117.7 440.7L115.0 435.6M57.2 216.8L54.9 217.3L53.6 216.3L52.7 217.5L50.3 216.6L50.0 218.3L48.2 219.4L49.1 220.4M58.0 226.5L58.3 220.7L60.1 218.4L59.0 216.3L57.2 216.8M47.6 211.1L49.6 208.8L46.6 207.9L44.2 204.0L46.2 195.2L53.4 190.4L54.6 187.8M49.1 220.4L49.0 222.3L47.4 222.4L45.0 221.4L45.1 218.9L42.8 219.1L41.7 218.0L42.1 214.8L44.3 215.9L45.2 215.2L43.5 213.9L43.9 212.2L47.6 211.1M-37.3 307.5L-37.4 306.6M-36.6 307.2L-36.8 305.1M34.8 477.4L35.5 476.4L33.3 470.9M33.3 470.9L32.5 468.4L29.8 465.9L28.3 461.5M-36.9 305.3L-36.8 305.1M115.0 435.6L114.9 435.3M-37.3 307.5L-36.6 307.2M80.6 274.5L81.1 273.7M28.3 461.5L24.5 459.2L23.4 457.3M80.1 275.3L80.6 274.5M12.9 382.1L9.5 376.8L9.8 373.1L5.5 371.8L2.3 364.0L-2.9 362.2L-3.1 360.3L-1.7 358.4L-2.4 354.9L-4.9 354.8L-6.9 351.7M91.2 398.5L91.5 397.7M-8.4 341.7L-8.9 341.6M-6.9 351.7L-10.5 347.8L-7.4 343.7L-8.4 341.7M128.9 77.9L127.5 76.6L116.8 73.4L113.2 65.5M114.2 123.5L119.8 124.2L125.3 123.2M54.6 187.8L57.0 184.6L61.7 183.8L62.8 179.7L65.5 176.7L68.6 177.9L70.4 177.1L72.1 172.1L73.9 170.2L73.5 164.9L75.5 162.4L78.1 162.1L78.7 156.2L83.3 153.6L83.5 149.8L86.2 147.5M131.4 97.5L129.5 90.5M125.9 112.2L129.5 106.9L129.6 103.9L131.7 100.0L131.4 97.5M125.7 123.1L127.9 122.1L125.3 118.2L125.9 112.2M125.3 123.2L125.7 123.1M113.2 65.5L113.3 64.9M113.3 64.9L112.6 60.6M90.7 136.4L94.6 135.9L98.8 131.4L100.9 130.6M100.9 130.6L105.2 125.9L110.0 126.1L112.1 122.9L114.2 123.5M86.2 147.5L87.6 141.1L90.7 136.4M129.8 89.6L130.2 89.0M129.8 89.7L129.8 89.6M129.7 89.9L129.8 89.7M129.5 90.5L129.7 89.9M129.1 78.4L128.9 77.9M130.2 89.0L131.3 86.9M131.2 86.6L129.1 78.4M131.3 86.9L131.2 86.6M112.4 60.2L111.1 57.4M112.6 60.6L112.4 60.2" class="k-bach"/>
+  <path d="M266.3 119.1L264.7 109.9L263.0 106.7L259.6 103.2L249.1 97.7L245.0 93.5L231.5 66.0L229.5 63.6L223.2 59.9L209.6 56.9L197.1 57.9L187.5 61.7L173.4 71.9L166.7 72.7L160.9 69.3L153.0 52.5L147.0 45.7L142.8 38.4L138.9 36.8L133.6 37.6L128.3 41.0L126.4 43.7L125.1 51.3L123.5 54.1L116.3 56.5M300.8 161.1L299.0 152.5L296.9 148.7L275.8 133.9L268.8 125.2L266.3 119.1M416.9 236.8L408.9 233.6L402.6 225.9L397.4 222.0L391.9 218.9L379.0 215.1L370.4 214.1L353.7 214.3L341.7 217.3M568.2 287.3L559.2 281.5L548.0 279.6L535.1 270.8L530.6 269.1L523.6 270.4L512.7 280.9L505.2 285.3L497.4 285.5L489.1 282.8L482.6 275.8L482.3 268.5L487.2 262.1L498.6 257.0L503.2 253.7L508.8 247.3L511.9 240.6L510.9 234.6L508.9 231.0L504.6 226.1L499.3 223.2L490.8 223.2L478.2 226.1L470.1 225.2L464.7 226.1L448.3 232.2L438.0 243.9L433.8 246.7L428.9 246.1L425.1 244.4L416.9 236.8M116.3 56.5L111.1 57.4M111.1 57.4L105.8 56.3L100.8 50.9L90.2 20.6L84.3 14.1L76.3 10.3L69.0 5.3L59.3 2.2L47.6 -4.3L42.9 -4.1L39.2 -2.5L31.0 5.5L26.2 5.0L13.9 -10.3L2.3 -15.1L-5.1 -22.1L-13.9 -26.5L-18.3 -30.1L-28.9 -33.1L-35.3 -36.5L-40.7 -41.5L-47.2 -49.8M341.7 217.3L334.6 220.4L326.5 220.1L318.7 217.3L311.7 210.8L307.9 204.3L307.2 200.9L309.4 191.1L309.5 184.0L300.8 161.1M-9.6 -28.1L-17.7 -32.4L-22.3 -31.5" class="k-elbe"/>
+  <text x="296.9" y="139.7" transform="rotate(48.3 296.9 148.7)" text-anchor="middle" class="k-fluss">Elbe</text>
+
+  <path d="M128.3 377.9L163.4 80.6" class="k-weg"/>
+  <g class="k-km"><rect x="155.9" y="216.3" width="62" height="26" rx="13"/><text x="186.9" y="234.3" text-anchor="middle">21 km</text></g>
+
+  <circle cx="73.1" cy="163.6" r="3.5" class="k-punkt"/><text x="82.1" y="168.6" text-anchor="start" class="k-ort">Freital</text>
+  <circle cx="365" cy="225.8" r="3.5" class="k-punkt"/><text x="365" y="249.8" text-anchor="middle" class="k-ort">Pirna</text>
+  <circle cx="91.7" cy="328.1" r="3.5" class="k-punkt"/><text x="8" y="316.1" text-anchor="start" class="k-ort">Dippoldiswalde</text>
+  <circle cx="208.3" cy="396.9" r="3.5" class="k-punkt"/><text x="217.3" y="401.9" text-anchor="start" class="k-ort">Glashütte</text>
+
+  <circle cx="163.4" cy="80.6" r="6" class="k-dresden-punkt"/>
+  <text x="176.4" y="87.6" class="k-dresden">Dresden</text>
+
+  <circle cx="128.3" cy="377.9" r="34" fill="url(#k-schein)"/>
+  <circle cx="128.3" cy="377.9" r="9" class="k-puls"/>
+  <circle cx="128.3" cy="377.9" r="6.5" class="k-heimat"/>
+  <text x="128.3" y="409.9" text-anchor="middle" class="k-heimat-name">Oberfrauendorf</text>
+  <text x="128.3" y="428.9" text-anchor="middle" class="k-heimat-sub">Hier komme ich her</text>
+
+  <g class="k-nord" transform="translate(374 30)"><path d="M0 -14L7 6L0 1L-7 6Z"/><text y="24" text-anchor="middle">N</text></g>
+  <g class="k-mass" transform="translate(268.6 436)"><path d="M0 -5V0H71.4V-5"/><text x="79.4" y="0">5 km</text></g>
+</svg>
+      <figcaption>Kartendaten &copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap-Mitwirkende</a> (ODbL)</figcaption>
+    </figure>
+  </div>
+</section>
 
 <section class="cta">
   <div class="wrap">
@@ -292,7 +368,7 @@ footer .legal a{color:var(--ink);display:inline-block;padding:13px 4px;line-heig
   "use strict";
 
   var burger=document.getElementById('burger'), overlay=document.getElementById('overlay');
-  function setMenu(o){overlay.classList.toggle('open',o);burger.setAttribute('aria-expanded',String(o));document.body.style.overflow=o?'hidden':'';}
+  function setMenu(o){if(!o&&overlay.contains(document.activeElement))burger.focus();overlay.classList.toggle('open',o);burger.setAttribute('aria-expanded',String(o));document.body.style.overflow=o?'hidden':'';}
   burger.addEventListener('click',function(){setMenu(burger.getAttribute('aria-expanded')!=='true');});
   overlay.addEventListener('click',function(e){if(e.target.tagName==='A')setMenu(false);});
   window.matchMedia('(min-width:820px)').addEventListener('change',function(e){if(e.matches)setMenu(false);});
