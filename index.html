@@ -763,33 +763,46 @@ footer .legal a{color:var(--ink);display:inline-block;padding:13px 4px;line-heig
      der Uebergang nahtlos ist und das Band endlos weiterlaeuft. */
   var TICKER_WORDS = ['Hard Techno','Tekno','Dresden','Booking offen'];
   var tick = document.getElementById('ticker');
+  var tickOne = TICKER_WORDS.map(function(w){
+    return '<span>' + w + '</span><span>&bull;</span>';
+  }).join('');
+  var tickSetW = 0, tickCopies = 0;
 
   function buildTicker(){
-    var one = TICKER_WORDS.map(function(w){
-      return '<span>' + w + '</span><span>&bull;</span>';
-    }).join('');
-
     tick.style.animation = 'none';
-    tick.innerHTML = one;
-    var setW = tick.scrollWidth;
-    if (!setW) return;
+    tick.innerHTML = tickOne;
+    tickSetW = tick.scrollWidth;
+    if (!tickSetW) return;
 
-    var copies = Math.max(3, Math.ceil(window.innerWidth / setW) + 2);
+    tickCopies = Math.max(3, Math.ceil(window.innerWidth / tickSetW) + 2);
     var html = '';
-    for (var i = 0; i < copies; i++) html += one;
+    for (var i = 0; i < tickCopies; i++) html += tickOne;
     tick.innerHTML = html;
 
-    tick.style.setProperty('--shift', setW + 'px');
-    tick.style.setProperty('--dur', (setW / 30) + 's');
+    tick.style.setProperty('--shift', tickSetW + 'px');
+    tick.style.setProperty('--dur', (tickSetW / 30) + 's');
     tick.style.animation = '';
+  }
+
+  /* Bei breiterem Fenster nur Kopien anhängen. Die Animation läuft dabei
+     ungestört weiter, weil sich die Verschiebung um eine Kopienbreite nicht ändert. */
+  function tickerAuffuellen(){
+    if (!tickSetW) { buildTicker(); return; }
+    var noetig = Math.max(3, Math.ceil(window.innerWidth / tickSetW) + 2);
+    for (; tickCopies < noetig; tickCopies++) tick.insertAdjacentHTML('beforeend', tickOne);
   }
 
   buildTicker();
 
-  var tickTimer;
+  /* Auf dem Handy meldet der Browser beim Scrollen ständig eine neue
+     Fenstergröße, weil die Adressleiste ein- und ausfährt. Dabei ändert sich
+     nur die Höhe. Früher wurde das Band dann neu gebaut und sprang an den
+     Anfang zurück. Jetzt zählt nur eine echte Breitenänderung (Drehen). */
+  var tickBreite = window.innerWidth;
   window.addEventListener('resize', function(){
-    clearTimeout(tickTimer);
-    tickTimer = setTimeout(buildTicker, 200);
+    if (window.innerWidth === tickBreite) return;
+    tickBreite = window.innerWidth;
+    tickerAuffuellen();
   });
 
   /* ---- Termine ----
@@ -895,7 +908,14 @@ footer .legal a{color:var(--ink);display:inline-block;padding:13px 4px;line-heig
         if (!offen) document.getElementById('shows').scrollIntoView({behavior:'smooth', block:'start'});
       });
       feld.addEventListener('scroll', endePruefen, {passive:true});
-      window.addEventListener('resize', feldHoeheSetzen);
+      /* Wie beim Laufband: nur bei echter Breitenänderung, nicht wenn beim
+         Scrollen die Adressleiste ein- und ausfährt, sonst springt die Seite */
+      var feldBreite = window.innerWidth;
+      window.addEventListener('resize', function(){
+        if (window.innerWidth === feldBreite) return;
+        feldBreite = window.innerWidth;
+        feldHoeheSetzen();
+      });
     }
 
     /* Für Suchmaschinen: jeder Termin zusätzlich als schema.org MusicEvent */
