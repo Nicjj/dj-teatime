@@ -8,6 +8,7 @@
 <meta name="theme-color" content="#0A0A0A">
 <link rel="icon" type="image/svg+xml" href="/dj-teatime/logos/cup-eq-favicon.svg">
 <style>
+a,button{-webkit-tap-highlight-color:rgba(255,0,144,.22)}
 :root{
   --bg:#0A0A0A; --ink:#fff; --muted:#8A8A8A; --accent:#FF0090;
   --font:"Segoe UI",system-ui,-apple-system,Roboto,"Helvetica Neue",Arial,sans-serif;
@@ -16,14 +17,13 @@
 body{
   background:var(--bg);color:var(--ink);font-family:var(--font);
   -webkit-font-smoothing:antialiased;
-  min-height:100svh;display:grid;place-items:center;text-align:center;
+  min-height:100vh;min-height:100svh;display:grid;place-items:center;text-align:center;
   padding:40px 20px;position:relative;overflow:hidden;
 }
 body::before{
-  content:"";position:absolute;inset:-30% -10% auto -10%;height:140%;
+  content:"";position:absolute;inset:-30% 0 auto 0;height:140%;
   background:radial-gradient(50% 40% at 30% 10%,rgba(255,0,144,.22),transparent 62%),
              radial-gradient(46% 36% at 78% 4%,rgba(120,0,255,.15),transparent 60%);
-  filter:blur(10px);
 }
 .wrap{position:relative;z-index:2;max-width:520px}
 
@@ -67,11 +67,11 @@ p{color:#C6C6C6;font-size:15px;line-height:1.85;margin-bottom:34px}
   content:"";position:absolute;inset:0;background:var(--accent);
   transform:translateY(101%);transition:transform .34s cubic-bezier(.6,0,.3,1);
 }
-.btn:hover::before{transform:translateY(0)}
-.btn:hover{color:#000}
-.more{margin-top:30px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
-.more a{color:var(--ink);text-decoration:none;border-bottom:1px solid #444}
-.more a:hover{color:var(--accent);border-bottom-color:var(--accent)}
+@media(hover:hover){.btn:hover::before{transform:translateY(0)}}
+@media(hover:hover){.btn:hover{color:#000}}
+.more{margin-top:22px;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.more a{color:var(--ink);display:inline-block;padding:13px 4px;line-height:1.5;text-decoration:underline;text-decoration-color:#555;text-underline-offset:4px}
+@media(hover:hover){.more a:hover{color:var(--accent);text-decoration-color:var(--accent)}}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
 </head>

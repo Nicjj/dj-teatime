@@ -25,6 +25,7 @@ html{scroll-behavior:smooth}
 body{background:var(--bg);color:var(--ink);font-family:var(--font);-webkit-font-smoothing:antialiased;overflow-x:hidden}
 img,svg{display:block;max-width:100%}
 a{color:inherit;text-decoration:none}
+a,button{-webkit-tap-highlight-color:rgba(255,0,144,.22)}
 .wrap{width:100%;max-width:1180px;margin:0 auto;padding:0 20px}
 
 .eyebrow{font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:var(--muted);font-weight:600}
@@ -33,18 +34,19 @@ a{color:inherit;text-decoration:none}
 .sec-head::before{content:"";flex:0 0 46px;height:4px;background:var(--accent)}
 
 header{position:fixed;top:0;left:0;right:0;z-index:60;height:var(--head-h);display:flex;align-items:center;
-  background:rgba(10,10,10,.82);backdrop-filter:blur(14px);border-bottom:1px solid transparent;transition:border-color .3s}
+  background:rgba(10,10,10,.94);border-bottom:1px solid transparent;transition:border-color .3s}
 header.scrolled{border-bottom-color:var(--line)}
 header .wrap{display:flex;align-items:center;justify-content:space-between;gap:20px}
-.brand{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:.14em;font-size:14px;text-transform:uppercase}
+.brand{display:flex;align-items:center;min-height:44px;gap:10px;font-weight:800;letter-spacing:.14em;font-size:14px;text-transform:uppercase}
 .brand .mark{width:30px;height:30px}
 nav.desktop{display:none;gap:32px}
 nav.desktop a{font-size:12px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;position:relative;padding:6px 0;color:var(--muted);transition:color .2s}
 nav.desktop a.here{color:var(--ink)}
 nav.desktop a::after{content:"";position:absolute;left:0;bottom:0;width:100%;height:2px;background:var(--accent);transform:scaleX(0);transform-origin:right;transition:transform .3s}
-nav.desktop a:hover{color:var(--ink)}
-nav.desktop a:hover::after,nav.desktop a.here::after{transform:scaleX(1);transform-origin:left}
-.burger{width:42px;height:42px;display:grid;place-content:center;gap:5px;background:none;border:0;cursor:pointer;padding:0}
+@media(hover:hover){nav.desktop a:hover{color:var(--ink)}}
+nav.desktop a.here::after{transform:scaleX(1);transform-origin:left}
+@media(hover:hover){nav.desktop a:hover::after{transform:scaleX(1);transform-origin:left}}
+.burger{width:44px;height:44px;display:grid;place-content:center;gap:5px;background:none;border:0;cursor:pointer;padding:0}
 .burger span{display:block;width:24px;height:2px;background:var(--ink);transition:transform .3s,opacity .2s}
 .burger[aria-expanded="true"] span:nth-child(1){transform:translateY(7px) rotate(45deg)}
 .burger[aria-expanded="true"] span:nth-child(2){opacity:0}
@@ -59,13 +61,12 @@ nav.desktop a:hover::after,nav.desktop a.here::after{transform:scaleX(1);transfo
 .overlay.open a.olink:nth-child(2){transition-delay:.22s}
 .overlay.open a.olink:nth-child(3){transition-delay:.28s}
 .overlay.open a.olink:nth-child(4){transition-delay:.34s}
-.overlay a.olink:hover{color:var(--accent)}
+@media(hover:hover){.overlay a.olink:hover{color:var(--accent)}}
 
 .intro{padding:calc(var(--head-h) + 74px) 0 20px;position:relative;overflow:hidden}
 .intro::before{content:"";position:absolute;inset:-40% -10% auto -10%;height:150%;
   background:radial-gradient(52% 40% at 24% 6%,rgba(255,0,144,.24),transparent 62%),
-             radial-gradient(48% 38% at 80% 0%,rgba(120,0,255,.16),transparent 60%);
-  filter:blur(8px)}
+             radial-gradient(48% 38% at 80% 0%,rgba(120,0,255,.16),transparent 60%);}
 .intro .wrap{position:relative;z-index:2}
 h1{font-size:clamp(40px,11vw,104px);line-height:.86;letter-spacing:-.02em;text-transform:uppercase;font-weight:900;margin:16px 0 18px}
 h1 .accent{color:var(--accent);text-shadow:0 0 30px rgba(255,0,144,.5)}
@@ -85,7 +86,7 @@ section{padding:70px 0}
 .shot{position:relative;overflow:hidden;background:var(--bg2);aspect-ratio:4/5;cursor:pointer}
 .shot.wide{aspect-ratio:16/9}
 .shot>svg,.shot>img{width:100%;height:100%;object-fit:cover;transition:transform .6s cubic-bezier(.3,0,.2,1)}
-.shot:hover>svg,.shot:hover>img{transform:scale(1.06)}
+@media(hover:hover){.shot:hover>svg,.shot:hover>img{transform:scale(1.06)}}
 .shot:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
 .shot .cap{position:absolute;left:0;right:0;bottom:0;padding:26px 14px 12px;
   background:linear-gradient(transparent,rgba(0,0,0,.85));
@@ -96,7 +97,7 @@ section{padding:70px 0}
 .facts{display:grid;grid-template-columns:repeat(2,1fr);gap:2px;background:var(--line);border-block:1px solid var(--line)}
 .fact{background:var(--bg);padding:26px 18px;text-align:center}
 .fact .v{font-size:clamp(17px,4.4vw,26px);font-weight:800;letter-spacing:.02em;text-transform:uppercase;line-height:1.15}
-.fact .k{margin-top:8px;font-size:10px;letter-spacing:.26em;text-transform:uppercase;color:var(--muted)}
+.fact .k{margin-top:8px;font-size:11px;letter-spacing:.26em;text-transform:uppercase;color:var(--muted)}
 
 .lightbox{position:fixed;inset:0;z-index:80;background:rgba(5,5,5,.94);display:none;place-items:center;padding:24px}
 .lightbox.open{display:grid}
@@ -111,20 +112,21 @@ section{padding:70px 0}
   font-size:12px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;position:relative;overflow:hidden;transition:color .3s}
 .btn span{position:relative;z-index:2}
 .btn::before{content:"";position:absolute;inset:0;background:var(--accent);transform:translateY(101%);transition:transform .34s cubic-bezier(.6,0,.3,1)}
-.btn:hover::before{transform:translateY(0)}
-.btn:hover{color:#000}
+@media(hover:hover){.btn:hover::before{transform:translateY(0)}}
+@media(hover:hover){.btn:hover{color:#000}}
 
 footer{padding:52px 0 44px;text-align:center}
 footer .mark.logo{display:block;width:66px;margin:0 auto 22px;opacity:.9}
-footer .legal{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:#666;line-height:2.4}
-footer .legal a{color:var(--muted);border-bottom:1px solid #333}
-footer .legal a:hover{color:var(--accent);border-bottom-color:var(--accent)}
+footer .legal{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);line-height:2.2}
+footer .legal a{color:var(--ink);display:inline-block;padding:13px 4px;line-height:1.5;text-decoration:underline;text-decoration-color:#555;text-underline-offset:4px}
+@media(hover:hover){footer .legal a:hover{color:var(--accent);text-decoration-color:var(--accent)}}
 
 .reveal{opacity:0;transform:translateY(26px);transition:opacity .7s,transform .7s}
 .reveal.in{opacity:1;transform:none}
 
 @media(min-width:820px){
   :root{--head-h:76px}
+  header{background:rgba(10,10,10,.82);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px)}
   nav.desktop{display:flex}
   .burger{display:none}
   section{padding:104px 0}
@@ -292,14 +294,24 @@ footer .legal a:hover{color:var(--accent);border-bottom-color:var(--accent)}
 
   /* Echte Fotos hier eintragen: {src:"bilder/name.jpg", cap:"Bildunterschrift"}
      Reihenfolge entspricht data-i im Mosaik. Ohne src wird ein Platzhalter gezeichnet. */
+  /* breite = Pixelbreite der Originaldatei. klein = optionale Handyfassung
+     mit 800 px Breite; der Browser waehlt dann selbst die passende Groesse. */
   var SHOTS=[
-    {src:"bilder/01-dj-violett.jpg",     cap:"Peak-Time"},
-    {src:"bilder/02-dj-rot.jpg",         cap:"Hinter den Decks"},
-    {src:"bilder/03-controller-rot.jpg", cap:"Hands on"},
-    {src:"bilder/04-lichtstrahl.jpg",    cap:"Im Nebel"},
-    {src:"bilder/05-crew.jpg",           cap:"Teatime Family"},
-    {src:"bilder/06-crowd.jpg",          cap:"Crowd"}
+    {src:"bilder/01-dj-violett.jpg",     breite:1536, klein:"bilder/01-dj-violett-800.jpg", cap:"Peak-Time"},
+    {src:"bilder/02-dj-rot.jpg",         breite:1068, cap:"Hinter den Decks"},
+    {src:"bilder/03-controller-rot.jpg", breite:1139, cap:"Hands on"},
+    {src:"bilder/04-lichtstrahl.jpg",    breite:1068, cap:"Im Nebel"},
+    {src:"bilder/05-crew.jpg",           breite:1536, klein:"bilder/05-crew-800.jpg", cap:"Teatime Family"},
+    {src:"bilder/06-crowd.jpg",          breite:2048, klein:"bilder/06-crowd-800.jpg", cap:"Crowd"}
   ];
+
+  /* Angezeigte Breite je Kachel: auf dem Handy volle Breite abzueglich Rand,
+     am Desktop ein Drittel beziehungsweise die volle Mosaikbreite */
+  function bildTag(s, wide){
+    var srcset = s.klein ? ' srcset="'+s.klein+' 800w, '+s.src+' '+s.breite+'w"' : '';
+    var sizes = s.klein ? ' sizes="'+(wide ? '(min-width:820px) 1140px' : '(min-width:820px) 380px')+', calc(100vw - 40px)"' : '';
+    return '<img src="'+s.src+'"'+srcset+sizes+' alt="'+s.cap+'" loading="lazy" decoding="async">';
+  }
 
   var PAL=[['#FF0090','#2B0043'],['#00E0FF','#001E33'],['#B4FF00','#152600'],
            ['#FF4D00','#331000'],['#7B2BFF','#14002E'],['#00FFA3','#00291C']];
@@ -334,7 +346,7 @@ footer .legal a:hover{color:var(--accent);border-bottom-color:var(--accent)}
   var shots=[].slice.call(document.querySelectorAll('.shot'));
   shots.forEach(function(el){
     var i=+el.dataset.i, s=SHOTS[i]||{cap:''}, wide=el.classList.contains('wide');
-    el.innerHTML=(s.src?'<img src="'+s.src+'" alt="'+s.cap+'" loading="lazy">':art(i,wide))
+    el.innerHTML=(s.src?bildTag(s,wide):art(i,wide))
                + '<div class="cap">'+s.cap+'</div>';
     el.setAttribute('aria-label',s.cap);
     var img=el.querySelector('img');

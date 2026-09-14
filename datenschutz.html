@@ -22,17 +22,18 @@
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
-body{background:var(--bg);color:var(--ink);font-family:var(--font);-webkit-font-smoothing:antialiased}
+body{background:var(--bg);color:var(--ink);font-family:var(--font);-webkit-font-smoothing:antialiased;overflow-wrap:break-word;-webkit-hyphens:auto;hyphens:auto}
 a{color:inherit}
+a,button{-webkit-tap-highlight-color:rgba(255,0,144,.22)}
 .wrap{width:100%;max-width:760px;margin:0 auto;padding:0 20px}
 
 header{border-bottom:1px solid var(--line)}
 header .wrap{display:flex;align-items:center;justify-content:space-between;height:64px}
-.brand{display:flex;align-items:center;gap:10px;text-decoration:none}
+.brand{display:flex;align-items:center;min-height:44px;gap:10px;text-decoration:none}
 .brand .mark{width:28px;height:28px}
 .brand span{font-weight:800;letter-spacing:.14em;font-size:13px;text-transform:uppercase}
-.back{font-size:10px;letter-spacing:.2em;text-transform:uppercase;font-weight:800;color:var(--muted);text-decoration:none}
-.back:hover{color:var(--accent)}
+.back{display:inline-flex;align-items:center;min-height:44px;padding:0 6px;font-size:11px;letter-spacing:.2em;text-transform:uppercase;font-weight:800;color:var(--muted);text-decoration:none}
+@media(hover:hover){.back:hover{color:var(--accent)}}
 
 .top{padding:54px 0 12px}
 .eyebrow{font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:var(--muted);font-weight:600}
@@ -48,13 +49,13 @@ ul{margin:14px 0 0 20px}
 li{margin-bottom:8px}
 address{font-style:normal;line-height:2;font-size:15px;color:#C6C6C6}
 address a{color:var(--ink);border-bottom:1px solid #444;text-decoration:none}
-address a:hover{color:var(--accent);border-bottom-color:var(--accent)}
+@media(hover:hover){address a:hover{color:var(--accent);border-bottom-color:var(--accent)}}
 .stand{margin-top:44px;padding-top:20px;border-top:1px solid var(--line);font-size:12px;color:var(--muted);letter-spacing:.1em}
 
 footer{border-top:1px solid var(--line);padding:40px 0 56px;text-align:center}
-footer .l{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:#666;line-height:2.4}
-footer .l a{color:var(--muted);text-decoration:none}
-footer .l a:hover{color:var(--accent)}
+footer .l{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);line-height:2.2}
+footer .l a{color:var(--ink);display:inline-block;padding:13px 4px;line-height:1.5;text-decoration:underline;text-decoration-color:#555;text-underline-offset:4px}
+@media(hover:hover){footer .l a:hover{color:var(--accent)}}
 </style>
 </head>
 <body>

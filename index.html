@@ -15,7 +15,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#0A0A0A">
 
-<link rel="icon" type="image/svg+xml" href="logos/cup-eq-favicon.svg"><rect width='32' height='32' fill='%230A0A0A'/><circle cx='16' cy='16' r='11' fill='none' stroke='%23FF0090' stroke-width='3'/><circle cx='16' cy='16' r='2.5' fill='%23FF0090'/></svg>">
+<link rel="icon" type="image/svg+xml" href="logos/cup-eq-favicon.svg">
 
 <style>
 :root{
@@ -40,6 +40,7 @@ body{
 }
 img,svg{display:block;max-width:100%}
 a{color:inherit;text-decoration:none}
+a,button{-webkit-tap-highlight-color:rgba(255,0,144,.22)}
 
 .wrap{width:100%;max-width:1200px;margin:0 auto;padding:0 20px}
 
@@ -63,15 +64,14 @@ header{
   position:fixed;top:0;left:0;right:0;z-index:60;
   height:var(--head-h);
   display:flex;align-items:center;
-  background:rgba(10,10,10,.82);
-  backdrop-filter:blur(14px);
+  background:rgba(10,10,10,.94);
   border-bottom:1px solid transparent;
   transition:border-color .3s,background .3s;
 }
 header.scrolled{border-bottom-color:var(--line)}
 header .wrap{display:flex;align-items:center;justify-content:space-between;gap:20px}
 
-.brand{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:.14em;font-size:14px;text-transform:uppercase}
+.brand{display:flex;align-items:center;min-height:44px;gap:10px;font-weight:800;letter-spacing:.14em;font-size:14px;text-transform:uppercase}
 .brand .mark{width:30px;height:30px}
 
 nav.desktop{display:none;gap:32px}
@@ -84,17 +84,17 @@ nav.desktop a::after{
   background:var(--accent);transform:scaleX(0);transform-origin:right;
   transition:transform .3s;
 }
-nav.desktop a:hover{color:var(--ink)}
-nav.desktop a:hover::after{transform:scaleX(1);transform-origin:left}
+@media(hover:hover){nav.desktop a:hover{color:var(--ink)}}
+@media(hover:hover){nav.desktop a:hover::after{transform:scaleX(1);transform-origin:left}}
 
 .socials{display:none;gap:14px;align-items:center}
 .socials a{color:var(--muted);transition:color .2s,transform .2s}
-.socials a:hover{color:var(--accent);transform:translateY(-2px)}
+@media(hover:hover){.socials a:hover{color:var(--accent);transform:translateY(-2px)}}
 .socials svg{width:19px;height:19px;fill:currentColor}
 
 /* Burger */
 .burger{
-  width:42px;height:42px;display:grid;place-content:center;gap:5px;
+  width:44px;height:44px;display:grid;place-content:center;gap:5px;
   background:none;border:0;cursor:pointer;padding:0;
 }
 .burger span{display:block;width:24px;height:2px;background:var(--ink);transition:transform .3s,opacity .2s}
@@ -124,14 +124,14 @@ nav.desktop a:hover::after{transform:scaleX(1);transform-origin:left}
 .overlay.open a.olink:nth-child(2){transition-delay:.22s}
 .overlay.open a.olink:nth-child(3){transition-delay:.28s}
 .overlay.open a.olink:nth-child(4){transition-delay:.34s}
-.overlay a.olink:hover{color:var(--accent)}
-.overlay .osoc{display:flex;gap:22px;margin-top:44px}
-.overlay .osoc a{color:var(--muted)}
+@media(hover:hover){.overlay a.olink:hover{color:var(--accent)}}
+.overlay .osoc{display:flex;gap:2px;margin:40px 0 0 -10px}
+.overlay .osoc a{color:var(--muted);display:grid;place-items:center;width:44px;height:44px}
 .overlay .osoc svg{width:24px;height:24px;fill:currentColor}
 
 /* ---------- Hero: Plattenspieler bleibt an erster Stelle ---------- */
 .hero{
-  position:relative;min-height:100svh;
+  position:relative;min-height:100vh;min-height:100svh;
   display:flex;flex-direction:column;align-items:center;justify-content:center;
   text-align:center;padding:calc(var(--head-h) + 40px) 20px 70px;
   overflow:hidden;
@@ -143,7 +143,6 @@ nav.desktop a:hover::after{transform:scaleX(1);transform-origin:left}
     radial-gradient(58% 42% at 22% 8%, rgba(255,0,144,.30), transparent 62%),
     radial-gradient(52% 40% at 82% 4%, rgba(120,0,255,.22), transparent 60%),
     radial-gradient(70% 50% at 50% 108%, rgba(255,0,144,.14), transparent 66%);
-  filter:blur(8px);
   animation:sweep 9s ease-in-out infinite alternate;
 }
 @keyframes sweep{
@@ -159,7 +158,6 @@ nav.desktop a:hover::after{transform:scaleX(1);transform-origin:left}
 .vinyl-stage::before{
   content:"";position:absolute;inset:-16%;border-radius:50%;z-index:0;
   background:radial-gradient(circle,rgba(255,0,144,.6),rgba(255,0,144,0) 66%);
-  filter:blur(16px);
   animation:glow 2.8s ease-in-out infinite alternate;
 }
 @keyframes glow{
@@ -229,28 +227,31 @@ h1.title .accent{
   content:"";position:absolute;inset:0;background:var(--accent);
   transform:translateY(101%);transition:transform .34s cubic-bezier(.6,0,.3,1);
 }
-.btn:hover::before{transform:translateY(0)}
-.btn:hover{color:#000}
-.btn.ghost{border-color:var(--line);margin-top:0;padding:11px 24px;font-size:11px}
+@media(hover:hover){.btn:hover::before{transform:translateY(0)}}
+@media(hover:hover){.btn:hover{color:#000}}
+.btn.ghost{border-color:var(--line);margin-top:0;padding:14px 24px;font-size:12px}
 .btn.ghost::before{background:var(--ink)}
-.btn.ghost:hover{color:#000;border-color:var(--ink)}
+@media(hover:hover){.btn.ghost:hover{color:#000;border-color:var(--ink)}}
 
 .scroll-cue{
   position:absolute;bottom:24px;left:50%;transform:translateX(-50%);
   display:flex;flex-direction:column;align-items:center;gap:9px;
-  font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:var(--muted);
+  font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:var(--muted);
 }
 /* Tropfende Linie aus der alten Version */
 .scroll-cue .line{
   width:1px;height:34px;
   background:linear-gradient(var(--accent),transparent);
+  transform-origin:top;
   animation:drip 1.8s ease-in-out infinite;
 }
+/* Linie waechst von oben nach unten und laeuft dann nach unten ab. Nur ueber
+   transform, damit die Grafikkarte das allein erledigt: ein wechselnder
+   transform-origin muesste in jedem Bild neu berechnet werden. */
 @keyframes drip{
-  0%{transform:scaleY(0);transform-origin:top}
-  50%{transform:scaleY(1);transform-origin:top}
-  51%{transform-origin:bottom}
-  100%{transform:scaleY(0);transform-origin:bottom}
+  0%{transform:translateY(0) scaleY(0)}
+  50%{transform:translateY(0) scaleY(1)}
+  100%{transform:translateY(100%) scaleY(0)}
 }
 .scroll-cue .arr{width:17px;height:17px;color:var(--accent);animation:bob 2s ease-in-out infinite}
 @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(6px)}}
@@ -271,7 +272,7 @@ h1.title .accent{
 .stats{display:grid;grid-template-columns:1fr;gap:2px;background:var(--line);border-block:1px solid var(--line)}
 .stat{background:var(--bg);padding:34px 20px;text-align:center}
 .stat .v{font-size:clamp(24px,6vw,38px);font-weight:800;letter-spacing:.02em;text-transform:uppercase}
-.stat .k{margin-top:8px;font-size:10px;letter-spacing:.26em;text-transform:uppercase;color:var(--muted)}
+.stat .k{margin-top:8px;font-size:11px;letter-spacing:.26em;text-transform:uppercase;color:var(--muted)}
 
 section{padding:84px 0}
 
@@ -282,8 +283,8 @@ section{padding:84px 0}
   transition:padding-left .3s,background .3s;
 }
 .show:first-of-type{border-top:1px solid var(--line)}
-.show:hover{background:var(--bg2);padding-left:16px}
-.show .date{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);font-weight:700}
+@media(hover:hover){.show:hover{background:var(--bg2);padding-left:16px}}
+.show .date{font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);font-weight:700}
 .show .venue{font-size:clamp(19px,4.4vw,27px);font-weight:800;text-transform:uppercase;letter-spacing:.01em;line-height:1.1;margin-top:5px}
 .show .city{font-size:12px;color:var(--muted);margin-top:5px;letter-spacing:.1em}
 .show .act{grid-column:1;justify-self:start;margin-top:14px}
@@ -312,22 +313,22 @@ section{padding:84px 0}
 .termin-liste.scrollbar::-webkit-scrollbar-thumb{background:var(--accent);border-radius:3px}
 .termine-aktion{margin-top:30px;text-align:center}
 .termine-aktion .btn{margin-top:0;background:none;color:var(--ink);font-family:inherit;cursor:pointer}
-.termine-aktion .btn:hover{color:#000}
+@media(hover:hover){.termine-aktion .btn:hover{color:#000}}
 
 /* ---------- Releases ---------- */
 .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
 .rel{position:relative;overflow:hidden;background:var(--bg2)}
 .rel .art{position:relative;aspect-ratio:1/1;overflow:hidden}
 .rel .art>svg{width:100%;height:100%;transition:transform .6s cubic-bezier(.3,0,.2,1)}
-.rel:hover .art>svg{transform:scale(1.07)}
+@media(hover:hover){.rel:hover .art>svg{transform:scale(1.07)}}
 .rel .meta{padding:14px 4px 4px}
 .rel .t{font-size:13px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;line-height:1.3}
-.rel .s{font-size:11px;color:var(--muted);margin-top:6px;letter-spacing:.12em;text-transform:uppercase}
+.rel .s{font-size:12px;color:var(--muted);margin-top:6px;letter-spacing:.12em;text-transform:uppercase}
 .rel .play{
   position:absolute;inset:0;display:grid;place-items:center;
   background:rgba(0,0,0,.55);opacity:0;transition:opacity .3s;
 }
-.rel:hover .play{opacity:1}
+@media(hover:hover){.rel:hover .play{opacity:1}}
 .rel .play i{
   width:52px;height:52px;border:2px solid var(--accent);border-radius:50%;
   display:grid;place-items:center;
@@ -347,19 +348,20 @@ section{padding:84px 0}
 .booking p{color:var(--muted);font-size:14px;line-height:1.8;max-width:46ch;margin:0 auto 30px}
 .mail{
   font-size:clamp(15px,4.6vw,26px);font-weight:800;letter-spacing:.02em;
-  border-bottom:2px solid var(--accent);padding-bottom:5px;word-break:break-all;
+  border-bottom:2px solid var(--accent);padding:14px 0 5px;word-break:break-all;
+  display:inline-block;
 }
 
 /* ---------- Footer ---------- */
 footer{padding:56px 0 40px;text-align:center}
 footer .mark.logo{display:block;width:74px;margin:0 auto 24px;opacity:.9}
-footer .fsoc{display:flex;justify-content:center;gap:26px;margin-bottom:28px}
-footer .fsoc a{color:var(--muted);transition:color .2s,transform .2s}
-footer .fsoc a:hover{color:var(--accent);transform:translateY(-3px)}
+footer .fsoc{display:flex;justify-content:center;gap:4px;margin-bottom:20px}
+footer .fsoc a{color:var(--muted);display:grid;place-items:center;width:44px;height:44px;transition:color .2s,transform .2s}
+@media(hover:hover){footer .fsoc a:hover{color:var(--accent);transform:translateY(-3px)}}
 footer .fsoc svg{width:22px;height:22px;fill:currentColor}
-footer .legal{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);line-height:2.2}
-footer .legal a{color:var(--ink);text-decoration:none;border-bottom:1px solid #444}
-footer .legal a:hover{color:var(--accent);border-bottom-color:var(--accent)}
+footer .legal{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);line-height:2.2}
+footer .legal a{color:var(--ink);display:inline-block;padding:13px 4px;line-height:1.5;text-decoration:underline;text-decoration-color:#555;text-underline-offset:4px}
+@media(hover:hover){footer .legal a:hover{color:var(--accent);text-decoration-color:var(--accent)}}
 
 /* ---------- Scroll-Reveal ---------- */
 .reveal{opacity:0;transform:translateY(28px);transition:opacity .7s,transform .7s}
@@ -368,6 +370,7 @@ footer .legal a:hover{color:var(--accent);border-bottom-color:var(--accent)}
 /* ---------- Ab Tablet: Burger weg, Menueleiste da ---------- */
 @media(min-width:820px){
   :root{--head-h:76px}
+  header{background:rgba(10,10,10,.82);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px)}
   nav.desktop{display:flex}
   .socials{display:flex}
   .burger{display:none}
