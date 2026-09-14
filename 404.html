@@ -6,8 +6,14 @@
 <title>Seite nicht gefunden — DJ TEATIME</title>
 <meta name="robots" content="noindex">
 <meta name="theme-color" content="#0A0A0A">
+<meta name="color-scheme" content="dark">
 <link rel="icon" type="image/svg+xml" href="/dj-teatime/logos/cup-eq-favicon.svg">
 <style>
+/* Die Seite ist von sich aus dunkel. Ohne diese Angabe färben Samsung Internet
+   und Chrome mit "Webseiten dunkel darstellen" sie zwangsweise um: Schwarz wird
+   hell, Pink wird dunkel, das TT-Logo verblasst. */
+:root{color-scheme:dark}
+@media(prefers-color-scheme:dark){:root{color-scheme:dark}}
 a,button{-webkit-tap-highlight-color:rgba(255,0,144,.22)}
 :root{
   --bg:#0A0A0A; --ink:#fff; --muted:#8A8A8A; --accent:#FF0090;
@@ -79,8 +85,7 @@ p{color:#C6C6C6;font-size:15px;line-height:1.85;margin-bottom:34px}
 
 <svg style="position:absolute;width:0;height:0;overflow:hidden" aria-hidden="true">
   <symbol id="m-tt" viewBox="0 0 100 100">
-    <mask id="k-tt"><rect width="100" height="100" fill="#fff"/><circle cx="50" cy="66" r="4.5" fill="#000"/></mask>
-    <g fill="currentColor" mask="url(#k-tt)">
+    <g fill="currentColor">
       <rect x="11" y="23" width="78" height="12" rx="2"/>
       <rect x="26" y="23" width="12" height="54" rx="2"/>
       <rect x="62" y="23" width="12" height="54" rx="2"/>
