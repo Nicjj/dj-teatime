@@ -1,37 +1,46 @@
 # DJ TEATIME — Website
 
 Artist-Website für DJ Teatime (Hard Techno / Tekno, Dresden).
+Live: https://nicjj.github.io/dj-teatime/
 
 ## Aufbau
 
-Die komplette Seite ist **eine einzige, in sich geschlossene Datei**: `index.html`.
-Kein Build-Schritt, keine Abhängigkeiten, kein CDN — Bilder sind als Data-URIs eingebettet.
+Statische Seiten ohne Build-Schritt, Frameworks oder CDN: `index.html` (Start),
+`about.html` (Über mich), `impressum.html`, `datenschutz.html`, `404.html`,
+dazu `logos/`, `bilder/` und `releases/`. Die Dateien laufen auf jedem Webserver.
 
-Das heißt: Die Seite läuft auf jedem Webserver, indem man `index.html` dorthin kopiert.
+Zwei Inhalte kommen automatisch:
+
+- **Termine** aus dem öffentlichen Google-Kalender „Gigs“ — `tools/termine.mjs`
+  schreibt `termine.json` (nicht im Repo, entsteht nur beim Veröffentlichen).
+  Konvention im Kalender: Titel = Venue, Ort = Stadt, Beschreibung = Ticket-Link.
+- **Releases** von SoundCloud (`soundcloud.com/tim-irmscher`) — `tools/releases.mjs`
+  schreibt `releases.json` und lädt die Cover nach `releases/`. Beides liegt
+  zusätzlich im Repo, damit die Seite auch dann Releases zeigt, wenn SoundCloud
+  gerade nicht erreichbar ist.
+
+Besucher laden dabei nichts von Google oder SoundCloud, alles kommt von dieser Seite.
+
+## Veröffentlichen
+
+Die GitHub Action `.github/workflows/pages.yml` veröffentlicht bei jedem Push nach
+`main`. Zusätzlich prüft sie alle fünf Minuten Kalender und SoundCloud und
+veröffentlicht nur, wenn sich dort etwas geändert hat (`tools/vergleich.mjs`).
 
 ## Lokal ansehen
 
 ```
+node tools/termine.mjs
+node tools/releases.mjs
 node server.js
 ```
 
 Dann `http://localhost:5599` öffnen.
 
-(Die Datei direkt per Doppelklick zu öffnen funktioniert auch, aber ein echter Server
-verhält sich genauso wie später im Livebetrieb.)
-
 ## Links auf der Seite
 
 - Instagram: https://www.instagram.com/teatime_music_/
-- SoundCloud: https://on.soundcloud.com/PkZfJisJTeEny8Lj9
-- Booking: teaatime-music@gmail.com
+- SoundCloud: https://soundcloud.com/tim-irmscher
+- Booking: booking.teatime.music@gmail.com
 
-YouTube und Spotify sollen später dazukommen — die Social-Leiste im Footer
-ist so aufgebaut, dass weitere Links einfach ergänzt werden können.
-
-## Offen
-
-- Termine ("Steep Times") stehen aktuell auf Platzhalter. Geplant ist, sie aus einer
-  veröffentlichten Google-Tabelle zu laden, damit sie ohne Code-Änderung gepflegt
-  werden können.
-- About-Text und Brew-Log-Einträge enthalten noch Platzhaltertexte.
+YouTube und Spotify sollen später dazukommen.

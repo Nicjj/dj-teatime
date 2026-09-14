@@ -1,0 +1,87 @@
+{
+  "stand": "2026-09-14T12:05:45.520Z",
+  "profil": "https://soundcloud.com/tim-irmscher",
+  "releases": [
+    {
+      "titel": "Hard Techno Set FtV 26",
+      "url": "https://soundcloud.com/tim-irmscher/hard-techno-set-ftv-26",
+      "datum": "2026-07-18T15:52:09Z",
+      "minuten": 60,
+      "genre": "Techno",
+      "bild": "releases/hard-techno-set-ftv-26-14c536d6-500.jpg",
+      "bildKlein": "releases/hard-techno-set-ftv-26-14c536d6-300.jpg"
+    },
+    {
+      "titel": "Tea Session No.2",
+      "url": "https://soundcloud.com/tim-irmscher/tea-session-no-2",
+      "datum": "2026-03-28T19:22:35Z",
+      "minuten": 46,
+      "genre": "Hard Techno",
+      "bild": "releases/tea-session-no-2-a30aff69-500.jpg",
+      "bildKlein": "releases/tea-session-no-2-a30aff69-300.jpg"
+    },
+    {
+      "titel": "Hard Techno / Hard Rave - Set FtV 2025 TeaTime",
+      "url": "https://soundcloud.com/tim-irmscher/hard-techno-hard-rave-set-ftv-2025-teatime",
+      "datum": "2025-07-14T17:42:56Z",
+      "minuten": 60,
+      "genre": "Hard Techno",
+      "bild": "releases/hard-techno-hard-rave-set-ftv-2025-teatime-738e3dc1-500.jpg",
+      "bildKlein": "releases/hard-techno-hard-rave-set-ftv-2025-teatime-738e3dc1-300.jpg"
+    },
+    {
+      "titel": "Melodic Tekno",
+      "url": "https://soundcloud.com/tim-irmscher/melodic-tekno",
+      "datum": "2024-11-20T11:14:24Z",
+      "minuten": 41,
+      "genre": "tekno",
+      "bild": "releases/melodic-tekno-281f7348-500.jpg",
+      "bildKlein": "releases/melodic-tekno-281f7348-300.jpg"
+    },
+    {
+      "titel": "Oelsa Dorffest 24",
+      "url": "https://soundcloud.com/tim-irmscher/oelsa-dorffest-24",
+      "datum": "2024-09-01T16:50:22Z",
+      "minuten": 128,
+      "genre": "Tribe",
+      "bild": "releases/oelsa-dorffest-24-3d79af25-500.jpg",
+      "bildKlein": "releases/oelsa-dorffest-24-3d79af25-300.jpg"
+    },
+    {
+      "titel": "Tea Session No.1",
+      "url": "https://soundcloud.com/tim-irmscher/tea-session-no1",
+      "datum": "2024-03-23T22:48:18Z",
+      "minuten": 43,
+      "genre": "Tribe",
+      "bild": "releases/tea-session-no1-d3fb2566-500.jpg",
+      "bildKlein": "releases/tea-session-no1-d3fb2566-300.jpg"
+    },
+    {
+      "titel": "TekknoPulse",
+      "url": "https://soundcloud.com/tim-irmscher/tekknopulse",
+      "datum": "2023-11-22T01:23:21Z",
+      "minuten": 49,
+      "genre": "Tekkno",
+      "bild": "releases/tekknopulse-539d02d7-500.jpg",
+      "bildKlein": "releases/tekknopulse-539d02d7-300.jpg"
+    },
+    {
+      "titel": "Straight from Heaven",
+      "url": "https://soundcloud.com/tim-irmscher/straight-from-heaven",
+      "datum": "2023-07-15T17:42:11Z",
+      "minuten": 55,
+      "genre": "Tribe/Acid",
+      "bild": "releases/straight-from-heaven-8cc38410-500.jpg",
+      "bildKlein": "releases/straight-from-heaven-8cc38410-300.jpg"
+    },
+    {
+      "titel": "Acid Dreams",
+      "url": "https://soundcloud.com/tim-irmscher/acid-dreams",
+      "datum": "2023-06-17T17:03:41Z",
+      "minuten": 54,
+      "genre": "Acid",
+      "bild": "releases/acid-dreams-14f7312c-500.jpg",
+      "bildKlein": "releases/acid-dreams-14f7312c-300.jpg"
+    }
+  ]
+}

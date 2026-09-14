@@ -1,9 +1,10 @@
 # Baut und veröffentlicht die Seite auf GitHub Pages.
 #
-# Alle fünf Minuten wird der Google-Kalender "Gigs" abgefragt. Nur wenn
-# sich an den Terminen etwas geändert hat, wird die Seite neu veröffentlicht.
-# Neue, geänderte und gelöschte Termine sind so in der Regel nach wenigen
-# Minuten auf der Seite. Bei Code-Änderungen (Push) und von Hand wird
+# Alle fünf Minuten werden der Google-Kalender "Gigs" und Tims
+# SoundCloud-Profil abgefragt. Nur wenn sich an den Terminen oder Releases
+# etwas geändert hat, wird die Seite neu veröffentlicht. Neue Termine und
+# Tracks sind so in der Regel nach wenigen Minuten auf der Seite. Bei
+# Code-Änderungen (Push), von Hand und einmal täglich (frische Cover) wird
 # immer veröffentlicht.
 #
 # Von Hand: github.com/Nicjj/dj-teatime -> Actions -> "Seite veröffentlichen"
@@ -15,8 +16,8 @@ on:
   push:
     branches: [main]
   schedule:
-    - cron: '*/5 * * * *'   # Kalender prüfen
-    - cron: '42 3 * * *'    # einmal täglich zusätzlich den Zeitplan aktiv halten
+    - cron: '*/5 * * * *'   # Kalender und SoundCloud prüfen
+    - cron: '42 3 * * *'    # einmal täglich neu veröffentlichen und den Zeitplan aktiv halten
   workflow_dispatch:
 
 permissions:
@@ -31,7 +32,7 @@ concurrency:
   cancel-in-progress: false
 
 env:
-  LIVE_URL: https://nicjj.github.io/dj-teatime/termine.json
+  LIVE_BASIS: https://nicjj.github.io/dj-teatime/
 
 jobs:
   pruefen:
@@ -47,18 +48,18 @@ jobs:
         with:
           node-version: 24
 
-      # Ist Google kurz nicht erreichbar, bleibt die Seite einfach wie sie ist.
-      # Der Lauf gilt trotzdem als erfolgreich, damit nicht alle fünf Minuten
-      # eine Fehler-Mail von GitHub kommt.
-      - name: Termine holen und mit der veröffentlichten Fassung vergleichen
+      # Ist Google oder SoundCloud kurz nicht erreichbar, wird diese Quelle
+      # übersprungen und die Seite bleibt insoweit wie sie ist. Der Lauf gilt
+      # trotzdem als erfolgreich, damit nicht alle fünf Minuten eine
+      # Fehler-Mail von GitHub kommt.
+      - name: Termine und Releases holen und mit der veröffentlichten Fassung vergleichen
         id: vergleich
+        env:
+          RELEASES_DATEI: pruefung-releases.json
         run: |
-          if node tools/termine.mjs; then
-            node tools/vergleich.mjs
-          else
-            echo "::warning::Kalender gerade nicht abrufbar, die Seite bleibt unverändert."
-            echo "geaendert=false" >> "$GITHUB_OUTPUT"
-          fi
+          node tools/termine.mjs || echo "::warning::Kalender gerade nicht abrufbar."
+          node tools/releases.mjs --nur-liste || echo "::warning::SoundCloud gerade nicht abrufbar."
+          node tools/vergleich.mjs
 
       # GitHub pausiert zeitgesteuerte Läufe, wenn im Repo 60 Tage lang
       # nichts passiert. Das erneute Aktivieren setzt diese Frist zurück.
@@ -70,7 +71,7 @@ jobs:
 
   veroeffentlichen:
     needs: pruefen
-    if: github.event_name != 'schedule' || needs.pruefen.outputs.geaendert == 'true'
+    if: github.event_name != 'schedule' || github.event.schedule == '42 3 * * *' || needs.pruefen.outputs.geaendert == 'true'
     runs-on: ubuntu-latest
     environment:
       name: github-pages
@@ -88,6 +89,12 @@ jobs:
       # veröffentlichte Fassung bleibt dann online.
       - name: Termine aus dem Google-Kalender holen
         run: node tools/termine.mjs
+
+      # Releases und Cover liegen zusätzlich im Repo. Ist SoundCloud nicht
+      # erreichbar, wird einfach diese gespeicherte Fassung veröffentlicht,
+      # statt Code-Änderungen oder neue Termine aufzuhalten.
+      - name: Releases und Cover von SoundCloud holen
+        run: node tools/releases.mjs || echo "::warning::SoundCloud nicht abrufbar, die gespeicherten Releases werden veröffentlicht."
 
       - name: Pages vorbereiten
         uses: actions/configure-pages@v5
