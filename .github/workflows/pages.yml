@@ -96,6 +96,12 @@ jobs:
       - name: Releases und Cover von SoundCloud holen
         run: node tools/releases.mjs || echo "::warning::SoundCloud nicht abrufbar, die gespeicherten Releases werden veröffentlicht."
 
+      # Termine und Releases fertig ins HTML schreiben: Google sieht sie ohne
+      # JavaScript, und beim Laden springt nichts. Verändert index.html nur hier
+      # im Runner, nicht im Repo.
+      - name: Termine und Releases ins HTML schreiben
+        run: node tools/vorrendern.mjs
+
       - name: Pages vorbereiten
         uses: actions/configure-pages@v6
 

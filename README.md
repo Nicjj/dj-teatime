@@ -21,6 +21,11 @@ Zwei Inhalte kommen automatisch:
 
 Besucher laden dabei nichts von Google oder SoundCloud, alles kommt von dieser Seite.
 
+Beim Veröffentlichen schreibt `tools/vorrendern.mjs` Termine und Releases zusätzlich
+fertig in `index.html` (für Google und damit beim Laden nichts springt). Das HTML dazu
+kommt aus `js/darstellung.js`, dieselbe Datei nutzt auch der Browser. Auf einem eigenen
+Server müssen deshalb alle drei Skripte laufen: termine.mjs, releases.mjs, vorrendern.mjs.
+
 ## Veröffentlichen
 
 Die GitHub Action `.github/workflows/pages.yml` veröffentlicht bei jedem Push nach
@@ -32,6 +37,7 @@ veröffentlicht nur, wenn sich dort etwas geändert hat (`tools/vergleich.mjs`).
 ```
 node tools/termine.mjs
 node tools/releases.mjs
+node tools/vorrendern.mjs _vorschau.html   # optional, zeigt die vorab geschriebene Fassung
 node server.js
 ```
 
