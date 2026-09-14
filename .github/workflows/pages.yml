@@ -1,13 +1,13 @@
 # Baut und veröffentlicht die Seite auf GitHub Pages.
 #
-# Vor jedem Deploy holt tools/termine.mjs die Gigs aus dem Google-Kalender
-# und schreibt termine.json. Dadurch erscheinen neue Termine automatisch,
-# ohne dass jemand etwas am Code ändern muss.
+# Alle fünf Minuten wird der Google-Kalender "Gigs" abgefragt. Nur wenn
+# sich an den Terminen etwas geändert hat, wird die Seite neu veröffentlicht.
+# Neue, geänderte und gelöschte Termine sind so in der Regel nach wenigen
+# Minuten auf der Seite. Bei Code-Änderungen (Push) und von Hand wird
+# immer veröffentlicht.
 #
-# Ausgelöst wird der Lauf
-#   - bei jedem Push auf main (Codeänderungen)
-#   - alle drei Stunden (neue oder geänderte Termine im Kalender)
-#   - von Hand unter Actions -> "Seite veröffentlichen" -> "Run workflow"
+# Von Hand: github.com/Nicjj/dj-teatime -> Actions -> "Seite veröffentlichen"
+#           -> "Run workflow". Das dauert etwa ein bis zwei Minuten.
 
 name: Seite veröffentlichen
 
@@ -15,7 +15,8 @@ on:
   push:
     branches: [main]
   schedule:
-    - cron: '17 */3 * * *'
+    - cron: '*/5 * * * *'   # Kalender prüfen
+    - cron: '42 3 * * *'    # einmal täglich zusätzlich den Zeitplan aktiv halten
   workflow_dispatch:
 
 permissions:
@@ -29,8 +30,47 @@ concurrency:
   group: pages
   cancel-in-progress: false
 
+env:
+  LIVE_URL: https://nicjj.github.io/dj-teatime/termine.json
+
 jobs:
+  pruefen:
+    runs-on: ubuntu-latest
+    outputs:
+      geaendert: ${{ steps.vergleich.outputs.geaendert }}
+    steps:
+      - name: Code holen
+        uses: actions/checkout@v4
+
+      - name: Node einrichten
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+
+      # Ist Google kurz nicht erreichbar, bleibt die Seite einfach wie sie ist.
+      # Der Lauf gilt trotzdem als erfolgreich, damit nicht alle fünf Minuten
+      # eine Fehler-Mail von GitHub kommt.
+      - name: Termine holen und mit der veröffentlichten Fassung vergleichen
+        id: vergleich
+        run: |
+          if node tools/termine.mjs; then
+            node tools/vergleich.mjs
+          else
+            echo "::warning::Kalender gerade nicht abrufbar, die Seite bleibt unverändert."
+            echo "geaendert=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      # GitHub pausiert zeitgesteuerte Läufe, wenn im Repo 60 Tage lang
+      # nichts passiert. Das erneute Aktivieren setzt diese Frist zurück.
+      - name: Zeitplan aktiv halten
+        if: github.event.schedule == '42 3 * * *'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh api -X PUT "repos/${{ github.repository }}/actions/workflows/pages.yml/enable"
+
   veroeffentlichen:
+    needs: pruefen
+    if: github.event_name != 'schedule' || needs.pruefen.outputs.geaendert == 'true'
     runs-on: ubuntu-latest
     environment:
       name: github-pages
@@ -44,8 +84,8 @@ jobs:
         with:
           node-version: 24
 
-      # Scheitert der Abruf, bricht der Lauf ab. Die zuletzt veröffentlichte
-      # Fassung bleibt dann online, statt einer leeren Terminliste.
+      # Scheitert der Abruf hier, bricht der Lauf ab. Die zuletzt
+      # veröffentlichte Fassung bleibt dann online.
       - name: Termine aus dem Google-Kalender holen
         run: node tools/termine.mjs
 
@@ -60,11 +100,3 @@ jobs:
       - name: Veröffentlichen
         id: deploy
         uses: actions/deploy-pages@v4
-
-      # GitHub pausiert zeitgesteuerte Läufe, wenn im Repo 60 Tage lang
-      # nichts passiert. Das erneute Aktivieren setzt diese Frist zurück.
-      - name: Zeitplan aktiv halten
-        if: github.event_name == 'schedule'
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: gh api -X PUT "repos/${{ github.repository }}/actions/workflows/pages.yml/enable"
