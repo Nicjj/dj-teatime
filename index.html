@@ -294,6 +294,26 @@ section{padding:84px 0}
 .tba p a{color:var(--ink);text-decoration:none;border-bottom:1px solid var(--accent)}
 .tba p{color:var(--muted);font-size:13px;margin-top:12px;line-height:1.7}
 
+/* Terminliste: drei Termine sichtbar, weitere erst nach Klick auf den Knopf */
+.termin-liste{position:relative}
+.termin-liste .show.weitere{display:none}
+.termin-liste.offen .show.weitere{display:grid;animation:einblenden .45s ease both}
+@keyframes einblenden{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+/* Mehr als sechs Termine: Feld begrenzen und darin scrollen. Der Verlauf am
+   unteren Rand zeigt, dass es weitergeht, und verschwindet am Ende der Liste. */
+.termin-liste.scrollbar{
+  overflow-y:auto;-webkit-overflow-scrolling:touch;
+  scrollbar-width:thin;scrollbar-color:var(--accent) transparent;
+  -webkit-mask-image:linear-gradient(to bottom,#000 calc(100% - 64px),transparent);
+          mask-image:linear-gradient(to bottom,#000 calc(100% - 64px),transparent);
+}
+.termin-liste.scrollbar.am-ende{-webkit-mask-image:none;mask-image:none}
+.termin-liste.scrollbar::-webkit-scrollbar{width:6px}
+.termin-liste.scrollbar::-webkit-scrollbar-thumb{background:var(--accent);border-radius:3px}
+.termine-aktion{margin-top:30px;text-align:center}
+.termine-aktion .btn{margin-top:0;background:none;color:var(--ink);font-family:inherit;cursor:pointer}
+.termine-aktion .btn:hover{color:#000}
+
 /* ---------- Releases ---------- */
 .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
 .rel{position:relative;overflow:hidden;background:var(--bg2)}
@@ -354,6 +374,10 @@ footer .legal a:hover{color:var(--accent);border-bottom-color:var(--accent)}
   .grid{grid-template-columns:repeat(4,1fr);gap:20px}
   .stats{grid-template-columns:repeat(3,1fr)}
   .show{grid-template-columns:170px 1fr auto;padding:26px 4px}
+  /* Datum, Venue und Stadt stecken im HTML in einem gemeinsamen Block.
+     Ohne display:contents landet dieser Block komplett in der schmalen
+     Datumsspalte und die Mittelspalte bleibt leer. */
+  .show > div:first-child{display:contents}
   .show .date{grid-row:1}
   .show .venue{margin-top:0}
   .show .city{grid-column:2;margin-top:6px}
@@ -696,16 +720,68 @@ footer .legal a:hover{color:var(--accent);border-bottom-color:var(--accent)}
     });
     if (!liste.length) { keineTermine(); return; }
 
-    terminBox.innerHTML = liste.map(function(t){
+    /* Ohne Klick stehen drei Termine da. Ab dem vierten gibt es einen Knopf,
+       der drei weitere einblendet. Gibt es mehr als sechs, wird das Feld auf
+       sechs Termine begrenzt und der Rest lässt sich darin scrollen. */
+    var SICHTBAR = 3;
+    var OFFEN_SICHTBAR = 6;
+
+    var zeilen = liste.map(function(t, i){
       var ticket = /^https?:\/\//.test(t.ticket || '')
         ? '<div class="act"><a class="btn ghost" href="' + esc(t.ticket) + '" target="_blank" rel="noopener"><span>Tickets</span></a></div>'
         : '';
-      return '<div class="show"><div>'
+      return '<div class="show' + (i >= SICHTBAR ? ' weitere' : '') + '"><div>'
         + '<div class="date">' + datumText(t) + '</div>'
         + '<div class="venue">' + esc(t.titel) + '</div>'
         + (t.ort ? '<div class="city">' + esc(t.ort) + '</div>' : '')
         + '</div>' + ticket + '</div>';
     }).join('');
+
+    var knopf = liste.length > SICHTBAR
+      ? '<div class="termine-aktion"><button type="button" class="btn" id="termine-mehr" aria-expanded="false" aria-controls="termin-liste">'
+        + '<span>Mehr Termine ansehen</span></button></div>'
+      : '';
+
+    terminBox.innerHTML = '<div class="termin-liste" id="termin-liste">' + zeilen + '</div>' + knopf;
+
+    var mehr = document.getElementById('termine-mehr');
+    if (mehr) {
+      var feld = document.getElementById('termin-liste');
+
+      var feldHoeheSetzen = function(){
+        var reihen = feld.querySelectorAll('.show');
+        if (!feld.classList.contains('offen') || reihen.length <= OFFEN_SICHTBAR) {
+          feld.style.maxHeight = '';
+          feld.classList.remove('scrollbar');
+          return;
+        }
+        /* Unterkante des sechsten Termins, dazu ein Stück vom siebten als
+           Hinweis, dass es darunter weitergeht */
+        var sechster = reihen[OFFEN_SICHTBAR - 1];
+        var hoehe = sechster.offsetTop + sechster.offsetHeight + 44;
+        /* Nie höher als 70 % des Bildschirms, sonst liegt auf dem Handy jede
+           Berührung auf der Liste und man kommt nicht mehr an ihr vorbei */
+        feld.style.maxHeight = Math.min(hoehe, Math.round(window.innerHeight * 0.7)) + 'px';
+        feld.classList.add('scrollbar');
+        endePruefen();
+      };
+
+      var endePruefen = function(){
+        feld.classList.toggle('am-ende', feld.scrollTop + feld.clientHeight >= feld.scrollHeight - 2);
+      };
+
+      mehr.addEventListener('click', function(){
+        var offen = !feld.classList.contains('offen');
+        feld.classList.toggle('offen', offen);
+        mehr.setAttribute('aria-expanded', String(offen));
+        mehr.querySelector('span').textContent = offen ? 'Weniger Termine anzeigen' : 'Mehr Termine ansehen';
+        feld.scrollTop = 0;
+        feldHoeheSetzen();
+        if (!offen) document.getElementById('shows').scrollIntoView({behavior:'smooth', block:'start'});
+      });
+      feld.addEventListener('scroll', endePruefen, {passive:true});
+      window.addEventListener('resize', feldHoeheSetzen);
+    }
 
     /* Für Suchmaschinen: jeder Termin zusätzlich als schema.org MusicEvent */
     var ld = document.createElement('script');
