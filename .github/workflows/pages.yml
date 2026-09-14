@@ -1,0 +1,70 @@
+# Baut und veröffentlicht die Seite auf GitHub Pages.
+#
+# Vor jedem Deploy holt tools/termine.mjs die Gigs aus dem Google-Kalender
+# und schreibt termine.json. Dadurch erscheinen neue Termine automatisch,
+# ohne dass jemand etwas am Code ändern muss.
+#
+# Ausgelöst wird der Lauf
+#   - bei jedem Push auf main (Codeänderungen)
+#   - alle drei Stunden (neue oder geänderte Termine im Kalender)
+#   - von Hand unter Actions -> "Seite veröffentlichen" -> "Run workflow"
+
+name: Seite veröffentlichen
+
+on:
+  push:
+    branches: [main]
+  schedule:
+    - cron: '17 */3 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+  actions: write
+
+# Läufe nicht gegenseitig abbrechen, sondern nacheinander abarbeiten
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  veroeffentlichen:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - name: Code holen
+        uses: actions/checkout@v4
+
+      - name: Node einrichten
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      # Scheitert der Abruf, bricht der Lauf ab. Die zuletzt veröffentlichte
+      # Fassung bleibt dann online, statt einer leeren Terminliste.
+      - name: Termine aus dem Google-Kalender holen
+        run: node tools/termine.mjs
+
+      - name: Pages vorbereiten
+        uses: actions/configure-pages@v5
+
+      - name: Seite verpacken
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
+
+      - name: Veröffentlichen
+        id: deploy
+        uses: actions/deploy-pages@v4
+
+      # GitHub pausiert zeitgesteuerte Läufe, wenn im Repo 60 Tage lang
+      # nichts passiert. Das erneute Aktivieren setzt diese Frist zurück.
+      - name: Zeitplan aktiv halten
+        if: github.event_name == 'schedule'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh api -X PUT "repos/${{ github.repository }}/actions/workflows/pages.yml/enable"

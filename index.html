@@ -291,6 +291,7 @@ section{padding:84px 0}
   border:1px dashed var(--line);padding:40px 24px;text-align:center;
 }
 .tba .big{font-size:clamp(22px,5vw,32px);font-weight:800;text-transform:uppercase;letter-spacing:.04em}
+.tba p a{color:var(--ink);text-decoration:none;border-bottom:1px solid var(--accent)}
 .tba p{color:var(--muted);font-size:13px;margin-top:12px;line-height:1.7}
 
 /* ---------- Releases ---------- */
@@ -474,37 +475,13 @@ footer .legal a:hover{color:var(--accent);border-bottom-color:var(--accent)}
   <div class="wrap">
     <div class="sec-head reveal"><h2 class="h-sec">Termine</h2></div>
 
-    <div class="reveal">
-      <div class="show">
-        <div>
-          <div class="date">Platzhalter</div>
-          <div class="venue">Venue</div>
-          <div class="city">Dresden</div>
+    <div class="reveal" id="termine" aria-live="polite">
+      <noscript>
+        <div class="tba">
+          <div class="big">Termine brauchen JavaScript</div>
+          <p>Aktuelle Gigs gibt es auch auf <a href="https://instagram.com/teatime_music_">Instagram</a>.</p>
         </div>
-        <div class="act"><a class="btn ghost" href="#booking"><span>Tickets</span></a></div>
-      </div>
-      <div class="show">
-        <div>
-          <div class="date">Platzhalter</div>
-          <div class="venue">Clubnacht</div>
-          <div class="city">Leipzig</div>
-        </div>
-        <div class="act"><a class="btn ghost" href="#booking"><span>Tickets</span></a></div>
-      </div>
-      <div class="show">
-        <div>
-          <div class="date">Platzhalter</div>
-          <div class="venue">Open Air</div>
-          <div class="city">Berlin</div>
-        </div>
-        <div class="act"><a class="btn ghost" href="#booking"><span>Tickets</span></a></div>
-      </div>
-    </div>
-
-    <div class="tba reveal" style="margin-top:34px">
-      <div class="big">Keine echten Termine hinterlegt</div>
-      <p>Diese drei Zeilen sind Platzhalter und zeigen nur das Layout.<br>
-         Später zieht sich diese Liste automatisch aus dem Google-Kalender.</p>
+      </noscript>
     </div>
   </div>
 </section>
@@ -675,6 +652,83 @@ footer .legal a:hover{color:var(--accent);border-bottom-color:var(--accent)}
     clearTimeout(tickTimer);
     tickTimer = setTimeout(buildTicker, 200);
   });
+
+  /* ---- Termine ----
+     Kommen aus termine.json. Die Datei erzeugt die GitHub Action aus dem
+     Google-Kalender "Gigs" (tools/termine.mjs), Besucher sprechen also nie
+     mit Google. Vergangene Termine werden hier zusätzlich ausgeblendet,
+     falls die Datei schon ein paar Stunden alt ist. */
+  var terminBox = document.getElementById('termine');
+  var WOCHENTAG = ['So','Mo','Di','Mi','Do','Fr','Sa'];
+  var MONAT = ['Jan','Feb','März','Apr','Mai','Juni','Juli','Aug','Sep','Okt','Nov','Dez'];
+
+  function esc(s){
+    return String(s).replace(/[&<>"']/g, function(c){
+      return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];
+    });
+  }
+
+  function berlinJetzt(){
+    var t = {};
+    new Intl.DateTimeFormat('en-CA', {timeZone:'Europe/Berlin', year:'numeric', month:'2-digit',
+      day:'2-digit', hour:'2-digit', minute:'2-digit', hourCycle:'h23'})
+      .formatToParts(new Date()).forEach(function(p){ t[p.type] = p.value; });
+    return t.year+'-'+t.month+'-'+t.day+'T'+t.hour+':'+t.minute;
+  }
+
+  function datumText(t){
+    var j = +t.start.slice(0,4), m = +t.start.slice(5,7), d = +t.start.slice(8,10);
+    var s = WOCHENTAG[new Date(Date.UTC(j, m-1, d)).getUTCDay()] + ' ' + d + '. ' + MONAT[m-1] + ' ' + j;
+    if (!t.ganztags) s += ' &middot; ' + t.start.slice(11,16) + ' Uhr';
+    return s;
+  }
+
+  function keineTermine(){
+    terminBox.innerHTML = '<div class="tba"><div class="big">Gerade keine Termine angekündigt</div>'
+      + '<p>Neue Gigs erscheinen hier automatisch. Für Booking-Anfragen: '
+      + '<a href="#booking">schreib mir</a>.</p></div>';
+  }
+
+  function zeigeTermine(daten){
+    var jetzt = berlinJetzt(), heute = jetzt.slice(0,10);
+    var liste = ((daten && daten.termine) || []).filter(function(t){
+      return t.ganztags ? t.ende > heute : t.ende > jetzt;
+    });
+    if (!liste.length) { keineTermine(); return; }
+
+    terminBox.innerHTML = liste.map(function(t){
+      var ticket = /^https?:\/\//.test(t.ticket || '')
+        ? '<div class="act"><a class="btn ghost" href="' + esc(t.ticket) + '" target="_blank" rel="noopener"><span>Tickets</span></a></div>'
+        : '';
+      return '<div class="show"><div>'
+        + '<div class="date">' + datumText(t) + '</div>'
+        + '<div class="venue">' + esc(t.titel) + '</div>'
+        + (t.ort ? '<div class="city">' + esc(t.ort) + '</div>' : '')
+        + '</div>' + ticket + '</div>';
+    }).join('');
+
+    /* Für Suchmaschinen: jeder Termin zusätzlich als schema.org MusicEvent */
+    var ld = document.createElement('script');
+    ld.type = 'application/ld+json';
+    ld.textContent = JSON.stringify(liste.map(function(t){
+      var e = {
+        '@context':'https://schema.org', '@type':'MusicEvent',
+        name:'DJ Teatime @ ' + t.titel, startDate:t.startIso,
+        eventStatus:'https://schema.org/EventScheduled',
+        eventAttendanceMode:'https://schema.org/OfflineEventAttendanceMode',
+        location:{'@type':'Place', name:t.titel, address:t.adresse || t.ort || t.titel},
+        performer:{'@type':'MusicGroup', name:'DJ Teatime'}
+      };
+      if (t.ticket) e.offers = {'@type':'Offer', url:t.ticket};
+      return e;
+    }));
+    document.head.appendChild(ld);
+  }
+
+  fetch('termine.json', {cache:'no-cache'})
+    .then(function(r){ if (!r.ok) throw new Error(r.status); return r.json(); })
+    .then(zeigeTermine)
+    .catch(keineTermine);
 
   /* ---- Scroll-Reveal ---- */
   var els = document.querySelectorAll('.reveal');
