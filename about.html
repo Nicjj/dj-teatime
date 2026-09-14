@@ -116,7 +116,10 @@ section{padding:70px 0}
 @media(hover:hover){.btn:hover{color:#000}}
 
 footer{padding:52px 0 44px;text-align:center}
-footer .mark.logo{display:block;width:66px;margin:0 auto 22px;opacity:.9}
+footer .logo-link{display:block;width:66px;margin:0 auto 22px;color:var(--ink);transition:color .2s}
+footer .mark.logo{display:block;width:66px;opacity:.9}
+footer .logo-link:focus-visible{outline:2px solid var(--accent);outline-offset:6px}
+@media(hover:hover){footer .logo-link:hover{color:var(--accent)}}
 footer .legal{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);line-height:2.2}
 footer .legal a{color:var(--ink);display:inline-block;padding:13px 4px;line-height:1.5;text-decoration:underline;text-decoration-color:#555;text-underline-offset:4px}
 @media(hover:hover){footer .legal a:hover{color:var(--accent);text-decoration-color:var(--accent)}}
@@ -264,7 +267,7 @@ footer .legal a{color:var(--ink);display:inline-block;padding:13px 4px;line-heig
 
 <footer>
   <div class="wrap">
-    <svg class="mark logo" role="img" aria-label="DJ Teatime"><use href="#m-tt"/></svg>
+    <a class="logo-link" href="about.html" aria-label="Über mich"><svg class="mark logo" aria-hidden="true"><use href="#m-tt"/></svg></a>
     <div class="legal">
       <a href="./">Startseite</a> &nbsp;&middot;&nbsp;
       <a href="impressum.html">Impressum</a> &nbsp;&middot;&nbsp;
