@@ -2,7 +2,7 @@
 // schreibt sie nach termine.json. Die Startseite liest nur diese Datei,
 // Besucher haben also nie direkten Kontakt zu Google.
 //
-// Läuft automatisch in .github/workflows/pages.yml vor jedem Deploy.
+// Läuft automatisch in .github/workflows/pages.yml vor jedem Deploy (Node 24).
 // Lokal zum Testen:  node tools/termine.mjs
 //
 // Feldkonvention im Kalender:

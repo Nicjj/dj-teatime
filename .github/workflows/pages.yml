@@ -42,7 +42,7 @@ jobs:
       - name: Node einrichten
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 24
 
       # Scheitert der Abruf, bricht der Lauf ab. Die zuletzt veröffentlichte
       # Fassung bleibt dann online, statt einer leeren Terminliste.
