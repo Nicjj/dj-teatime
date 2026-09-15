@@ -9,6 +9,9 @@ Repo: https://github.com/Nicjj/dj-teatime
 OFFEN - MUSS TIM ODER NICK ERLEDIGEN
 ------------------------------------------------------------------------
 
+[ ] Tims neue Dresdner Anschrift für Impressum und Datenschutzerklärung
+    - dort steht noch die alte Adresse in Glashütte; das Impressum braucht
+      die aktuelle ladungsfähige Anschrift
 [ ] Testeinträge im Gigs-Kalender löschen
     ("Test 1", "Test 2", "Test gig nr 4", "icH BIN EIN GIG ...")
     - die stehen live auf der Startseite
@@ -90,7 +93,8 @@ ERLEDIGT
 [x] Sprache durchgehend Deutsch
 [x] 404-Seite
 [x] Über-mich-Seite mit echtem Text, Fotogalerie und Herkunftskarte
-    (Oberfrauendorf -> Dresden, eigene Karte aus OpenStreetMap-Daten)
+    (Dresden als Zuhause, Wurzeln im Osterzgebirge, eigene Karte aus
+    OpenStreetMap-Daten)
 [x] Barrierefreiheit geprüft: Alt-Texte, Kontraste, Überschriften,
     Tastaturbedienung von Menü und Galerie
 [x] GitHub-Actions auf aktuelle Versionen (Node 24)
